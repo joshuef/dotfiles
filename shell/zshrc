@@ -153,7 +153,6 @@ alias atom=atom-beta
 alias ls="ls -G"
 alias cat="bat"
 alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
-
 alias preview="fzf --preview 'bat --color \"always\" {}'"
 # add support for ctrl+o to open selected file in VS Code
 FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
@@ -170,6 +169,12 @@ FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
 # # added by travis gem
 # [ -f /Users/josh/.travis/travis.sh ] && source /Users/josh/.travis/travis.sh
 
+
+# process on port...
+function pop { lsof -n -i4TCP:"$1" | grep LISTEN | awk '{print $2}' }
+function kpop { pop "$1" | xargs kill  }
+
+# export -f pop
 
 pkg_verify() {
   if [ $# -ne 1 ]; then
