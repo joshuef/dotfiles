@@ -310,8 +310,8 @@ install_zsh () {
     # . "$DOTFILES_DIR/install/brew-cask.sh"
 # fi
 
+install_zsh
 main
-# install_zsh
 
 ###############################################################################
 # Atom                                                                        #
@@ -336,14 +336,16 @@ ln -s ~/dotfiles/zsh/themes/nick.zsh-theme $HOME/.oh-my-zsh/themes
 # Terminal & iTerm 2                                                          #
 ###############################################################################
 
-# Only use UTF-8 in Terminal.app
-defaults write com.apple.terminal StringEncodings -array 4
+if [ "$(uname)" == "Darwin" ]; then
+  # Only use UTF-8 in Terminal.app
+  defaults write com.apple.terminal StringEncodings -array 4
 
-# Install the Solarized Dark theme for iTerm
-open "${HOME}/dotfiles/iterm/themes/Solarized Dark.itermcolors"
+  # Install the Solarized Dark theme for iTerm
+  open "${HOME}/dotfiles/iterm/themes/Solarized Dark.itermcolors"
 
-# Don’t display the annoying prompt when quitting iTerm
-defaults write com.googlecode.iterm2 PromptOnQuit -bool false
+  # Don’t display the annoying prompt when quitting iTerm
+  defaults write com.googlecode.iterm2 PromptOnQuit -bool false
+fi
 
 # Reload zsh settings
 source ~/.zshrc
