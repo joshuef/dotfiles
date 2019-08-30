@@ -13,10 +13,11 @@ dirs_to_prepend=(
   "/sw/bin/"
   "$HOME/dotfiles/bin"
   "$HOME/bin"
+  "$HOME/.yarn/bin"
   "$HOME/.cargo/bin"
-  # "$HOME/.rvm/bin"
   # "$(brew --prefix ruby)/bin"
   # "$(brew --prefix coreutils)/libexec/gnubin" # Add brew-installed GNU core utilities bin
+  # "$HOME/.rvm/bin"
   # "$(brew --prefix)/share/npm/bin" # Add npm-installed package bin,
   # "$HOME/.cargo/bin"
   # "$HOME/emsdk-portable"
@@ -49,12 +50,13 @@ POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status nvm node_version)
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=( dir vcs )
+POWERLEVEL9K_MODE='nerdfont-complete'
 
 DEFAULT_USER="joshuef"
 
 
 # Z beats cd most of the time
-. ~/z/z.sh
+# . ~/z/z.sh
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -83,8 +85,8 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(fabric brew node npm history git-flow zsh-syntax-highlighting autoenv zsh-autosuggestions zsh-dircolors-solarized)
-
+plugins=(fabric node npm history zsh-z git-flow zsh-syntax-highlighting zsh-autosuggestions)
+ # zsh-dircolors-solarized
 # User configuration
 
 # Load the shell dotfiles

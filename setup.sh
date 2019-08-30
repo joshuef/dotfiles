@@ -310,7 +310,7 @@ install_zsh () {
     # . "$DOTFILES_DIR/install/brew-cask.sh"
 # fi
 
-install_zsh
+# install_zsh
 main
 
 ###############################################################################

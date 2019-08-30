@@ -69,8 +69,6 @@ sudo apt-get install -qq \
   zsh \
   --no-install-recommends \
 
-rm -rf /var/lib/apt/lists/*
-
 # install rust
 if ! [ -x "$(command -v rustup)" ]; then
 
@@ -85,14 +83,29 @@ if ! [ -x "$(command -v op)" ]; then
   rm -f 1password.zip
 fi
 
+
 # install doctl
 if ! [ -x "$(command -v doctl)" ]; then
   export DOCTL_VERSION="1.20.1"
   wget https://github.com/digitalocean/doctl/releases/download/v${DOCTL_VERSION}/doctl-${DOCTL_VERSION}-linux-amd64.tar.gz
   tar xf doctl-${DOCTL_VERSION}-linux-amd64.tar.gz
   chmod +x doctl
-  mv doctl /usr/local/bin
+  sudo mv doctl /usr/local/bin
   rm -f doctl-${DOCTL_VERSION}-linux-amd64.tar.gz
+fi
+
+
+if ! [ -x "$(command -v yarn)" ]; then
+  echo " ==> Installing yarn"
+
+  curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+  echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+  sudo apt-get update && sudo apt-get install yarn
+fi
+
+if ! [ -x "$(command -v trash)" ]; then
+  echo " ==> Installing trash"
+  yarn global add trash-cli
 fi
 
 
@@ -105,11 +118,6 @@ if [ ! -d "${HOME}/.fzf" ]; then
   popd
 fi
 
-if [ ! -d "${HOME}/.zsh" ]; then
-  echo " ==> Installing zsh plugins"
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${HOME}/.zsh/zsh-syntax-highlighting"
-  git clone https://github.com/zsh-users/zsh-autosuggestions "${HOME}/.zsh/zsh-autosuggestions"
-fi
 
 if [ ! -d "${HOME}/.tmux/plugins" ]; then
   echo " ==> Installing tmux plugins"
@@ -117,6 +125,19 @@ if [ ! -d "${HOME}/.tmux/plugins" ]; then
   git clone https://github.com/tmux-plugins/tmux-open.git "${HOME}/.tmux/plugins/tmux-open"
   git clone https://github.com/tmux-plugins/tmux-yank.git "${HOME}/.tmux/plugins/tmux-yank"
   git clone https://github.com/tmux-plugins/tmux-prefix-highlight.git "${HOME}/.tmux/plugins/tmux-prefix-highlight"
+fi
+
+if [ ! -d "${HOME}/.oh-my-zsh" ]; then
+  echo " ==> Installing ohmyzsh"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  echo " ==> Installing zsh nerd fonts"
+  git clone https://github.com/ryanoasis/nerd-fonts.git ~/nerd-fonts --depth=1
+  ${HOME}/nerd-fonts/install.sh
+  echo " ==> Installing zsh plugins"
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${HOME}/.oh-my-zsh/plugins/zsh-syntax-highlighting"
+  git clone https://github.com/zsh-users/zsh-autosuggestions "${HOME}/.oh-my-zsh/plugins/zsh-autosuggestions"
+  git clone https://github.com/agkozak/zsh-z "${HOME}/.oh-my-zsh/plugins/zsh-z"
+  git clone https://github.com/bhilburn/powerlevel9k.git "${HOME}/.oh-my-zsh/themes/powerlevel9k"
 fi
 
 echo "==> Setting shell to zsh..."
@@ -144,9 +165,9 @@ chsh -s /usr/bin/zsh
 #   ln -sfn $(pwd)/sshconfig "${HOME}/.ssh/config"
 # fi
 
-if ! [ -x "$(command -v op)" ]; then
+if [ -x "$(command -v op)" ]; then
 
-  echo "Pulling secrets"
+  echo "=>>>Pulling secrets"
 
   op get document 'github_rsa' > github_rsa
   # op get document 'zsh_private' > zsh_private
@@ -168,3 +189,7 @@ timedatectl set-timezone Europe/Madrid
 
 echo ""
 echo "==> Done!"
+
+echo "Now:"
+echo "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash"
+echo " then zsh and then \"nvm i stable\""
