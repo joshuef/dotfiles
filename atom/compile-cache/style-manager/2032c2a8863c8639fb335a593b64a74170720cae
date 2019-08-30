@@ -1,0 +1,1 @@
+{"source":"div[data-prettier-can-format-file='false'] {\n  display: none;\n}\ndiv.prettier-status-tile:hover {\n  text-decoration: underline;\n  cursor: pointer;\n}\ndiv[data-prettier-format-on-save='enabled']::after {\n  content: ' ✓';\n}\n"}

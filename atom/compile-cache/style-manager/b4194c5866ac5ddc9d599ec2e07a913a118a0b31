@@ -1,0 +1,1 @@
+{"source":".terminal-pane {\n  background-color: #fafafa;\n  padding: 5px;\n}\nhtml .terminal {\n  color: #424243;\n  font-family: Menlo, courier-new, courier, monospace;\n  padding: 5px;\n}\n.terminal-pane {\n  z-index: 0;\n}\n"}

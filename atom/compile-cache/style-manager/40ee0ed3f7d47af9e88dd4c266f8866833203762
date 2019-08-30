@@ -1,0 +1,1 @@
+{"source":".device-and-process-table-highlight-row {\n  background-color: rgba(144, 238, 144, 0.35);\n}\n.device-and-process-table-highlight-row.nuclide-ui-table-row-selected {\n  background-color: rgba(144, 238, 144, 0.35);\n}\n"}
