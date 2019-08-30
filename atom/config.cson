@@ -1,11 +1,24 @@
 "*":
+  "atom-ide-ui":
+    "atom-ide-code-format":
+      formatOnSave: true
+      formatOnType: false
+    "atom-ide-diagnostics-ui": {}
+    hyperclick:
+      darwinTriggerKeys: "ctrlKey,metaKey"
   autoprefixer: {}
+  "bracket-matcher":
+    highlightMatchingLineNumber: true
   core:
     audioBeep: false
     disabledPackages: [
       "react"
       "custom-title"
       "whitespace"
+      "linter-ui-default"
+      "linter"
+      "ide-rust"
+      "teletype"
     ]
     ignoredNames: [
       ".git"
@@ -29,6 +42,7 @@
     titleBar: "custom"
   editor:
     fontFamily: "Menlo"
+    fontSize: 15
     invisibles:
       cr: " "
       eol: " "
@@ -41,13 +55,28 @@
     userId: "0f4e16a3-5040-01ba-b000-a0793a69fb44"
   "highlight-line":
     enableBackgroundColor: false
+  "ide-rust":
+    rlsDefaultConfig: {}
+    rlsToolchain: "stable"
   jshint:
     supportLintingJsx: true
   linter:
     ignoreGlob: "**/*.min.{js,css}, **/*.bundle.js"
     lintOnOpen: false
     lintPreviewTabs: false
-  "linter-ui-default": {}
+  "linter-eslint":
+    scopes: [
+      "source.js"
+      "source.jsx"
+      "source.js.jsx"
+      "source.flow"
+      "source.babel"
+      "source.js-semantic"
+      "source.ts"
+      "source.tsx"
+    ]
+  "linter-ui-default":
+    panelHeight: 404
   "markdown-preview":
     useGitHubStyle: true
   minimap:

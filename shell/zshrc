@@ -13,6 +13,7 @@ dirs_to_prepend=(
   "/sw/bin/"
   "$HOME/dotfiles/bin"
   "$HOME/bin"
+  "$HOME/.cargo/bin"
   # "$HOME/.rvm/bin"
   # "$(brew --prefix ruby)/bin"
   # "$(brew --prefix coreutils)/libexec/gnubin" # Add brew-installed GNU core utilities bin
@@ -157,7 +158,8 @@ alias preview="fzf --preview 'bat --color \"always\" {}'"
 # add support for ctrl+o to open selected file in VS Code
 FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
 
-
+# no correct for command args
+setopt nocorrectall; setopt correct
 # alias npm=yarn
 
 # Autosuggest
@@ -187,3 +189,7 @@ pkg_verify() {
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+
+function workit { mosh --no-init --ssh="ssh -o StrictHostKeyChecking=no -i ~/.ssh/workstation_rsa -p 22" root@$WORKSTATION_IP -- tmux new-session -ADs main }
