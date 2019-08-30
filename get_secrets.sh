@@ -12,4 +12,8 @@ chmod 0600 ~/.ssh/github_rsa
 # ln -sfn $(pwd)/zsh_private ~/.zsh_private
 # ln -sfn $(pwd)/zsh_history ~/.zsh_history
 
+
+
+echo "IdentityFile ~/.ssh/github_rsa" > ~/.ssh/config
+
 echo "Done!"
