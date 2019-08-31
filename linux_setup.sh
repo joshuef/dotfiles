@@ -40,11 +40,13 @@ sudo apt-get install -qq \
   git-crypt \
   gnupg \
   gnupg2 \
+  libssl-dev \
   man \
   mosh \
   musl-tools \
   netcat-openbsd \
   openssh-server \
+  openssl \
   pkg-config \
   pwgen \
   python \
