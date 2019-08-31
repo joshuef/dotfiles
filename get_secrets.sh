@@ -13,7 +13,7 @@ op get document 'kk2wcb4oiptf7g2zprmdgo34uy' > sharing_rsa --tags devops
 rm -f ~/.ssh/github_rsa
 rm -f ~/.ssh/sharing_rsa
 ln -sfn $(pwd)/github_rsa ~/.ssh/github_rsa
-ln -sfn $(pwd)/sharing ~/.ssh/sharing
+ln -sfn $(pwd)/sharing_rsa ~/.ssh/sharing_rsa
 chmod 0600 ~/.ssh/github_rsa
 chmod 0600 ~/.ssh/sharing_rsa
 ssh-keygen -y -f ~/.ssh/sharing_rsa > ~/.ssh/sharing_rsa.pub
