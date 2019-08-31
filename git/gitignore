@@ -1,5 +1,5 @@
 private
-
+.atom-socket-secret*
 # Git credential file
 .gitconfig.local
 
