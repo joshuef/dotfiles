@@ -60,6 +60,7 @@ sudo apt-get install -qq \
   shellcheck \
   software-properties-common \
   sudo \
+  sysfsutils \
   tig \
   tmate \
   tmux \
@@ -79,10 +80,21 @@ fi
 
 # install 1password
 if ! [ -x "$(command -v op)" ]; then
+  echo " ==> Installing one password cli"
+
   export OP_VERSION="v0.6.1"
   curl -sS -o 1password.zip https://cache.agilebits.com/dist/1P/op/pkg/${OP_VERSION}/op_linux_amd64_${OP_VERSION}.zip
   unzip 1password.zip op -d /usr/local/bin
   rm -f 1password.zip
+fi
+
+# install bat
+if ! [ -x "$(command -v bat)" ]; then
+  echo " ==> Installing bat"
+
+  export BAT_VERSION="0.11.0"
+  curl -sS -o bat.deb "https://github.com/sharkdp/bat/releases/download/v${BAT_VERSION}/bat-musl_${BAT_VERSION}_amd64.deb"
+  sudo dpkg -i "bat.deb"
 fi
 
 
@@ -121,6 +133,18 @@ if [ ! -d "${HOME}/.fzf" ]; then
 fi
 
 
+if [ ! -d "${HOME}/.kinto" ]; then
+  echo " ==> Installing kinto key mapper for MacLike keys"
+  echo "start/stop commands: https://github.com/rbreaves/kinto"
+  git clone https://github.com/rbreaves/kinto.git "${HOME}/.kinto"
+  ${HOME}/.kinto/install.py
+  echo '1' | sudo tee -a /sys/module/hid_apple/parameters/swap_opt_cmd
+  options hid_apple swap_opt_cmd="1" | sudo tee -a /etc/modprobe.d/hid_apple.conf
+  update-initramfs -u -k all
+
+fi
+
+
 if [ ! -d "${HOME}/.tmux/plugins" ]; then
   echo " ==> Installing tmux plugins"
   git clone https://github.com/tmux-plugins/tpm "${HOME}/.tmux/plugins/tpm"
@@ -142,9 +166,18 @@ if [ ! -d "${HOME}/.oh-my-zsh" ]; then
   git clone https://github.com/bhilburn/powerlevel9k.git "${HOME}/.oh-my-zsh/themes/powerlevel9k"
 fi
 
-echo "==> Setting shell to zsh..."
-chsh -s /usr/bin/zsh
 
+echo "==> Configuring magicmouse"
+sudo rmmod hid_magicmouse
+sudo modprobe hid_magicmouse emulate_3button=1 scroll_acceleration=1 scroll_speed=45
+systool -avm hid_magicmouse
+
+
+echo "==!!> TODO: set shell to zsh..."
+echo "run: \"chsh -s /usr/bin/zsh\" to set zsh as shell"
+
+
+echo "==!!>Disable Firefox ctrl+mousewheel: https://support.mozilla.org/en-US/questions/1113500"
 
 # TODO: enable this...
 # if [ ! -d /mnt/dev/code/dotfiles ]; then
@@ -166,24 +199,6 @@ chsh -s /usr/bin/zsh
 #   ln -sfn $(pwd)/agignore "${HOME}/.agignore"
 #   ln -sfn $(pwd)/sshconfig "${HOME}/.ssh/config"
 # fi
-
-if [ -x "$(command -v op)" ]; then
-
-  echo "=>>>Pulling secrets"
-
-  op get document 'github_rsa' > github_rsa
-  # op get document 'zsh_private' > zsh_private
-  # op get document 'zsh_history' > zsh_history
-
-  rm -f ~/.ssh/github_rsa
-  ln -sfn $(pwd)/github_rsa ~/.ssh/github_rsa
-  chmod 0600 ~/.ssh/github_rsa
-
-  # ln -sfn $(pwd)/zsh_private ~/.zsh_private
-  # ln -sfn $(pwd)/zsh_history ~/.zsh_history
-
-  echo "Done!"
-fi
 
 
 # Set correct timezone
