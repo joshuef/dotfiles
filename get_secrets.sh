@@ -2,7 +2,7 @@
 echo "=>>>Pulling secrets"
 
 op get document 'zhwkovejeqq7x55sy3ba6ovy5i' > github_rsa --tags devops
-op get document 'op get document kk2wcb4oiptf7g2zprmdgo34uy' > sharing_rsa --tags devops
+op get document 'kk2wcb4oiptf7g2zprmdgo34uy' > sharing_rsa --tags devops
 # op get document 'zsh_private' > zsh_private
 # op get document 'zsh_history' > zsh_history
 
