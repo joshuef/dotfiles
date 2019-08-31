@@ -25,6 +25,7 @@ if [ "${UPGRADE_PACKAGES}" != "none" ]; then
 fi
 
 sudo apt-get install -qq \
+  atom-beta \
   apt-transport-https \
   build-essential \
   bzr \
@@ -66,6 +67,7 @@ sudo apt-get install -qq \
   tmux \
   tree \
   unzip \
+  vino \
   wget \
   zgen \
   zip \
