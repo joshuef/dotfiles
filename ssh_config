@@ -5,6 +5,6 @@ Host *
   Protocol 2
   Compression yes
   ControlMaster auto
-  ControlPath  ~/.ssh/sockets/%r@%h-%p
+  # ControlPath  ~/.ssh/sockets/%r@%h-%p
   ControlPersist 600
   PreferredAuthentications=publickey
