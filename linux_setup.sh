@@ -211,6 +211,9 @@ if [ ! -d "${HOME}/.oh-my-zsh" ]; then
 fi
 
 
+
+
+
 echo "==> Configuring magicmouse"
 sudo rmmod hid_magicmouse
 sudo modprobe hid_magicmouse emulate_3button=1 scroll_acceleration=1 scroll_speed=45

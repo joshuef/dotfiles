@@ -18,6 +18,11 @@ chmod 0600 ~/.ssh/github_rsa
 chmod 0600 ~/.ssh/sharing_rsa
 ssh-keygen -y -f ~/.ssh/sharing_rsa > ~/.ssh/sharing_rsa.pub
 
+
+ln -sfn $(pwd)/ssh_config ~/.ssh/config
+
+
+
 # ln -sfn $(pwd)/zsh_private ~/.zsh_private
 # ln -sfn $(pwd)/zsh_history ~/.zsh_history
 
