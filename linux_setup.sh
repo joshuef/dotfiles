@@ -197,6 +197,10 @@ if [ ! -d "${HOME}/.oh-my-zsh" ]; then
   echo " ==> Installing ohmyzsh"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
   echo " ==> Installing zsh nerd fonts"
+
+  # macos
+  # brew tap homebrew/cask-fonts
+  # brew cask install font-hack-nerd-font
   git clone https://github.com/ryanoasis/nerd-fonts.git ~/nerd-fonts --depth=1
   ${HOME}/nerd-fonts/install.sh
   echo " ==> Installing zsh plugins"
