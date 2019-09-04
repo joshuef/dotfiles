@@ -68,6 +68,7 @@ sudo apt-get install -qq \
   tree \
   unzip \
   vino \
+  virtualbox \
   wget \
   vim-gtk3 \
   zgen \
@@ -168,7 +169,7 @@ if [ ! -d "${HOME}/.fzf" ]; then
   git clone https://github.com/junegunn/fzf "${HOME}/.fzf"
   pushd "${HOME}/.fzf"
   git remote set-url origin git@github.com:junegunn/fzf.git
-  ${HOME}/.fzf/install --bin --64 --no-bash --no-zsh --no-fish
+  ${HOME}/.fzf/install
   popd
 fi
 
