@@ -1,4 +1,4 @@
-IdentityFile ~/.ssh/github_rsa
+# IdentityFile ~/.ssh/github_rsa
 
 Host *
   AddressFamily inet
@@ -7,4 +7,4 @@ Host *
   ControlMaster auto
   # ControlPath  ~/.ssh/sockets/%r@%h-%p
   ControlPersist 600
-  PreferredAuthentications=publickey
+  # PreferredAuthentications=publickey

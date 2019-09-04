@@ -20,6 +20,7 @@ ssh-keygen -y -f ~/.ssh/sharing_rsa > ~/.ssh/sharing_rsa.pub
 
 
 ln -sfn $(pwd)/ssh_config ~/.ssh/config
+chmod 0600 ~/.ssh/sharing_rsa
 
 
 
