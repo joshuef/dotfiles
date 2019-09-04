@@ -29,7 +29,6 @@ sudo apt-get install -qq \
   apt-transport-https \
   build-essential \
   bzr \
-  blueman \
   ca-certificates \
   cmake \
   curl \
