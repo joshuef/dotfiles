@@ -57,23 +57,6 @@ POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 DEFAULT_USER="joshuef"
 
 
-# Z beats cd most of the time
-# . ~/z/z.sh
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 ENABLE_CORRECTION="true"
@@ -111,14 +94,6 @@ plugins=(fabric node npm history zsh-z git-flow zsh-syntax-highlighting zsh-auto
 
 source $ZSH/oh-my-zsh.sh
 
-# Source local extra (private) settings specific to machine if it exists
-# [ -f ~/.zsh.local ] && source ~/.zsh.local
-
-# npm tab completion
-# . <(npm completion)
-
-# fortune: brew install fortune ponysay
-# fortune | ponysay
 
 #NVM
 # Lazy NVM loading for rapid bash startup
@@ -165,15 +140,6 @@ FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
 # no correct for command args
 setopt nocorrectall; setopt correct
 # alias npm=yarn
-
-# Autosuggest
-# bindkey '^ ' autosuggest-execute
-
-# tabtab source for electron-forge package
-# # uninstall by removing these lines or running `tabtab uninstall electron-forge`
-# [[ -f /Users/josh/Projects/safe/forks/safe_examples/email_app/node_modules/tabtab/.completions/electron-forge.zsh ]] && . /Users/josh/Projects/safe/forks/safe_examples/email_app/node_modules/tabtab/.completions/electron-forge.zsh
-# # added by travis gem
-# [ -f /Users/josh/.travis/travis.sh ] && source /Users/josh/.travis/travis.sh
 
 
 # process on port...

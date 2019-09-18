@@ -2,6 +2,9 @@
 # inspired by fatih arslan
 set -eu
 
+
+echo "Linux machine setup"
+
 # export DEBIAN_FRONTEND=noninteractive
 
 UPGRADE_PACKAGES=${1:-none}
@@ -22,9 +25,8 @@ if [ "${UPGRADE_PACKAGES}" != "none" ]; then
 
   sudo apt-get update
   sudo apt-get upgrade -y
-fi
 
-sudo apt-get install -qq \
+  sudo apt-get install -y \
   atom-beta \
   apt-transport-https \
   build-essential \
@@ -74,10 +76,13 @@ sudo apt-get install -qq \
   zgen \
   zip \
   zsh \
-  --no-install-recommends \
+  --no-install-recommends
+
+fi
 
 # install rust
 if ! [ -x "$(command -v rustup)" ]; then
+  echo "==> Installing rustup"
 
   curl https://sh.rustup.rs -sSf | sh
 fi
@@ -104,6 +109,8 @@ fi
 
 # install doctl
 if ! [ -x "$(command -v doctl)" ]; then
+  echo "==> Installing doctl"
+
   export DOCTL_VERSION="1.20.1"
   wget https://github.com/digitalocean/doctl/releases/download/v${DOCTL_VERSION}/doctl-${DOCTL_VERSION}-linux-amd64.tar.gz
   tar xf doctl-${DOCTL_VERSION}-linux-amd64.tar.gz
@@ -212,13 +219,11 @@ if [ ! -d "${HOME}/.oh-my-zsh" ]; then
 fi
 
 
+if [ ! -d "${HOME}/bin/diff-so-fancy" ]; then
+  echo " ==> Installing diff so fancy"
+  cp ./git/diff-so-fancy ~/bin
+fi
 
-
-
-echo "==> Configuring magicmouse"
-sudo rmmod hid_magicmouse
-sudo modprobe hid_magicmouse emulate_3button=1 scroll_acceleration=1 scroll_speed=45
-systool -avm hid_magicmouse
 
 
 echo "==!!> TODO: set shell to zsh..."
