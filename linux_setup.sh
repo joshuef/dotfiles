@@ -71,6 +71,8 @@ if [ "${UPGRADE_PACKAGES}" != "none" ]; then
   unzip \
   vino \
   virtualbox \
+  virtualbox-qt \
+  virtualbox-ext-pack \
   wget \
   vim-gtk3 \
   zgen \
