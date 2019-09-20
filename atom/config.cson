@@ -75,6 +75,8 @@
       "source.ts"
       "source.tsx"
     ]
+  "linter-terraform-syntax":
+    newVersion: true
   "linter-ui-default":
     panelHeight: 404
   "markdown-preview":
