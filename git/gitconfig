@@ -286,6 +286,7 @@
 	name = Josh Wilson
 	email = joshuef@gmail.com
 [pull]
+	rebase = true
 	# rebase = true
 [rerere]
 	enabled = true
