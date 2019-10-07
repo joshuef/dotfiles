@@ -53,20 +53,6 @@ tmux_conf_theme_window_bg='default'
 #   - false (default)
 tmux_conf_theme_highlight_focused_pane=true
 
-#-------------------------------------------------------#
-#Pane colours
-#-------------------------------------------------------#
-# set inactive/active window styles
-set -g window-style 'fg=colour247,bg=colour237'
-set -g window-active-style 'fg=colour255,bg=black'
-
-#pane border
-set -g pane-border-bg colour236
-# set -g pane-border-fg colour238
-set -g pane-active-border-bg black
-# set -g pane-active-border-fg colour51
-#-------------------------------------------------------#
-
 
 # focused pane colours:
 tmux_conf_theme_focused_pane_fg='default'
@@ -123,8 +109,8 @@ tmux_conf_theme_terminal_title='#h ❐ #S ● #I #W'
 #     - #{hostname_ssh}
 #     - #{username}
 #     - #{username_ssh}
-tmux_conf_theme_window_status_fg='#8a8a8a'              # light gray
-tmux_conf_theme_window_status_bg='#080808'              # dark gray
+# tmux_conf_theme_window_status_fg='#8a8a8a'              # light gray
+# tmux_conf_theme_window_status_bg='#080808'              # dark gray
 tmux_conf_theme_window_status_attr='none'
 tmux_conf_theme_window_status_format='#I #W'
 #tmux_conf_theme_window_status_format='#{circled_window_index} #W'
@@ -334,7 +320,35 @@ set -g @tpm_plugins '          \
 # plugin options
 set -g @continuum-restore 'on'
 set -g @continuum-boot 'on'
-set -g @resurrect-save-shell-history 'on'
+# set -g @resurrect-save-shell-history 'on'
+
+
+
+# edit configuration override
+bind e new-window -n '~/.tmux.conf.local' "sh -c '\${EDITOR:-vim} ~/.tmux.conf && tmux source ~/.tmux.conf.local && tmux display \"~/.tmux.conf sourced\"'"
+
+# reload configuration override
+bind r source-file ~/.tmux.conf \;  source-file ~/.tmux.conf.local \; display '~/.tmux.conf sourced'
+
+
+
+#-------------------------------------------------------#
+#Pane colours
+#-------------------------------------------------------#
+# set inactive/active window styles
+# set -g window-style 'fg=colour247,bg=colour237'
+set -g window-style 'fg=colour255,bg=black'
+set -g window-active-style 'fg=default,bg=terminal'
+
+#pane border
+# set -g pane-border-bg colour236
+# set -g pane-border-fg colour238
+# set -g pane-active-border-bg black
+# set -g pane-active-border-fg colour51
+#-------------------------------------------------------#
+
+
+
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run -b '~/.tmux/plugins/tpm/tpm'
