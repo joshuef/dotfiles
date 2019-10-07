@@ -44,6 +44,7 @@ if [ "${UPGRADE_PACKAGES}" != "none" ]; then
   gnupg \
   gnupg2 \
   libssl-dev \
+  mailutils \
   man \
   mosh \
   musl-tools \
@@ -61,6 +62,7 @@ if [ "${UPGRADE_PACKAGES}" != "none" ]; then
   python3-wheel \
   ripgrep \
   shellcheck \
+  ssmtp \
   software-properties-common \
   sudo \
   sysfsutils \
