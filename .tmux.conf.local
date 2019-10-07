@@ -320,7 +320,7 @@ set -g @tpm_plugins '          \
 # plugin options
 set -g @continuum-restore 'on'
 set -g @continuum-boot 'on'
-# set -g @resurrect-save-shell-history 'on'
+set -g @resurrect-save-shell-history 'off'
 
 
 
