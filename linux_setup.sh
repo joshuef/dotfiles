@@ -75,6 +75,7 @@ if [ "${UPGRADE_PACKAGES}" != "none" ]; then
   virtualbox-ext-pack \
   wget \
   vim-gtk3 \
+  xclip \
   zgen \
   zip \
   zsh \
@@ -182,25 +183,30 @@ if [ ! -d "${HOME}/.fzf" ]; then
   popd
 fi
 
-
-if [ ! -d "${HOME}/.kinto" ]; then
-  echo " ==> Installing kinto key mapper for MacLike keys"
-  echo "start/stop commands: https://github.com/rbreaves/kinto"
-  git clone https://github.com/rbreaves/kinto.git "${HOME}/.kinto"
-  ${HOME}/.kinto/install.py
-  echo '1' | sudo tee -a /sys/module/hid_apple/parameters/swap_opt_cmd
-  options hid_apple swap_opt_cmd="1" | sudo tee -a /etc/modprobe.d/hid_apple.conf
-  update-initramfs -u -k all
-
-fi
+#
+# if [ ! -d "${HOME}/.kinto" ]; then
+#   echo " ==> Installing kinto key mapper for MacLike keys"
+#   echo "start/stop commands: https://github.com/rbreaves/kinto"
+#   git clone https://github.com/rbreaves/kinto.git "${HOME}/.kinto"
+#   ${HOME}/.kinto/install.py
+#   echo '1' | sudo tee -a /sys/module/hid_apple/parameters/swap_opt_cmd
+#   options hid_apple swap_opt_cmd="1" | sudo tee -a /etc/modprobe.d/hid_apple.conf
+#   update-initramfs -u -k all
+#
+# fi
 
 
 if [ ! -d "${HOME}/.tmux/plugins" ]; then
   echo " ==> Installing tmux plugins"
+
+  git clone https://github.com/gpakosz/.tmux.git "${HOME}/.oh-my-tmux"
+  ln -sfn "${HOME}/.oh-my-tmux/.tmux.conf" ~/.tmux.conf
+  chmod 0600 ~/.tmux.conf
   git clone https://github.com/tmux-plugins/tpm "${HOME}/.tmux/plugins/tpm"
-  git clone https://github.com/tmux-plugins/tmux-open.git "${HOME}/.tmux/plugins/tmux-open"
-  git clone https://github.com/tmux-plugins/tmux-yank.git "${HOME}/.tmux/plugins/tmux-yank"
-  git clone https://github.com/tmux-plugins/tmux-prefix-highlight.git "${HOME}/.tmux/plugins/tmux-prefix-highlight"
+
+  ln -sfn $(pwd)/.tmux.conf.local ~/.tmux.conf.local
+  chmod 0600 ~/.tmux.conf.local
+
 fi
 
 if [ ! -d "${HOME}/.oh-my-zsh" ]; then
