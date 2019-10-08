@@ -232,6 +232,7 @@ fi
 if [ ! -d "${HOME}/bin/diff-so-fancy" ]; then
   echo " ==> Installing diff so fancy"
   cp ./git/diff-so-fancy ~/bin
+  chmod +x ~/bin/diff-so-fancy
 fi
 
 
