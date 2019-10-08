@@ -12,6 +12,11 @@ UPGRADE_PACKAGES=${1:-none}
 if [ "${UPGRADE_PACKAGES}" != "none" ]; then
   echo "==> Updating and upgrading packages ..."
 
+
+  # Add atom repo
+  wget -qO - https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add -
+  sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list'
+
   # Add third party repositories
   sudo add-apt-repository ppa:keithw/mosh-dev -y
   sudo add-apt-repository ppa:jonathonf/vim -y
@@ -34,6 +39,7 @@ if [ "${UPGRADE_PACKAGES}" != "none" ]; then
   ca-certificates \
   cmake \
   curl \
+  dconf-editor \
   direnv \
   dnsutils \
   docker.io \
@@ -233,6 +239,13 @@ if [ ! -d "${HOME}/bin/diff-so-fancy" ]; then
   echo " ==> Installing diff so fancy"
   cp ./git/diff-so-fancy ~/bin
   chmod +x ~/bin/diff-so-fancy
+fi
+
+if [ ! -d "${HOME}/.atom/packages.list" ]; then
+  echo " ==> Installing atom packages"
+  ln -sfn ./atom ~/.atom
+  apm-beta install --packages-file $HOME/.atom/packages.list
+
 fi
 
 
