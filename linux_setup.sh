@@ -244,7 +244,7 @@ fi
 if [ ! -d "${HOME}/.atom/packages.list" ]; then
   echo " ==> Installing atom packages"
   ln -sfn ./atom ~/.atom
-  apm-beta install --packages-file $HOME/.atom/packages.list
+  apm-beta install --packages-file atom/packages.list
 
 fi
 
