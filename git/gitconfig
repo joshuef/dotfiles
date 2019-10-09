@@ -54,8 +54,8 @@
         poh = push origin head
 
         # Pulls
-        pum = pull upstream master
-        pud = pull upstream dev
+        pum = "!f() { git co master; git pull upstream master; }; f"
+        pud = "!f() { git co dev; git pull upstream dev; }; f"
 
         # PRs
         pro = "!f() { git co master; git clean-branch origin-$1; git fetch origin pull/$1/head:PR-origin-$1; git co PR-origin-$1; }; f"
