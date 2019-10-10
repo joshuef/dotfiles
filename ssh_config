@@ -1,4 +1,4 @@
-# IdentityFile ~/.ssh/github_rsa
+IdentityFile ~/.ssh/github_rsa
 Include local_config
 
 Host *
