@@ -1,4 +1,4 @@
-IdentityFile ~/.ssh/github_rsa
+IdentityFile ~/.ssh/sharing_rsa
 Include local_config
 
 Host *
@@ -8,4 +8,8 @@ Host *
   ControlMaster auto
   # ControlPath  ~/.ssh/sockets/%r@%h-%p
   ControlPersist 600
-  # PreferredAuthentications=publickey
+  PreferredAuthentications=publickey
+
+
+Host github github.com
+	IdentityFile ~/.ssh/github_rsa
