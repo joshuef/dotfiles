@@ -139,7 +139,11 @@ NVIM_DIR="${HOME}/.config/nvim"
 if [ ! -f "${NVIM_DIR}" ]; then
   mkdir -p $NVIM_DIR
   ln -sfn "${HOME}/.init.vim" ~/init.vim
-
+  
+  pip3 install --user pynvim
+  # install ripgrep
+  curl -LO https://github.com/BurntSushi/ripgrep/releases/download/11.0.2/ripgrep_11.0.2_amd64.deb
+ sudo dpkg -i ripgrep_11.0.2_amd64.deb
 fi
 
 # VIM_PLUG_FILE="${HOME}/.vim/autoload/plug.vim"
