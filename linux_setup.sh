@@ -54,7 +54,6 @@ if [ "${UPGRADE_PACKAGES}" != "none" ]; then
   man \
   mosh \
   musl-tools \
-  nvim \
   netcat-openbsd \
   openssh-server \
   openssl \
@@ -134,18 +133,24 @@ fi
 
 
 
-NVIM_PLUG_FILE="${HOME}/.nvim/plug.vim"
+
 NVIM_DIR="${HOME}/.config/nvim"
 
-
 if [ ! -f "${NVIM_DIR}" ]; then
-  echo " ==> Installing nvim config"
+  echo " ==> Installing nvim"
   mkdir -p $NVIM_DIR
+  curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+  chmod u+x nvim.appimage
+  ./nvim.appimage
+  ln -sfn "$(pwd)/nvim.appimage" /usr/bin/nvim
+
+  echo " ==> Installing nvim config"
+
   ln -sfn "$(pwd)/nvim/init.vim" "${HOME}/.config/nvim/init.vim"
 
   echo " ==> Installing nvim plugins"
   ln -sfn "$(pwd)/nvim/plugins.vim" "${HOME}/.config/nvim/plugins.vim"
-  curl -fLo ${NVIM_PLUG_FILE} --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  curl -fLo "${HOME}/.config/nvim/plug.vim" https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
   nvim -c ':PluginInstall'
   nvim -c 'CocInstall -sync coc-json coc-html|q coc-eslint coc-rsl coc-tsserver coc-css'

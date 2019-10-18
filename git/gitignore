@@ -26,3 +26,6 @@ npm-debug.log
 
 # IDEs stuff
 .idea
+
+# nvim.appimage
+nvim.appimage
