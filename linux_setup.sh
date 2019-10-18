@@ -152,8 +152,8 @@ if [ ! -f "${NVIM_DIR}" ]; then
   ln -sfn "$(pwd)/nvim/plugins.vim" "${HOME}/.config/nvim/plugins.vim"
   curl -fLo "${HOME}/.config/nvim/plug.vim" https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-  nvim -c ':PluginInstall'
-  nvim -c 'CocInstall -sync coc-json coc-html|q coc-eslint coc-rsl coc-tsserver coc-css'
+  nvim -c 'PlugInstall | :q | :q'
+  # nvim -c 'CocInst coc-json coc-html|q coc-eslint coc-rsl coc-tsserver coc-css'
   pip3 install --user pynvim
   # install ripgrep
   curl -LO https://github.com/BurntSushi/ripgrep/releases/download/11.0.2/ripgrep_11.0.2_amd64.deb
@@ -281,15 +281,11 @@ fi
 
 
 
-echo "==!!> TODO: set shell to zsh..."
-echo "run: \"chsh -s /usr/bin/zsh\" to set zsh as shell"
-
-
-echo "==!!>Disable Firefox ctrl+mousewheel: https://support.mozilla.org/en-US/questions/1113500"
 
 # TODO: enable this...
+if [ ! -d "$HOME/.zshrc" ]; then
 # if [ ! -d /mnt/dev/code/dotfiles ]; then
-#   echo "==> Setting up dotfiles"
+  echo "==> Setting up dotfiles"
 #   # the reason we dont't copy the files individually is, to easily push changes
 #   # if needed
 #   cd "/mnt/dev/code"
@@ -299,14 +295,21 @@ echo "==!!>Disable Firefox ctrl+mousewheel: https://support.mozilla.org/en-US/qu
 #   git remote set-url origin git@github.com:joshuef/dotfiles.git
 #
 #   ln -sfn $(pwd)/vimrc "${HOME}/.vimrc"
-#   ln -sfn $(pwd)/zshrc "${HOME}/.zshrc"
+  ln -sfn $(pwd)/zshrc "${HOME}/.zshrc"
+  # ln -sfn $(pwd)/zprofile "${HOME}/.zprofile"
 #   ln -sfn $(pwd)/tmuxconf "${HOME}/.tmux.conf"
 #   ln -sfn $(pwd)/tigrc "${HOME}/.tigrc"
 #   ln -sfn $(pwd)/git-prompt.sh "${HOME}/.git-prompt.sh"
 #   ln -sfn $(pwd)/gitconfig "${HOME}/.gitconfig"
 #   ln -sfn $(pwd)/agignore "${HOME}/.agignore"
 #   ln -sfn $(pwd)/sshconfig "${HOME}/.ssh/config"
-# fi
+fi
+
+echo "==!!> TODO: set shell to zsh..."
+echo "run: \"chsh -s /usr/bin/zsh\" to set zsh as shell"
+
+
+echo "==!!>Disable Firefox ctrl+mousewheel: https://support.mozilla.org/en-US/questions/1113500"
 
 
 # Set correct timezone
@@ -316,5 +319,7 @@ echo ""
 echo "==> Done!"
 
 echo "Now:"
+
+echo "nvim -c 'CocInst coc-json coc-html|q coc-eslint coc-rsl coc-tsserver coc-css'"
 echo "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash"
 echo " then zsh and then \"nvm i stable\""

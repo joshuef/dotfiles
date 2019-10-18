@@ -270,7 +270,7 @@ catch
 endtry
 
 " Vim airline theme
-let g:airline_theme='space'
+let g:airline_theme='solarized'
 
 " Add custom highlights in method that is executed every time a colorscheme is sourced
 " See https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f for details
