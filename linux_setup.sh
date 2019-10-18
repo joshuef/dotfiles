@@ -141,10 +141,10 @@ NVIM_DIR="${HOME}/.config/nvim"
 if [ ! -f "${NVIM_DIR}" ]; then
   echo " ==> Installing nvim config"
   mkdir -p $NVIM_DIR
-  ln -sfn "${HOME}/.config/nvim/init.vim" "$(pwd)/nvim/init.vim"
+  ln -sfn "$(pwd)/nvim/init.vim" "${HOME}/.config/nvim/init.vim"
 
   echo " ==> Installing nvim plugins"
-  ln -sfn "${HOME}/.config/nvim/plugins.vim" "$(pwd)/nvim/plugins.vim"
+  ln -sfn "$(pwd)/nvim/plugins.vim" "${HOME}/.config/nvim/plugins.vim"
   curl -fLo ${NVIM_PLUG_FILE} --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
   pip3 install --user pynvim
