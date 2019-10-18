@@ -136,7 +136,6 @@ fi
 NVIM_PLUG_FILE="${HOME}/.nvim/plug.vim"
 NVIM_DIR="${HOME}/.config/nvim"
 
-# vim -c 'CocInstall -sync coc-json coc-html|q'
 
 if [ ! -f "${NVIM_DIR}" ]; then
   echo " ==> Installing nvim config"
@@ -147,6 +146,8 @@ if [ ! -f "${NVIM_DIR}" ]; then
   ln -sfn "$(pwd)/nvim/plugins.vim" "${HOME}/.config/nvim/plugins.vim"
   curl -fLo ${NVIM_PLUG_FILE} --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+  nvim -c ':PluginInstall'
+  nvim -c 'CocInstall -sync coc-json coc-html|q coc-eslint coc-rsl coc-tsserver coc-css'
   pip3 install --user pynvim
   # install ripgrep
   curl -LO https://github.com/BurntSushi/ripgrep/releases/download/11.0.2/ripgrep_11.0.2_amd64.deb
