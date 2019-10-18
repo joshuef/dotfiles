@@ -1,0 +1,1 @@
+/Users/josh/.config/nvim/plugins.vim
