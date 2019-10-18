@@ -85,6 +85,7 @@ if [ "${UPGRADE_PACKAGES}" != "none" ]; then
   wget \
   vim-gtk3 \
   xclip \
+  xvfb \
   zgen \
   zip \
   zsh \
