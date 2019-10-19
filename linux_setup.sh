@@ -143,7 +143,7 @@ if [ ! -f "${NVIM_DIR}" ]; then
   chmod u+x nvim.appimage
   ./nvim.appimage
   ln -sfn "$(pwd)/nvim.appimage" /usr/bin/nvim
-
+  mkdir -p ~/.local/share/nvim/backup
   echo " ==> Installing nvim config"
 
   ln -sfn "$(pwd)/nvim/init.vim" "${HOME}/.config/nvim/init.vim"
@@ -153,6 +153,7 @@ if [ ! -f "${NVIM_DIR}" ]; then
   curl -fLo "${HOME}/.config/nvim/plug.vim" https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
   nvim -c 'PlugInstall | :q | :q'
+  nvim -c 'UpdateInstalledPlugins | :q | :q'
   # nvim -c 'CocInst coc-json coc-html|q coc-eslint coc-rsl coc-tsserver coc-css'
   pip3 install --user pynvim
   # install ripgrep

@@ -261,6 +261,11 @@ let g:signify_sign_delete = '-'
 " Enable true color support
 set termguicolors
 
+" Colouriser
+require 'colorizer'.setup {
+  '*'; "-- Highlight all files, but customize some others.
+  css = { rgb_fn = true; }; "-- Enable parsing rgb(...) functions in css.
+}
 " Editor theme
 set background=dark
 try

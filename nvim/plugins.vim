@@ -79,6 +79,9 @@ Plug 'scrooloose/nerdtree'
 " Colorscheme
 Plug 'mhartington/oceanic-next'
 
+" Colouriser
+Plug 'norcalli/nvim-colorizer.lua'
+
 " Customized vim status line
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
