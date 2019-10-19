@@ -144,6 +144,7 @@ if [ ! -f "${NVIM_DIR}" ]; then
   ./nvim.appimage
   ln -sfn "$(pwd)/nvim.appimage" /usr/bin/nvim
   mkdir -p ~/.local/share/nvim/backup
+  mkdir -p ~/.local/share/nvim/undodir
   echo " ==> Installing nvim config"
 
   ln -sfn "$(pwd)/nvim/init.vim" "${HOME}/.config/nvim/init.vim"

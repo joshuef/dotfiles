@@ -13,10 +13,21 @@ set wildmode=longest,list   " get bash-like tab completions
 set cc=80                   " set an 80 column border for good coding style
 filetype plugin indent on   " allows auto-indenting depending on file type
 syntax on                   " syntax highlighting
-colorscheme default
+"colorscheme default
 
 scriptencoding utf-8
 source ~/.config/nvim/plugins.vim
+
+" My keybaps:
+
+nnoremap ; :Buffers<CR>
+nnoremap f :Files<CR>
+nnoremap T :Tags<CR>
+nnoremap t :BTags<CR>
+nnoremap s :Rg<CR>
+
+" comment shortcut
+nmap ,c <Plug>CommentaryLine
 
 " ============================================================================ "
 " ===                           EDITING OPTIONS                            === "
@@ -65,6 +76,10 @@ set cmdheight=1
 " Don't give completion messages like 'match 1 of 2'
 " or 'The only match'
 set shortmess+=c
+
+
+set undodir=~/.local/share/nvim/undodir
+set undofile
 
 " ============================================================================ "
 " ===                           PLUGIN SETUP                               === "
@@ -231,6 +246,10 @@ endif
 
 " Don't show git changes to current file in airline
 let g:airline#extensions#hunks#enabled=0
+" tabs per buffer
+
+" let g:airline#extensions#tabline#show_buffers=1
+let g:airline#extensions#tabline#enabled = 1
 
 catch
   echo 'Airline not installed. It should work after running :PlugInstall'
@@ -262,20 +281,18 @@ let g:signify_sign_delete = '-'
 set termguicolors
 
 " Colouriser
-require 'colorizer'.setup {
-  '*'; "-- Highlight all files, but customize some others.
-  css = { rgb_fn = true; }; "-- Enable parsing rgb(...) functions in css.
-}
+lua require 'colorizer'.setup()
 " Editor theme
 set background=dark
 try
-  colorscheme OceanicNext
+  colorscheme iceberg
+  " colorscheme OceanicNext
 catch
   colorscheme slate
 endtry
 
 " Vim airline theme
-let g:airline_theme='solarized'
+let g:airline_theme='iceberg'
 
 " Add custom highlights in method that is executed every time a colorscheme is sourced
 " See https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f for details
@@ -500,6 +517,22 @@ function! FloatingFZF()
 
   call nvim_open_win(buf, v:true, opts)
 endfunction
+
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
 
 nnoremap <silent> <C-p> :call fzf#vim#files('.', {'options': '--prompt ""'})<CR>
 nnoremap <silent> <leader>b :Buffers<CR>

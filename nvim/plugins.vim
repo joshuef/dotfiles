@@ -27,6 +27,9 @@ Plug 'ntpeters/vim-better-whitespace'
 " auto-close plugin
 Plug 'rstacruz/vim-closer'
 
+" easy commenting
+Plug 'tpope/vim-commentary'
+
 " Improved motion in Vim
 "Plug 'easymotion/vim-easymotion'
 
@@ -78,6 +81,8 @@ Plug 'scrooloose/nerdtree'
 
 " Colorscheme
 Plug 'mhartington/oceanic-next'
+Plug 'flrnprz/candid.vim'
+Plug 'cocopon/iceberg.vim'
 
 " Colouriser
 Plug 'norcalli/nvim-colorizer.lua'
