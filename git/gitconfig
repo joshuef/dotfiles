@@ -37,7 +37,7 @@
         df = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
 
         # Fix Conflicts
-        fc = !"git diff --name-only | uniq | xargs atom-beta"
+        fc = !"git diff --name-only | uniq | xargs nvim"
 
         # Merge
         m = merge
@@ -213,7 +213,7 @@
 
 [core]
 	# editor = nano
-	editor = atom-beta -w
+	editor = nvim
   abbrev = 12
   attributesfile = ~/.gitattributes
   excludesfile = ~/.gitignore

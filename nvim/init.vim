@@ -29,9 +29,9 @@ nnoremap t :BTags<CR>
 " search wll files with ripgrep
 nnoremap s :Rg<CR>
 " set shell
-" set shell=/bin/zsh
+" set shell=zsh\ i
 " comment shortcut
-noremap <leader>. gcc
+noremap <leader>/ gcc
 " save current buffer
 noremap <C-s> <Esc>:w<CR>
 vnoremap <C-s> <Esc>:w<CR>
@@ -108,7 +108,7 @@ vnoremap <leader>p "_dP
 " ============================================================================ "
 
 " Remap leader key to ,
-let g:mapleader="'"
+" let g:mapleader="'"
 
 " Disable line numbers
 set nonumber
@@ -156,7 +156,7 @@ set shortmess+=c
 set undodir=~/.local/share/nvim/undodir
 set undofile
 
-
+map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>
 " ============================================================================ "
 " ===                           PLUGIN SETUP                               === "
 " ============================================================================ "
@@ -364,30 +364,32 @@ set termguicolors
 " Colouriser
 lua require 'colorizer'.setup()
 " Editor theme
-set background=dark
+set background=light
+" set background=dark
 
 try
-  colorscheme iceberg
+  colorscheme one
+  let g:one_allow_italics = 1
   " colorscheme OceanicNext
 catch
   colorscheme slate
 endtry
 
 " Vim airline theme
-let g:airline_theme='iceberg'
+" let g:airline_theme='onedark'
 
 " Add custom highlights in method that is executed every time a colorscheme is sourced
 " See https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f for details
-function! MyHighlights() abort
-  " Hightlight trailing whitespace
-  highlight Trail ctermbg=red guibg=red
-  call matchadd('Trail', '\s\+$', 100)
-endfunction
+" function! MyHighlights() abort
+"   " Hightlight trailing whitespace
+"   highlight Trail ctermbg=red guibg=red
+"   call matchadd('Trail', '\s\+$', 100)
+" endfunction
 
-augroup MyColors
-  autocmd!
-  autocmd ColorScheme * call MyHighlights()
-augroup END
+" augroup MyColors
+"   autocmd!
+"   autocmd ColorScheme * call MyHighlights()
+" augroup END
 
 " Change vertical split character to be a space (essentially hide it)
 " set fillchars+=vert:.
@@ -403,34 +405,34 @@ set noshowmode
 
 
 " coc.nvim color changes
-hi! link CocErrorSign WarningMsg
-hi! link CocWarningSign Number
-hi! link CocInfoSign Type
+" hi! link CocErrorSign WarningMsg
+" hi! link CocWarningSign Number
+" hi! link CocInfoSign Type
 
 " Make background transparent for many things
-hi! Normal ctermbg=NONE guibg=NONE
-hi! NonText ctermbg=NONE guibg=NONE
-hi! LineNr ctermfg=NONE guibg=NONE
-hi! SignColumn ctermfg=NONE guibg=NONE
-hi! StatusLine guifg=#16252b guibg=#6699CC
-hi! StatusLineNC guifg=#16252b guibg=#16252b
-
-" Try to hide vertical spit and end of buffer symbol
-hi! VertSplit gui=NONE guifg=#17252c guibg=#17252c
-hi! EndOfBuffer ctermbg=NONE ctermfg=NONE guibg=#17252c guifg=#17252c
+" hi! Normal ctermbg=NONE guibg=NONE
+" hi! NonText ctermbg=NONE guibg=NONE
+" hi! LineNr ctermfg=NONE guibg=NONE
+" hi! SignColumn ctermfg=NONE guibg=NONE
+" hi! StatusLine guifg=#16252b guibg=#6699CC
+" hi! StatusLineNC guifg=#16252b guibg=#16252b
+"
+" " Try to hide vertical spit and end of buffer symbol
+" hi! VertSplit gui=NONE guifg=#17252c guibg=#17252c
+" hi! EndOfBuffer ctermbg=NONE ctermfg=NONE guibg=#17252c guifg=#17252c
 
 " Customize NERDTree directory
-hi! NERDTreeCWD guifg=#99c794
+" hi! NERDTreeCWD guifg=#99c794
 
 " Make background color transparent for git changes
-hi! SignifySignAdd guibg=NONE
-hi! SignifySignDelete guibg=NONE
-hi! SignifySignChange guibg=NONE
+" hi! SignifySignAdd guibg=NONE
+" hi! SignifySignDelete guibg=NONE
+" hi! SignifySignChange guibg=NONE
 
 " Highlight git change signs
-hi! SignifySignAdd guifg=#99c794
-hi! SignifySignDelete guifg=#ec5f67
-hi! SignifySignChange guifg=#c594c5
+" hi! SignifySignAdd guifg=#99c794
+" hi! SignifySignDelete guifg=#ec5f67
+" hi! SignifySignChange guifg=#c594c5
 
 " ============================================================================ "
 " ===                                 MISC.                                === "
@@ -510,3 +512,32 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 
 nnoremap <silent> <C-p> :call fzf#vim#files('.', {'options': '--prompt ""'})<CR>
+
+
+
+"Credit joshdick
+"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
+"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+if (empty($TMUX))
+  if (has("nvim"))
+  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
+
+" fzf to use ripgrep
+let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
+" Use ripgrep with hidden files show for search
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --hidden --ignore-case --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
+  \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
+  \   <bang>0)

@@ -55,6 +55,8 @@ Plug 'Shougo/neosnippet-snippets'
 "Plug 'mhinz/vim-signify'
 "Plug 'tpope/vim-fugitive'
 
+Plug 'airblade/vim-gitgutter'
+Plug 'jreybert/vimagit'
 " === Javascript Plugins === "
 " Typescript syntax highlighting
 Plug 'HerringtonDarkholme/yats.vim'
@@ -70,7 +72,7 @@ Plug 'heavenshell/vim-jsdoc'
 " Syntax highlighting for nginx
 Plug 'chr4/nginx.vim'
 
-" Syntax highlighting for javascript libraries
+" Syntax highlighting for javasihttps://github.com/maidsafe/safe_browser/pull/104eript libraries
 Plug 'othree/javascript-libraries-syntax.vim'
 
 " Improved syntax highlighting and indentation
@@ -84,6 +86,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'mhartington/oceanic-next'
 Plug 'flrnprz/candid.vim'
 Plug 'cocopon/iceberg.vim'
+Plug 'rakr/vim-one'
 
 " Colouriser
 Plug 'norcalli/nvim-colorizer.lua'
