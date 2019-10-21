@@ -39,11 +39,13 @@ inoremap <C-s> <Esc>:w<CR>
 " save and exit vim
 noremap <leader>e :wq<CR>
 
+" toggle git gutter
+noremap <leader>g :GitGutterToggle<CR>
 
 " duplicate line
-noremap <C-d> dd P p
-vnoremap <C-d> dd P p
-inoremap <C-d> dd P p
+noremap <C-d> yy p
+vnoremap <C-d> yy p
+inoremap <C-d> yy p
 
 " === Nerdtree shorcuts === "
 "  <leader>n - Toggle NERDTree on/off

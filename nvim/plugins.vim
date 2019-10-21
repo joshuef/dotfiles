@@ -23,6 +23,8 @@ call plug#begin('~/.config/nvim/plugged')
 " === Editing Plugins === "
 " Trailing whitespace highlighting & automatic fixing
 Plug 'ntpeters/vim-better-whitespace'
+" sensible vim default
+Plug 'tpope/vim-sensible'
 
 " auto-close plugin
 Plug 'rstacruz/vim-closer'
@@ -42,7 +44,7 @@ Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 " Denite - Fuzzy finding, buffer management
 Plug 'Shougo/denite.nvim'
 " vim workspace
-Plug 'thark/vim-workspace'
+" Plug 'thark/vim-workspace'
 " Snippet support
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
