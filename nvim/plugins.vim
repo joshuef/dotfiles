@@ -31,7 +31,7 @@ Plug 'rstacruz/vim-closer'
 Plug 'tpope/vim-commentary'
 
 " Improved motion in Vim
-"Plug 'easymotion/vim-easymotion'
+Plug 'easymotion/vim-easymotion'
 
 " Intellisense Engine
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
@@ -41,7 +41,8 @@ Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 
 " Denite - Fuzzy finding, buffer management
 Plug 'Shougo/denite.nvim'
-
+" vim workspace
+Plug 'thark/vim-workspace'
 " Snippet support
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'

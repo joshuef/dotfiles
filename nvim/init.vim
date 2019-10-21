@@ -19,22 +19,96 @@ scriptencoding utf-8
 source ~/.config/nvim/plugins.vim
 
 " My keybaps:
-
-nnoremap ; :Buffers<CR>
+"semicolon for commands
+noremap ; :
+" open files buffer
+nnoremap <leader>b :Buffers<CR>
 nnoremap f :Files<CR>
 nnoremap T :Tags<CR>
 nnoremap t :BTags<CR>
+" search wll files with ripgrep
 nnoremap s :Rg<CR>
-
+" set shell
+" set shell=/bin/zsh
 " comment shortcut
-nmap ,c <Plug>CommentaryLine
+noremap <leader>. gcc
+" save current buffer
+noremap <C-s> <Esc>:w<CR>
+vnoremap <C-s> <Esc>:w<CR>
+inoremap <C-s> <Esc>:w<CR>
+" save and exit vim
+noremap <leader>e :wq<CR>
+
+
+" duplicate line
+noremap <C-d> dd P p
+vnoremap <C-d> dd P p
+inoremap <C-d> dd P p
+
+" === Nerdtree shorcuts === "
+"  <leader>n - Toggle NERDTree on/off
+"  <leader>f - Opens current file location in NERDTree
+nmap <leader>n :NERDTreeToggle<CR>
+
+nmap <leader>f :NERDTreeFind<CR>
+
+"   <Space> - PageDown
+"   -       - PageUp
+noremap <Space> <PageDown>
+noremap - <PageUp>
+
+" === coc.nvim === "
+nmap <silent> <leader>dd <Plug>(coc-definition)
+nmap <silent> <leader>dr <Plug>(coc-references)
+nmap <silent> <leader>dj <Plug>(coc-implementation)
+
+" === vim-better-whitespace === "
+"   <leader>y - Automatically remove trailing whitespace
+nmap <leader>y :StripWhitespace<CR>
+" do it automatically
+autocmd BufWritePre *.py :%s/\s\+$//e
+
+" === Search shorcuts === "
+"<leader>h
+" - Find and replace
+"<leader>c
+" - Claer highlighted search terms while preserving history
+map <leader>h :%s///<left><left>
+nmap <silent> <leader>/ :nohlsearch<CR>
+
+" Move text up or down a line
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+
+
+" === Easy-motion shortcuts ==="
+"   <leader>w - Easy-motion highlights first word letters bi-directionally
+map <leader>w <Plug>(easymotion-bd-w)
+
+" Allows you to save files you opened without write permissions via sudo
+cmap w!! w !sudo tee %
+
+" === vim-jsdoc shortcuts ==="
+" Generate jsdoc for function under cursor
+nmap <leader>z :JsDoc<CR>
+
+" Delete current visual selection and dump in black hole buffer before pasting
+" Used when you want to paste over something without it getting copied to
+" Vim's default buffer
+vnoremap <leader>p "_dP
+
+
 
 " ============================================================================ "
 " ===                           EDITING OPTIONS                            === "
 " ============================================================================ "
 
 " Remap leader key to ,
-let g:mapleader=','
+let g:mapleader="'"
 
 " Disable line numbers
 set nonumber
@@ -46,6 +120,7 @@ set nonumber
 set clipboard=unnamed
 
 " Hides buffers instead of closing them
+
 set hidden
 
 " === TAB/Space settings === "
@@ -81,6 +156,7 @@ set shortmess+=c
 set undodir=~/.local/share/nvim/undodir
 set undofile
 
+
 " ============================================================================ "
 " ===                           PLUGIN SETUP                               === "
 " ============================================================================ "
@@ -114,6 +190,7 @@ set undofile
 "
 "" Remove date from buffer list
 "call denite#custom#var('buffer', 'date_format', '')
+
 "
 "" Open file commands
 "call denite#custom#map('insert,normal', "<C-t>", '<denite:do_action:tabopen>')
@@ -148,6 +225,7 @@ set undofile
 "" Loop through denite options and enable them
 "function! s:profile(opts) abort
 "  for l:fname in keys(a:opts)
+
 "    for l:dopt in keys(a:opts[l:fname])
 "      call denite#custom#option(l:fname, l:dopt, a:opts[l:fname][l:dopt])
 "    endfor
@@ -183,6 +261,7 @@ xmap <C-k> <Plug>(neosnippet_expand_target)
 " Load custom snippets from snippets folder
 let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
 
+
 " Hide conceal markers
 let g:neosnippet#enable_conceal_markers = 0
 
@@ -215,6 +294,7 @@ let g:airline_skip_empty_sections = 1
 
 " Smartly uniquify buffers names with similar filename, suppressing common parts of paths.
 let g:airline#extensions#tabline#formatter = 'unique_tail'
+
 
 " Custom setup that removes filetype/whitespace from default vim airline bar
 let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'z', 'warning', 'error']]
@@ -251,6 +331,7 @@ let g:airline#extensions#hunks#enabled=0
 " let g:airline#extensions#tabline#show_buffers=1
 let g:airline#extensions#tabline#enabled = 1
 
+
 catch
   echo 'Airline not installed. It should work after running :PlugInstall'
 endtry
@@ -284,6 +365,7 @@ set termguicolors
 lua require 'colorizer'.setup()
 " Editor theme
 set background=dark
+
 try
   colorscheme iceberg
   " colorscheme OceanicNext
@@ -319,6 +401,7 @@ set noshowmode
 " Set floating window to be slightly transparent
 " set winbl=10
 
+
 " coc.nvim color changes
 hi! link CocErrorSign WarningMsg
 hi! link CocWarningSign Number
@@ -349,115 +432,6 @@ hi! SignifySignAdd guifg=#99c794
 hi! SignifySignDelete guifg=#ec5f67
 hi! SignifySignChange guifg=#c594c5
 
-"" Call method on window enter
-"augroup WindowManagement
-"  autocmd!
-"  autocmd WinEnter * call Handle_Win_Enter()
-"augroup END
-"
-"" Change highlight group of preview window when open
-"function! Handle_Win_Enter()
-"  if &previewwindow
-"    setlocal winhighlight=Normal:MarkdownError
-"  endif
-"endfunction
-"
-" ============================================================================ "
-" ===                             KEY MAPPINGS                             === "
-" ============================================================================ "
-
-" === Denite shorcuts === "
-"   ;         - Browser currently open buffers
-"   <leader>t - Browse list of files in current directory
-"   <leader>g - Search current directory for occurences of given term and close window if no results
-"   <leader>j - Search current directory for occurences of word under cursor
-"nmap ; :Denite buffer<CR>
-"nmap <leader>t :DeniteProjectDir file/rec<CR>
-"nnoremap <leader>g :<C-u>Denite grep:. -no-empty<CR>
-"nnoremap <leader>j :<C-u>DeniteCursorWord grep:.<CR>
-
-" Define mappings while in 'filter' mode
-"   <C-o>         - Switch to normal mode inside of search results
-"   <Esc>         - Exit denite window in any mode
-"   <CR>          - Open currently selected file in any mode
-"autocmd FileType denite-filter call s:denite_filter_my_settings()
-"function! s:denite_filter_my_settings() abort
-"  imap <silent><buffer> <C-o>
-"  \ <Plug>(denite_filter_quit)
-"  inoremap <silent><buffer><expr> <Esc>
-"  \ denite#do_map('quit')
-"  nnoremap <silent><buffer><expr> <Esc>
-"  \ denite#do_map('quit')
-"  inoremap <silent><buffer><expr> <CR>
-"  \ denite#do_map('do_action')
-"endfunction
-
-" Define mappings while in denite window
-"   <CR>        - Opens currently selected file
-"   q or <Esc>  - Quit Denite window
-"   d           - Delete currenly selected file
-"   p           - Preview currently selected file
-"   <C-o> or i  - Switch to insert mode inside of filter prompt
-"autocmd FileType denite call s:denite_my_settings()
-"function! s:denite_my_settings() abort
-"  nnoremap <silent><buffer><expr> <CR>
-"  \ denite#do_map('do_action')
-"  nnoremap <silent><buffer><expr> q
-"  \ denite#do_map('quit')
-"  nnoremap <silent><buffer><expr> <Esc>
-"  \ denite#do_map('quit')
-"  nnoremap <silent><buffer><expr> d
-"  \ denite#do_map('do_action', 'delete')
-"  nnoremap <silent><buffer><expr> p
-"  \ denite#do_map('do_action', 'preview')
-"  nnoremap <silent><buffer><expr> i
-"  \ denite#do_map('open_filter_buffer')
-"  nnoremap <silent><buffer><expr> <C-o>
-"  \ denite#do_map('open_filter_buffer')
-"endfunction
-
-" === Nerdtree shorcuts === "
-"  <leader>n - Toggle NERDTree on/off
-"  <leader>f - Opens current file location in NERDTree
-nmap <leader>n :NERDTreeToggle<CR>
-nmap <leader>f :NERDTreeFind<CR>
-
-"   <Space> - PageDown
-"   -       - PageUp
-noremap <Space> <PageDown>
-noremap - <PageUp>
-
-" === coc.nvim === "
-nmap <silent> <leader>dd <Plug>(coc-definition)
-nmap <silent> <leader>dr <Plug>(coc-references)
-nmap <silent> <leader>dj <Plug>(coc-implementation)
-
-" === vim-better-whitespace === "
-"   <leader>y - Automatically remove trailing whitespace
-nmap <leader>y :StripWhitespace<CR>
-
-" === Search shorcuts === "
-"   <leader>h - Find and replace
-"   <leader>/ - Claer highlighted search terms while preserving history
-map <leader>h :%s///<left><left>
-nmap <silent> <leader>/ :nohlsearch<CR>
-
-" === Easy-motion shortcuts ==="
-"   <leader>w - Easy-motion highlights first word letters bi-directionally
-map <leader>w <Plug>(easymotion-bd-w)
-
-" Allows you to save files you opened without write permissions via sudo
-cmap w!! w !sudo tee %
-
-" === vim-jsdoc shortcuts ==="
-" Generate jsdoc for function under cursor
-nmap <leader>z :JsDoc<CR>
-
-" Delete current visual selection and dump in black hole buffer before pasting
-" Used when you want to paste over something without it getting copied to
-" Vim's default buffer
-vnoremap <leader>p "_dP
-
 " ============================================================================ "
 " ===                                 MISC.                                === "
 " ============================================================================ "
@@ -476,6 +450,7 @@ set smartcase
 set autoread
 
 " Enable line numbers
+
 set number
 
 " Set backups
@@ -535,4 +510,3 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 
 nnoremap <silent> <C-p> :call fzf#vim#files('.', {'options': '--prompt ""'})<CR>
-nnoremap <silent> <leader>b :Buffers<CR>

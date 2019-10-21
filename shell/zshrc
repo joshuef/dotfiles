@@ -129,7 +129,8 @@ fi
 
 
 # alias
-
+alias vi=nvim
+alias vim=nvim
 alias rm=trash
 alias atom=atom-beta
 alias ls="ls -G"
