@@ -27,7 +27,15 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'tpope/vim-sensible'
 
 " auto-close plugin
-Plug 'rstacruz/vim-closer'
+Plug 'jiangmiao/auto-pairs'
+"multi cursors again
+Plug 'mg979/vim-visual-multi'
+" auto ender
+Plug 'tpope/vim-endwise'
+"multi cursors like atom
+" Plug 'terryma/vim-multiple-cursors'
+" auto read
+" Plug 'djoshea/vim-autoread'
 
 " easy commenting
 Plug 'tpope/vim-commentary'

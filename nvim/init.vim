@@ -46,24 +46,10 @@ noremap <leader>g :GitGutterToggle<CR>
 " vnoremap <A-z> <Esc> u
 " vnoremap <A-S-z> <Esc> <C-R>
 " inoremap <A-S-z> <Esc> <C-R>
-
-" atom ctrl d
-nmap <silent> <C-d> <Plug>(coc-cursors-word)
-" xnoremap <silent> <C-d> <Plug>(coc-cursors-range)
-
-" Atom like ctrl d
-" nnoremap <expr> <silent> <C-d> <SID>select_current_word()
-" function! s:select_current_word()
-"   if !get(g:, 'coc_cursors_activated', 0)
-"     return "\<Plug>(coc-cursors-word)"
-"   endif
-"   return "*\<Plug>(coc-cursors-word):nohlsearch\<CR>"
-" endfunc
-
 " duplicate line
-nnoremap <A-S-d> yy p
-xnoremap <A-S-d> yy p
-inoremap <A-S-d> <Esc> yy p
+nnoremap <C-d> yy p
+xnoremap <C-d> yy p
+inoremap <C-d> <Esc> yy p
 
 " === Nerdtree shorcuts === "
 "  <leader>n - Toggle NERDTree on/off
@@ -136,7 +122,7 @@ vnoremap <leader>p "_dP
 " ============================================================================ "
 
 " Remap leader key to ,
-let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
 
 " Disable line numbers
 set nonumber
@@ -478,7 +464,7 @@ set smartcase
 
 " Automatically re-read file if a change was detected outside of vim
 set autoread
-
+" au FocusGained * :checktime
 " Enable line numbers
 
 set number
