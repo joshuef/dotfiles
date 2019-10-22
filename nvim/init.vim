@@ -41,11 +41,29 @@ noremap <leader>e :wq<CR>
 
 " toggle git gutter
 noremap <leader>g :GitGutterToggle<CR>
+" undo
+" inoremap <A-z> <Esc> u
+" vnoremap <A-z> <Esc> u
+" vnoremap <A-S-z> <Esc> <C-R>
+" inoremap <A-S-z> <Esc> <C-R>
+
+" atom ctrl d
+nmap <silent> <C-d> <Plug>(coc-cursors-word)
+" xnoremap <silent> <C-d> <Plug>(coc-cursors-range)
+
+" Atom like ctrl d
+" nnoremap <expr> <silent> <C-d> <SID>select_current_word()
+" function! s:select_current_word()
+"   if !get(g:, 'coc_cursors_activated', 0)
+"     return "\<Plug>(coc-cursors-word)"
+"   endif
+"   return "*\<Plug>(coc-cursors-word):nohlsearch\<CR>"
+" endfunc
 
 " duplicate line
-noremap <C-d> yy p
-vnoremap <C-d> yy p
-inoremap <C-d> yy p
+nnoremap <A-S-d> yy p
+xnoremap <A-S-d> yy p
+inoremap <A-S-d> <Esc> yy p
 
 " === Nerdtree shorcuts === "
 "  <leader>n - Toggle NERDTree on/off
@@ -54,10 +72,11 @@ nmap <leader>n :NERDTreeToggle<CR>
 
 nmap <leader>f :NERDTreeFind<CR>
 
+
 "   <Space> - PageDown
 "   -       - PageUp
-noremap <Space> <PageDown>
-noremap - <PageUp>
+" noremap <Space> <PageDown>
+" noremap - <PageUp>
 
 " === coc.nvim === "
 nmap <silent> <leader>dd <Plug>(coc-definition)
@@ -66,9 +85,11 @@ nmap <silent> <leader>dj <Plug>(coc-implementation)
 
 " === vim-better-whitespace === "
 "   <leader>y - Automatically remove trailing whitespace
-nmap <leader>y :StripWhitespace<CR>
+" nmap <leader>y :StripWhitespace<CR>
 " do it automatically
-autocmd BufWritePre *.py :%s/\s\+$//e
+let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_save=1
+let g:strip_whitespace_confirm=0
 
 " === Search shorcuts === "
 "<leader>h
@@ -79,13 +100,18 @@ map <leader>h :%s///<left><left>
 nmap <silent> <leader>/ :nohlsearch<CR>
 
 " Move text up or down a line
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
-
+inoremap <C-S-Up> <Esc>:m .-2<CR>==gi
+inoremap <C-S-k> <Esc>:m .-2<CR>==gi
+nnoremap <C-S-Up> :m .-2<CR>==
+nnoremap <C-S-k> :m .-2<CR>==
+vnoremap <C-S-Up> :m '<-2<CR>gv=gv
+vnoremap <C-S-k> :m '<-2<CR>gv=gv
+inoremap <C-S-j> <Esc>:m .+1<CR>==gi
+vnoremap <C-S-j> :m '>+1<CR>gv=gv
+nnoremap <C-S-j> :m .+1<CR>==
+vnoremap <C-S-Down> :m '>+1<CR>gv=gv
+inoremap <C-S-Down> <Esc>:m .+1<CR>==gi
+nnoremap <C-S-Down> :m .+1<CR>==
 
 " === Easy-motion shortcuts ==="
 "   <leader>w - Easy-motion highlights first word letters bi-directionally
@@ -110,7 +136,7 @@ vnoremap <leader>p "_dP
 " ============================================================================ "
 
 " Remap leader key to ,
-" let g:mapleader="'"
+let mapleader = "\<Space>"
 
 " Disable line numbers
 set nonumber

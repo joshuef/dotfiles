@@ -33,7 +33,7 @@ Plug 'rstacruz/vim-closer'
 Plug 'tpope/vim-commentary'
 
 " Improved motion in Vim
-Plug 'easymotion/vim-easymotion'
+" Plug 'easymotion/vim-easymotion'
 
 " Intellisense Engine
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
@@ -42,7 +42,7 @@ Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 "Plug 'christoomey/vim-tmux-navigator'
 
 " Denite - Fuzzy finding, buffer management
-Plug 'Shougo/denite.nvim'
+" Plug 'Shougo/denite.nvim'
 " vim workspace
 " Plug 'thark/vim-workspace'
 " Snippet support
@@ -85,9 +85,9 @@ Plug 'othree/yajs.vim'
 Plug 'scrooloose/nerdtree'
 
 " Colorscheme
-Plug 'mhartington/oceanic-next'
-Plug 'flrnprz/candid.vim'
-Plug 'cocopon/iceberg.vim'
+" Plug 'mhartington/oceanic-next'
+" Plug 'flrnprz/candid.vim'
+" Plug 'cocopon/iceberg.vim'
 Plug 'rakr/vim-one'
 
 " Colouriser
