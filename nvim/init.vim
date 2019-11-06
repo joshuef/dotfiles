@@ -14,6 +14,9 @@ set cc=80                   " set an 80 column border for good coding style
 filetype plugin indent on   " allows auto-indenting depending on file type
 syntax on                   " syntax highlighting
 "colorscheme default
+" speed up rendering
+set ttyfast
+set lazyredraw
 
 scriptencoding utf-8
 source ~/.config/nvim/plugins.vim
@@ -547,7 +550,7 @@ if (empty($TMUX))
 endif
 
 " fzf to use ripgrep
-let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
+let $FZF_DEFAULT_COMMAND = 'rg --files --hidden -g "!.git/"'
 " Use ripgrep with hidden files show for search
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(

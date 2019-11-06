@@ -35,7 +35,7 @@ Plug 'tpope/vim-endwise'
 "multi cursors like atom
 " Plug 'terryma/vim-multiple-cursors'
 " auto read
-" Plug 'djoshea/vim-autoread'
+Plug 'djoshea/vim-autoread'
 
 " easy commenting
 Plug 'tpope/vim-commentary'
@@ -66,7 +66,7 @@ Plug 'Shougo/neosnippet-snippets'
 "Plug 'tpope/vim-fugitive'
 
 Plug 'airblade/vim-gitgutter'
-Plug 'jreybert/vimagit'
+" Plug 'jreybert/vimagit'
 " === Javascript Plugins === "
 " Typescript syntax highlighting
 Plug 'HerringtonDarkholme/yats.vim'
