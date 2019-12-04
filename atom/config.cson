@@ -17,8 +17,8 @@
       "whitespace"
       "linter-ui-default"
       "linter"
-      "ide-rust"
       "teletype"
+      "ide-rust"
     ]
     ignoredNames: [
       ".git"

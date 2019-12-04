@@ -79,6 +79,9 @@
         undo = reset --soft HEAD~1                   # Undo last commit (affects HEAD only)
         reset = reset --hard HEAD~1                  # Remove last commit (from HEAD, Index and Working Dir)
 
+        # Tag pushing
+        put = "!f() { git push upstream --no-verify; git tag $1; git push upstream --no-verify $1; }; f"
+
         # Remote
         r = remote -v
 
@@ -109,8 +112,8 @@
         # Clean tags
         clean-branch = "!f() { git branch -D $(git branch --color=never | grep $1); }; f"
         clean-local = "!f() { git tag -d $(git tag -l | grep $1); }; f"
-        clean-origin = "!f() { git push origin --delete $(git tag -l | grep $1); }; f"
-        clean-upstream = "!f() { git push upstream --delete $(git tag -l | grep $1); }; f"
+        clean-origin = "!f() { git fetch origin --tags; git push origin --delete $(git tag -l | grep $1) --no-verify; }; f"
+        clean-upstream = "!f() { git fetch upstream --tags; git push upstream --delete $(git tag -l | grep $1) --no-verify; }; f"
         clean-tags = "!f() { git fetch; git clean-origin $1; git clean-local $1; }; f"
         clean-tags-upstream = "!f() { git fetch; git clean-origin $1; git clean-upstream $1; git clean-local $1; }; f"
 
