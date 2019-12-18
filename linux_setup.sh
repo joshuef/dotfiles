@@ -135,7 +135,9 @@ HOURLY_CRON="/etc/cron.hourly"
 if [ ! -d "$HOURLY_CRON/ip-check.sh" ]; then
     sudo ln -snf $(pwd)/ip-check.sh "$HOURLY_CRON/ip-check.sh"
     sudo chmod 0600 "$HOURLY_CRON/ip-check.sh"
+    sudo chmod +x "$HOURLY_CRON/ip-check.sh"
 fi
+
 NVIM_DIR="${HOME}/.config/nvim"
 
 if [ ! -d "${NVIM_DIR}" ]; then
