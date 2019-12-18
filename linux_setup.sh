@@ -131,12 +131,14 @@ if ! [ -x "$(command -v doctl)" ]; then
   rm -f doctl-${DOCTL_VERSION}-linux-amd64.tar.gz
 fi
 
-
-
-
+HOURLY_CRON="/etc/cron.hourly"
+if [ ! -d "$HOURLY_CRON/ip-check.sh" ]; then
+    sudo ln -snf $(pwd)/ip-check.sh "$HOURLY_CRON/ip-check.sh"
+    sudo chmod 0600 "$HOURLY_CRON/ip-check.sh"
+fi
 NVIM_DIR="${HOME}/.config/nvim"
 
-if [ ! -f "${NVIM_DIR}" ]; then
+if [ ! -d "${NVIM_DIR}" ]; then
   echo " ==> Installing nvim"
   mkdir -p $NVIM_DIR
   curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
