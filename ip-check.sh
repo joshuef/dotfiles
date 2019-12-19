@@ -25,4 +25,4 @@ else
     :
 fi
 
-echo "Script is  still working" | mail -s "New TestCron" joshuef@gmail.com
+
