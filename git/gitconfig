@@ -300,3 +300,5 @@
 	enabled = true
 [branch]
 	autosetuprebase = always
+[diff "nodiff"]
+	command = echo
