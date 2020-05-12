@@ -1,0 +1,29 @@
+{
+    "workbench.colorTheme": "Atom One Light",
+    "workbench.startupEditor": "newUntitledFile",
+    "terminal.external.osxExec": "iTerm2.app",
+    "terminal.integrated.fontFamily": "Hack Nerd Font",
+    "workbench.preferredLightColorTheme": "Atom One Light",
+    "window.autoDetectColorScheme": true,
+    "workbench.colorCustomizations": {
+        "terminal.background":"#002833",
+        "terminal.foreground":"#839495",
+        "terminal.ansiBlack": "#073642",
+		"terminal.ansiRed": "#dc322f",
+		"terminal.ansiGreen": "#859900",
+		"terminal.ansiYellow": "#b58900",
+		"terminal.ansiBlue": "#268bd2",
+		"terminal.ansiMagenta": "#d33682",
+		"terminal.ansiCyan": "#2aa198",
+		"terminal.ansiWhite": "#eee8d5",
+		"terminal.ansiBrightBlack": "#586e75",
+		"terminal.ansiBrightRed": "#cb4b16",
+		"terminal.ansiBrightGreen": "#586e75",
+		"terminal.ansiBrightYellow": "#657b83",
+		"terminal.ansiBrightBlue": "#839496",
+		"terminal.ansiBrightMagenta": "#6c71c4",
+		"terminal.ansiBrightCyan": "#93a1a1",
+		"terminal.ansiBrightWhite": "#fdf6e3"
+	},
+	"window.zoomLevel": 0
+}
