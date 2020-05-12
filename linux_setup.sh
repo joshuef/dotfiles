@@ -12,11 +12,6 @@ UPGRADE_PACKAGES=${1:-none}
 if [ "${UPGRADE_PACKAGES}" != "none" ]; then
   echo "==> Updating and upgrading packages ..."
 
-
-  # Add atom repo
-  wget -qO - https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add -
-  sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list'
-
   # Add third party repositories
   sudo add-apt-repository ppa:keithw/mosh-dev -y
   sudo add-apt-repository ppa:jonathonf/vim -y
@@ -91,6 +86,14 @@ if [ "${UPGRADE_PACKAGES}" != "none" ]; then
   --no-install-recommends
 
 fi
+
+if ! [ -x "$(command -v code)" ]; then
+  sudo snap install --classic code
+  ln -snf "$(pwd)/vscode/keybindings.json" ~/.config/Code/User/keybindings.json
+  ln -snf "$(pwd)/vscode/settings.json" ~/.config/Code/User/settings.json
+
+fi
+
 
 # install rust
 if ! [ -x "$(command -v rustup)" ]; then
