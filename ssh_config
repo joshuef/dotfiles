@@ -22,3 +22,7 @@ Host *
 	ControlPersist 10m
   PreferredAuthentications=publickey
 	Cipher aes128-ctr
+
+Host NUC
+  HostName 170.253.40.143
+  Port 60088

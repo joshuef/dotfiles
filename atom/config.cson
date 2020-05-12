@@ -1,7 +1,6 @@
 "*":
   "atom-ide-ui":
     "atom-ide-code-format":
-      formatOnSave: true
       formatOnType: false
     "atom-ide-diagnostics-ui": {}
     hyperclick:
@@ -18,7 +17,7 @@
       "linter-ui-default"
       "linter"
       "teletype"
-      "ide-rust"
+      "linter-rust"
     ]
     ignoredNames: [
       ".git"
@@ -75,6 +74,9 @@
       "source.ts"
       "source.tsx"
     ]
+  "linter-rust":
+    cargoCommand: "check"
+    disableExecTimeout: true
   "linter-terraform-syntax":
     newVersion: true
   "linter-ui-default":
