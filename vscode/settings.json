@@ -25,11 +25,13 @@
 		"terminal.ansiBrightCyan": "#93a1a1",
 		"terminal.ansiBrightWhite": "#fdf6e3"
 	},
-	"window.zoomLevel": 0,
+	"window.zoomLevel": 1,
 	"rust.mode": "legacy",
 	"rust.rustup": {
 		"nightlyToolchain": "nightly-x86_64-unknown-linux-gnu"
 	},
 	"rust-client.autoStartRls": false,
-	"rust-client.engine": "rust-analyzer"
+	"rust-client.engine": "rust-analyzer",
+	"window.newWindowDimensions": "inherit",
+	"rust-client.updateOnStartup": true
 }

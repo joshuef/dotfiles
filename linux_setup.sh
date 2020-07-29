@@ -27,7 +27,6 @@ if [ "${UPGRADE_PACKAGES}" != "none" ]; then
   sudo apt-get upgrade -y
 
   sudo apt-get install -y \
-  atom-beta \
   apt-transport-https \
   build-essential \
   bzr \
@@ -279,13 +278,6 @@ if [ ! -d "${HOME}/bin/diff-so-fancy" ]; then
   echo " ==> Installing diff so fancy"
   cp ./git/diff-so-fancy ~/bin
   chmod +x ~/bin/diff-so-fancy
-fi
-
-if [ ! -d "${HOME}/.atom/packages.list" ]; then
-  echo " ==> Installing atom packages"
-  ln -sfn ./atom ~/.atom
-  apm-beta install --packages-file atom/packages.list
-
 fi
 
 
