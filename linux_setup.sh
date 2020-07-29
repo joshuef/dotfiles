@@ -296,8 +296,8 @@ if [ ! -d "$HOME/.zshrc" ]; then
 #   git remote set-url origin git@github.com:joshuef/dotfiles.git
 #
 #   ln -sfn $(pwd)/vimrc "${HOME}/.vimrc"
-  ln -sfn $(pwd)/zshrc "${HOME}/.zshrc"
-  ln -sfn $(pwd)/zshenv "${HOME}/.zshenv"
+  ln -sfn $(pwd)/shell/zshrc "${HOME}/.zshrc"
+  ln -sfn $(pwd)/shell/zshenv "${HOME}/.zshenv"
   # ln -sfn $(pwd)/zprofile "${HOME}/.zprofile"
 #   ln -sfn $(pwd)/tmuxconf "${HOME}/.tmux.conf"
 #   ln -sfn $(pwd)/tigrc "${HOME}/.tigrc"
