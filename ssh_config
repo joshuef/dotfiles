@@ -1,5 +1,5 @@
 IdentityFile ~/.ssh/sharing_rsa
-IdentityFile ~/.ssh/blink_rsa
+# IdentityFile ~/.ssh/blink_rsa
 
 Include local_config
 
@@ -24,5 +24,5 @@ Host *
 	Cipher aes128-ctr
 
 Host NUC
-  HostName 170.253.40.143
+  HostName 170.253.50.205
   Port 60088
