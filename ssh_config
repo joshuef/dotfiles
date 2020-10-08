@@ -1,5 +1,5 @@
 IdentityFile ~/.ssh/sharing_rsa
-# IdentityFile ~/.ssh/blink_rsa
+IdentityFile ~/.ssh/blink_rsa
 
 Include local_config
 

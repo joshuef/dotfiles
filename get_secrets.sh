@@ -2,8 +2,8 @@
 echo "=>>>Pulling secrets"
 
 
-op get document 'zhwkovejeqq7x55sy3ba6ovy5i' > github_rsa --tags devops
-op get document 'kk2wcb4oiptf7g2zprmdgo34uy' > sharing_rsa --tags devops
+op get document 'zhwkovejeqq7x55sy3ba6ovy5i' > github_rsa
+op get document 'kk2wcb4oiptf7g2zprmdgo34uy' > sharing_rsa
 
 
 
