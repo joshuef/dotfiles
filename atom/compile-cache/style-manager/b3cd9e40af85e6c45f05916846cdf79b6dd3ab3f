@@ -1,1 +1,0 @@
-{"source":"atom-text-editor .highlight.code-highlight-marker > .region {\n  background-color: #e5e5e6;\n  border-color: #383a42;\n  border-radius: 3px;\n  border-style: solid;\n  border-width: 1px;\n  box-sizing: border-box;\n  opacity: 0.5;\n}\n"}

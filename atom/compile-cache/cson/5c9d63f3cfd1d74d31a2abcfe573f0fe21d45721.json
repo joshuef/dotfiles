@@ -1,1 +1,0 @@
-{".source.powershell":{"editor":{"commentStart":"#","foldEndPattern":"^\\s*\\}|^\\s*\\]|^\\s*\\)","increaseIndentPattern":"(?x) ^ .* \\{ [^}\"']* $ | ^ .* \\( [^)\"']* $ | ^ \\s* \\{ \\} $ | ^ \\s* \\( \\) $","decreaseIndentPattern":"(?x) ^ (.*\\*/)? \\s* [\\}\\)] ( [^}{\"']* [\\{\\(] | \\s* while \\s* \\( .* )? [;\\s]* (//.*|/\\*.*\\*/\\s*)? $"}}}

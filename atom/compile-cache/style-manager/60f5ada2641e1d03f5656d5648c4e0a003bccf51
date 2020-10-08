@@ -1,1 +1,0 @@
-{"source":".nuclide-selectable-tree.focused [aria-activedescendant=\"true\"]::before {\n  background: #5871ef;\n}\n.nuclide-selectable-tree.focused .list-item[aria-activedescendant=\"true\"] span,\n.nuclide-selectable-tree.focused .list-nested-item[aria-activedescendant=\"true\"] > .list-item span {\n  color: white !important;\n}\n"}

@@ -1,1 +1,0 @@
-{".source.js":{"mocha-test":{"prefix":"describe","body":"import { expect } from 'chai';\n\ndescribe('$1', function() {\n  it('should $2', function() {\n    // test goes here\n  });\n});"}}}

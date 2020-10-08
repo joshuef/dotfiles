@@ -1,1 +1,0 @@
-{"source":".debugger-datatip {\n  padding: 3px 8px 3px 4px;\n  max-width: 500px;\n  max-height: 300px;\n  overflow: scroll;\n}\n.debugger-datatip-value {\n  color: #232324;\n}\n"}
