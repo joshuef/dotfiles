@@ -97,6 +97,47 @@ plugins=(fabric node npm history zsh-z git-flow zsh-syntax-highlighting zsh-auto
 
 source $ZSH/oh-my-zsh.sh
 
+# Add border to pics
+borderize() {
+  trap "exit;" INT SIGINT SIGTERM
+  for i in `ls`
+  do
+      trap "exit;" INT SIGINT SIGTERM
+      mkdir bordered
+
+      name="wb_$i"
+      echo "working on $name ..."
+      convert $i -bordercolor white -border 7% "bordered/$name"
+  done 
+}
+
+# Add border to pics
+squareit() {
+  trap "exit;" INT SIGINT SIGTERM
+  for i in `ls`
+  do
+      trap "exit;" INT SIGINT SIGTERM
+      mkdir square
+      # Get trim box w, h, x, y
+      IFS=" x+" read w h x y < <(convert -fuzz 10% $i -format "%@" info:)
+      name="wb_sq_$i"
+      echo "working on $name ..."
+
+      # Get longest side
+      longest=$w
+      [ $h -gt $longest ] && longest=$h
+
+      # Increase by 20%
+      longest=$(echo "scale=0;$longest*1.2/1" | bc)
+      echo $longest
+
+      convert -fuzz 10% $i -trim -background white -gravity center -extent ${longest}x${longest} "square/$name"
+  done 
+}
+
+
+
+
 
 #NVM
 # Lazy NVM loading for rapid bash startup
@@ -130,6 +171,7 @@ fi
 
 
 # alias
+alias vi=nvim
 alias vi=nvim
 alias vim=nvim
 alias rm=trash
