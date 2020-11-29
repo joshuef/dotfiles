@@ -112,12 +112,12 @@ borderize() {
 }
 
 # Add border to pics
-squareit() {
+squared() {
   trap "exit;" INT SIGINT SIGTERM
   for i in `ls`
   do
-      trap "exit;" INT SIGINT SIGTERM
-      mkdir square10
+      # trap "exit;" INT SIGINT SIGTERM
+      mkdir squared
       # Get trim box w, h, x, y
       IFS=" x+" read w h x y < <(convert -fuzz 10% $i -format "%@" info:)
       name="wb_sq_$i"
@@ -128,14 +128,32 @@ squareit() {
       [ $h -gt $longest ] && longest=$h
 
       # Increase by 20%
-      longest=$(echo "scale=0;$longest*1.05/1" | bc)
+      longest=$(echo "scale=0;$longest*1.1/1" | bc)
       echo $longest
 
-      convert -fuzz 10% $i -trim -background white -gravity center -extent ${longest}x${longest} "square10/$name"
+      convert -fuzz 10% $i -trim -background white -gravity center -extent ${longest}x${longest} "square/$name"
   done 
 }
 
 
+
+
+# Add border to pics
+square() {
+      # Get trim box w, h, x, y
+      IFS=" x+" read w h x y < <(convert -fuzz 10% $1 -format "%@" info:)
+      name="wb_sq_$1"
+
+      # Get longest side
+      longest=$w
+      [ $h -gt $longest ] && longest=$h
+
+      # Increase by 20%
+      longest=$(echo "scale=0;$longest*1.1/1" | bc)
+      echo $longest
+
+      convert -fuzz 10% $1 -trim -background white -gravity center -extent ${longest}x${longest} "$name"
+}
 
 
 
