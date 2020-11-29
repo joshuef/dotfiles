@@ -117,7 +117,7 @@ squareit() {
   for i in `ls`
   do
       trap "exit;" INT SIGINT SIGTERM
-      mkdir square
+      mkdir square10
       # Get trim box w, h, x, y
       IFS=" x+" read w h x y < <(convert -fuzz 10% $i -format "%@" info:)
       name="wb_sq_$i"
@@ -128,10 +128,10 @@ squareit() {
       [ $h -gt $longest ] && longest=$h
 
       # Increase by 20%
-      longest=$(echo "scale=0;$longest*1.2/1" | bc)
+      longest=$(echo "scale=0;$longest*1.05/1" | bc)
       echo $longest
 
-      convert -fuzz 10% $i -trim -background white -gravity center -extent ${longest}x${longest} "square/$name"
+      convert -fuzz 10% $i -trim -background white -gravity center -extent ${longest}x${longest} "square10/$name"
   done 
 }
 

@@ -32,5 +32,6 @@
 	"rust-client.autoStartRls": false,
 	"rust-client.engine": "rust-analyzer",
 	"window.newWindowDimensions": "inherit",
-	"rust-client.updateOnStartup": true
+	"rust-client.updateOnStartup": true,
+	"workbench.colorTheme": "Atom One Light"
 }
