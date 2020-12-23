@@ -9,7 +9,7 @@ op get document 'kk2wcb4oiptf7g2zprmdgo34uy' > sharing_rsa
 
 # op get document 'zsh_private' > zsh_private
 # op get document 'zsh_history' > zsh_history
-
+mkdir -p ~/.ssh
 rm -f ~/.ssh/github_rsa
 rm -f ~/.ssh/sharing_rsa
 ln -sfn $(pwd)/github_rsa ~/.ssh/github_rsa

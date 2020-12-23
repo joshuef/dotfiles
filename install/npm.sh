@@ -12,6 +12,7 @@
 #
 #     ./node_modules/.bin/webpack --config webpack.local.config.js
 #
+mkdir ~/.nvm
 
 if test ! $(which nvm)
 then

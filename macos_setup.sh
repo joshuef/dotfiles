@@ -8,10 +8,6 @@ echo "==> Running homebrew installers"
 # ./install/brew.sh
 
 
-# Run NPM installers
-echo "==> Running NPM installers"
-./install/npm.sh
-
 
 
 # install rust
@@ -107,10 +103,17 @@ if [ ! -d "$HOME/.zshrc" ]; then
 #   ln -sfn $(pwd)/tmuxconf "${HOME}/.tmux.conf"
 #   ln -sfn $(pwd)/tigrc "${HOME}/.tigrc"
 #   ln -sfn $(pwd)/git-prompt.sh "${HOME}/.git-prompt.sh"
-#   ln -sfn $(pwd)/gitconfig "${HOME}/.gitconfig"
+  ln -sfn $(pwd)/git/gitconfig "${HOME}/.gitconfig"
 #   ln -sfn $(pwd)/agignore "${HOME}/.agignore"
-#   ln -sfn $(pwd)/sshconfig "${HOME}/.ssh/config"
+  ln -sfn $(pwd)/ssh_config "${HOME}/.ssh/config"
 fi
+
+zsh 
+
+# Run NPM installers
+echo "==> Running NPM installers"
+./install/npm.sh
+
 
 echo "==!!> TODO: set shell to zsh..."
 echo "run: \"chsh -s /usr/bin/zsh\" to set zsh as shell"

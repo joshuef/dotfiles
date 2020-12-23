@@ -94,7 +94,8 @@ brew install sfnt2woff-zopfli
 brew install woff2
 # zsh fonts
 brew tap homebrew/cask-fonts
-brew cask install font-hack-nerd-font
+brew install font-3270-nerd-font
+brew install font-inconsolata
 
 
 # Various apps
@@ -105,6 +106,7 @@ brew install doctl
 brew install yarn
 brew install fzf
 brew install tmux
+brew install nvm
 
 brew install mosh
 brew install ripgrep
