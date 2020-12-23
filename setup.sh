@@ -162,10 +162,10 @@ echo "done"
 
 
 # Atom editor settings
-echo -n "Copying Atom settings.."
-mv -f ~/.atom ~/dotfiles_old/
-ln -s $HOME/dotfiles/atom ~/.atom
-echo "done"
+# echo -n "Copying Atom settings.."
+# mv -f ~/.atom ~/dotfiles_old/
+# ln -s $HOME/dotfiles/atom ~/.atom
+# echo "done"
 
 
 declare -a FILES_TO_SYMLINK=(
@@ -311,7 +311,7 @@ install_zsh () {
 # fi
 
 install_zsh
-main
+# main
 
 ###############################################################################
 # Atom                                                                        #
@@ -329,7 +329,7 @@ main
 ###############################################################################
 
 # Install Zsh settings
-# ln -s ~/dotfiles/zsh/themes/nick.zsh-theme $HOME/.oh-my-zsh/themes
+ln -s ~/dotfiles/zsh/themes/nick.zsh-theme $HOME/.oh-my-zsh/themes
 
 
 ###############################################################################

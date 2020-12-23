@@ -1,80 +1,162 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# Installs Homebrew and some of the common dependencies needed/desired for software development
+# Install command-line tools using Homebrew.
 
-# Ask for the administrator password upfront
-sudo -v
-
-# Check for Homebrew and install it if missing
-if test ! $(which brew)
-then
-  echo "Installing Homebrew..."
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-fi
-
-brew tap homebrew/versions
-brew tap homebrew/dupes
-brew tap Goles/battery
-
-# Make sure we’re using the latest Homebrew
+# Make sure we’re using the latest Homebrew.
 brew update
 
-# Upgrade any already-installed formulae
-brew upgrade --all
+# Upgrade any already-installed formulae.
+brew upgrade
 
-# Install the Homebrew packages I use on a day-to-day basis.
-#
-# - Languages: rvm (Ruby), nvm (Node.js), go
-# - Databases: Progres, MySQL, Redis, Mongo, Elasticsearch
-# - Servers: Apache, Nginx
-# - Fuck (https://github.com/nvbn/thefuck): Correct your previous command. Note
-#   that this needs to be added to zsh or bash. See the project README.
-# - Foreman & Forego:
-# - Tree (http://mama.indstate.edu/users/ice/tree/): A directory listing utility
-#   that produces a depth indented listing of files.
-# - Tor ():
-# - git-extras (https://vimeo.com/45506445): Adds a shit ton of useful commands #   to git.
-# - autoenv (https://github.com/kennethreitz/autoenv): this utility makes it
-#   easy to apply environment variables to projects. I mostly use it for Go and
-#   Node.js projects. For Ruby projects, I just use Foreman or Forego.
-# - autojump (https://github.com/joelthelion/autojump): a faster way to navigate
-#   your filesystem.
-# Note that I install nvm (https://github.com/creationix/nvm) instead
-# of installing Node directly. This gives me more explicit control over
-# which version I'm using.
+# Save Homebrew’s installed location.
+BREW_PREFIX=$(brew --prefix)
 
+# Install GNU core utilities (those that come with macOS are outdated).
+# Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
+brew install coreutils
+ln -s "${BREW_PREFIX}/bin/gsha256sum" "${BREW_PREFIX}/bin/sha256sum"
+
+# Install some other useful utilities like `sponge`.
+brew install moreutils
+# Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
+brew install findutils
+# Install GNU `sed`, overwriting the built-in `sed`.
+brew install gnu-sed --with-default-names
+# Install a modern version of Bash.
+brew install bash
+brew install bash-completion2
+
+# Quick Look Plugins (https://github.com/sindresorhus/quick-look-plugins)
+brew install qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch quicklook-csv betterzipql qlimagesize webpquicklook suspicious-package
+
+
+# Install packages
 apps=(
-    rvm
-    nvm
-    mongodb
-    bash-completion2
-    coreutils
-    moreutils
-    findutils
-    ffmpeg
-    fortune
-    ponysay
-    git
-    git-extras
-    hub
-    gnu-sed --with-default-names
-    grep --with-default-names
-    homebrew/completions/brew-cask-completion
-    homebrew/dupes/grep
-    homebrew/dupes/openssh
-    mtr
-    autojump
-    imagemagick --with-webp
-    python
-    source-highlight
-    the_silver_searcher
-    tree
-    ffmpeg --with-libvpx
-    wget
-    wifi-password
+    1password
+    gyazo
+    dropbox
+    # google-drive
+    spectacle
+    # flux
+    # dash
+    imagealpha
+    imageoptim
+    # evernote
+    # iterm2
+    # atom
+    # webstorm
+    firefox
+    # firefoxnightly
+    google-chrome
+    # google-chrome-canary
+    # malwarebytes-anti-malware
+    # glimmerblocker
+    # hammerspoon
+    # kaleidoscope
+    # macdown
+    # opera
+    # screenflow
+    spotify
+    skype
+    slack
+    # tower
+    transmit
+    # elmedia-player
+    # utorrent
 )
 
 brew install "${apps[@]}"
 
-# Remove outdated versions from the cellar
+# Switch to using brew-installed bash as default shell
+if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
+  echo "${BREW_PREFIX}/bin/bash" | sudo tee -a /etc/shells;
+  chsh -s "${BREW_PREFIX}/bin/bash";
+fi;
+
+# Install `wget` with IRI support.
+brew install wget --with-iri
+
+# Install GnuPG to enable PGP-signing commits.
+brew install gnupg
+
+# Install more recent versions of some macOS tools.
+brew install vim --with-override-system-vi
+brew install grep
+brew install openssh
+brew install screen
+brew install php
+brew install gmp
+
+# Install font tools.
+brew tap bramstein/webfonttools
+brew install sfnt2woff
+brew install sfnt2woff-zopfli
+brew install woff2
+# zsh fonts
+brew tap homebrew/cask-fonts
+brew cask install font-hack-nerd-font
+
+
+# Various apps
+brew install zsh
+brew install nvim
+brew install bat
+brew install doctl
+brew install yarn
+brew install fzf
+brew install tmux
+
+brew install mosh
+brew install ripgrep
+brew install tig
+brew install wget
+brew install diff-so-fancy
+brew install --cask 1password-cli
+
+# Install some CTF tools; see https://github.com/ctfs/write-ups.
+brew install aircrack-ng
+brew install bfg
+brew install binutils
+brew install binwalk
+brew install cifer
+brew install dex2jar
+brew install dns2tcp
+brew install fcrackzip
+brew install foremost
+brew install hashpump
+brew install hydra
+brew install john
+brew install knock
+brew install netpbm
+brew install nmap
+brew install pngcheck
+brew install socat
+brew install sqlmap
+brew install tcpflow
+brew install tcpreplay
+brew install tcptrace
+brew install ucspi-tcp # `tcpserver` etc.
+brew install xpdf
+brew install xz
+
+# Install other useful binaries.
+brew install ack
+#brew install exiv2
+brew install git
+brew install git-lfs
+brew install gs
+brew install imagemagick --with-webp
+brew install lua
+brew install lynx
+brew install p7zip
+brew install pigz
+brew install pv
+brew install rename
+brew install rlwrap
+brew install ssh-copy-id
+brew install tree
+brew install vbindiff
+brew install zopfli
+
+# Remove outdated versions from the cellar.
 brew cleanup
