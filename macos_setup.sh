@@ -5,9 +5,10 @@ echo "Macos machine setup"
 
 # Run brew installers first
 echo "==> Running homebrew installers"
-# ./install/brew.sh
+./install/brew.sh
 
-
+echo "==> Installing nvm"
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
 
 
 # install rust
@@ -129,3 +130,8 @@ echo "Now:"
 echo "nvim -c 'CocInst coc-json coc-html|q coc-eslint coc-rsl coc-tsserver coc-css'"
 echo "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash"
 echo " then zsh""
+
+
+echo "==> Setting up VScode settings"
+sudo ln -snf $(pwd)/vscode/settings.json "$HOME/Library/Application Support/Code/User/settings.json"
+sudo ln -snf $(pwd)/vscode/keybindings.json "$HOME/Library/Application Support/Code/User/keybindings.json"
