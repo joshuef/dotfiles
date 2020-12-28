@@ -35,7 +35,6 @@
 	"rust-client.updateOnStartup": true,
 	"rust-analyzer.cargo.allFeatures": true,
 	"explorer.confirmDragAndDrop": false,
-	"workbench.colorTheme": "Atom One Light",
 	"terminal.explorerKind": "external",
 	"terminal.integrated.fontSize": 14
 }
