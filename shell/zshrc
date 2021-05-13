@@ -128,25 +128,19 @@ squared() {
       longest=$w
       [ $h -gt $longest ] && longest=$h
       
-      # common colours to extract
-      COLORS=2
+          # common colours to extract
+      COLORS=6
 
-      # COLOR_HEX=white
-
-      # get lest of most common colours... to use in bg... use least
-      # convert $i +dither -colors $COLORS -define histogram:unique-colors=true -format "%c" histogram:info: | sort > hex.txt && COLOR_HEX=$(sed -n 1p hex.txt | awk '{print $3 }')
-
-      # COLOR_HEX=$(dominantcolor $i -m 3 -n 6 -f 40 -p dominant -s save)
-
-    fuzz_similar_colors=40
+      fuzz_similar_colors=40
       
-    COLOR_HEX=$(convert DSCF1021.jpg -scale 50x50! -depth 8 \
-      \( -clone 0 -colorspace HSB -channel gb -separate +channel -threshold $fuzz_similar_colors% \
-      -compose multiply -composite \) \
-      -alpha off -compose copy_opacity -composite sparse-color:- |\
-      convert -size 50x50 xc: -sparse-color voronoi '@-' \
-      +dither -colors $COLORS -depth 8 -format "%c" histogram:info: |\
-      sed -n 's/^[ ]*\(.*\):.*[#]\([0-9a-fA-F]*\) .*$/\1,#\2/p' | sort -r -n -k 1 -t ",")
+      PALETTE=$(convert $i -scale 50x50! -depth 8 \
+        \( -clone 0 -colorspace HSB -channel gb -separate +channel -threshold $fuzz_similar_colors% \
+        -compose multiply -composite \) \
+        -alpha off -compose copy_opacity -composite sparse-color:- |\
+        convert -size 50x50 xc: -sparse-color voronoi '@-' \
+        +dither -colors 6 -depth 8 -format "%c" histogram:info: | awk '{print $3}') # this is which colour in the pallete to choose
+
+      COLOR_HEX=$(echo $PALETTE | sed -n 1p)
 
       # Increase by 20%
       longest=$(echo "scale=0;$longest*1.1/1" | bc)
@@ -176,7 +170,22 @@ square() {
       longest=$(echo "scale=0;$longest*1.1/1" | bc)
       echo $longest
 
-      convert -fuzz 10% $1 -trim -background white -gravity center -extent ${longest}x${longest} "$name"
+         
+      # common colours to extract
+      COLORS=6
+
+      fuzz_similar_colors=40
+      
+      PALETTE=$(convert DSCF0418.jpg -scale 50x50! -depth 8 \
+        \( -clone 0 -colorspace HSB -channel gb -separate +channel -threshold 40% \
+        -compose multiply -composite \) \
+        -alpha off -compose copy_opacity -composite sparse-color:- |\
+        convert -size 50x50 xc: -sparse-color voronoi '@-' \
+        +dither -colors 6 -depth 8 -format "%c" histogram:info: | awk '{print $3}') # this is which colour in the pallete to choose
+
+      COLOR_HEX=$(echo PALETTE | sed -n 1p)
+
+      convert -fuzz 10% $1 -trim -background $COLOR_HEX -gravity center -extent ${longest}x${longest} "$name"
 }
 
 
