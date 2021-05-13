@@ -104,6 +104,7 @@ brew install bat
 brew install doctl
 brew install yarn
 brew install fzf
+$(brew --prefix)/opt/fzf/install
 brew install tmux
 
 brew install mosh

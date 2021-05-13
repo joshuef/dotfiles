@@ -15,6 +15,7 @@ dirs_to_prepend=(
   "$HOME/dotfiles/bin"
   "$HOME/bin"
   "$HOME/.yarn/bin"
+  "$HOME/.safe/cli"
   "$HOME/.cargo/bin"
   "$HOME/Library/Python/3.7/bin"
   "/snap/bin/apm"
@@ -117,7 +118,7 @@ squared() {
   for i in `ls`
   do
       # trap "exit;" INT SIGINT SIGTERM
-      mkdir squared
+      mkdir -p square
       # Get trim box w, h, x, y
       IFS=" x+" read w h x y < <(convert -fuzz 10% $i -format "%@" info:)
       name="wb_sq_$i"
@@ -126,19 +127,36 @@ squared() {
       # Get longest side
       longest=$w
       [ $h -gt $longest ] && longest=$h
+      
+      # common colours to extract
+      COLORS=2
+
+      # COLOR_HEX=white
+
+      # get lest of most common colours... to use in bg... use least
+      # convert $i +dither -colors $COLORS -define histogram:unique-colors=true -format "%c" histogram:info: | sort > hex.txt && COLOR_HEX=$(sed -n 1p hex.txt | awk '{print $3 }')
+
+      # COLOR_HEX=$(dominantcolor $i -m 3 -n 6 -f 40 -p dominant -s save)
+
+      convert $i \
+        \( -clone 0 -colorspace HSB -channel gb -separate +channel -threshold $thresh% \ -compose multiply -composite \) \
+         -scale 50x50! -depth 8 +dither -colors 8 -format "%c" histogram:info: | sed -n 's/^[ ]*\(.*\):.*[#]\([0-9a-fA-F]*\) .*$/\1,#\2/p' | sort -r -n -k 1 -t "," | awk '{print $2 }'
 
       # Increase by 20%
       longest=$(echo "scale=0;$longest*1.1/1" | bc)
       echo $longest
 
-      convert -fuzz 10% $i -trim -background white -gravity center -extent ${longest}x${longest} "square/$name"
-  done 
+      convert -fuzz 10% $i -trim -background $COLOR_HEX -gravity center -extent ${longest}x${longest} "square/$name"
+      # convert -fuzz 10% $i -trim -background white -gravity center -extent ${longest}x${longest} "square/$name"
+  done  
+  # cleanup
+  # rm hext.txt
 }
 
 
 
 
-# Add border to pics
+# Add border to a single pic
 square() {
       # Get trim box w, h, x, y
       IFS=" x+" read w h x y < <(convert -fuzz 10% $1 -format "%@" info:)
@@ -242,3 +260,12 @@ pkg_verify() {
 
 
 function workit { mosh --no-init --ssh="ssh -o StrictHostKeyChecking=no -i ~/.ssh/workstation_rsa -p 22" root@$WORKSTATION_IP -- tmux new-session -ADs main }
+
+
+
+# SAFE
+
+#local logs
+# alias llogs = rm sn-node* || true && ls -1 ~/.safe/node/local-test-network | xargs -n 1 sh -c 'echo "cp ~/.safe/node/local-test-network/$1/sn_node.log $1.log"' sh | sh $1
+# # last local logs (aka last 1k lines)
+# alias lllogs = rm sn-node* || true && ls -1 ~/.safe/node/local-test-network | xargs -n 1 sh -c 'echo "tail  ~/.safe/node/local-test-network/$1/sn_node.log $1.log"' sh | sh $1

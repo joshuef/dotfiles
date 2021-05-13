@@ -109,7 +109,7 @@ if [ ! -d "$HOME/.zshrc" ]; then
   ln -sfn $(pwd)/ssh_config "${HOME}/.ssh/config"
 fi
 
-zsh 
+zsh
 
 # Run NPM installers
 echo "==> Running NPM installers"
@@ -128,10 +128,14 @@ echo "==> Done!"
 echo "Now:"
 
 echo "nvim -c 'CocInst coc-json coc-html|q coc-eslint coc-rsl coc-tsserver coc-css'"
-echo "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash"
 echo " then zsh""
 
 
 echo "==> Setting up VScode settings"
 sudo ln -snf $(pwd)/vscode/settings.json "$HOME/Library/Application Support/Code/User/settings.json"
 sudo ln -snf $(pwd)/vscode/keybindings.json "$HOME/Library/Application Support/Code/User/keybindings.json"
+
+
+# setup dominat colour for photog border / squared
+curl http://www.fmwconcepts.com/imagemagick/downloadcounter.php\?scriptname\=dominantcolor\&dirname\=dominantcolor > /usr/local/bin/dominantcolor
+chmod +x /usr/local/bin/dominantcolor

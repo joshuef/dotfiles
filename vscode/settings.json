@@ -2,8 +2,7 @@
 	"workbench.startupEditor": "newUntitledFile",
     "terminal.external.osxExec": "iTerm Rosetta.app",
     "terminal.integrated.fontFamily": "\"Inconsolata Nerd Font\"",
-    "workbench.preferredLightColorTheme": "Atom One Light",
-    "window.autoDetectColorScheme": true,
+	"workbench.preferredLightColorTheme": "Atom One Light",
     "workbench.colorCustomizations": {
         "terminal.background":"#002833",
         "terminal.foreground":"#839495",
@@ -24,7 +23,6 @@
 		"terminal.ansiBrightCyan": "#93a1a1",
 		"terminal.ansiBrightWhite": "#fdf6e3"
 	},
-	"window.zoomLevel": 0,
 	"rust.mode": "legacy",
 	"rust.rustup": {
 		"nightlyToolchain": "nightly-x86_64-unknown-linux-gnu"
@@ -36,5 +34,8 @@
 	"rust-analyzer.cargo.allFeatures": true,
 	"explorer.confirmDragAndDrop": false,
 	"terminal.explorerKind": "external",
-	"terminal.integrated.fontSize": 14
+	"terminal.integrated.fontSize": 14,
+	"window.autoDetectColorScheme": true,
+	"git.ignoreMissingGitWarning": true,
+	"workbench.colorTheme": "Atom One Light"
 }
