@@ -122,6 +122,8 @@ squared() {
       # Get trim box w, h, x, y
       IFS=" x+" read w h x y < <(convert -fuzz 10% $i -format "%@" info:)
       name="wb_sq_$i"
+      # strip extension... assume jpg for now (down below when we save)
+      name=$(echo "$name" | cut -f 1 -d '.')
       echo "working on $name ..."
 
       # Get longest side
@@ -136,7 +138,7 @@ squared() {
       # common colours to extract
       COLORS=6
 
-      fuzz_similar_colors=05
+      fuzz_similar_colors=25
       
       PALETTE=$(convert $i -scale 50x50! -depth 8 \
         \( -clone 0 -colorspace HSB -channel gb -separate +channel -threshold $fuzz_similar_colors% \
