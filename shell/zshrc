@@ -118,7 +118,6 @@ squared() {
   trap "exit;" INT SIGINT SIGTERM
   for i in `ls -p | grep -v '/$'` #no dirs
   do
-      # trap "exit;" INT SIGINT SIGTERM
       mkdir -p square
       # Get trim box w, h, x, y
       IFS=" x+" read w h x y < <(convert -fuzz 10% $i -format "%@" info:)
@@ -128,11 +127,16 @@ squared() {
       # Get longest side
       longest=$w
       [ $h -gt $longest ] && longest=$h
+
+      diff=$(echo "$w-$h" | bc)
+      # convert to positive if neg
+      (( diff = $diff < 0 ? $diff * -1 : $diff ))
+      echo "diff is $diff"
       
       # common colours to extract
-      COLORS=6
+      COLORS=4
 
-      fuzz_similar_colors=25
+      fuzz_similar_colors=05
       
       PALETTE=$(convert $i -scale 50x50! -depth 8 \
         \( -clone 0 -colorspace HSB -channel gb -separate +channel -threshold $fuzz_similar_colors% \
@@ -142,7 +146,8 @@ squared() {
         +dither -colors $COLORS -depth 8 -format "%c" histogram:info: | awk '{print $3}')
         
       # this is which colour in the pallete to choose
-      COLOR_HEX=$(echo $PALETTE | sed -n 3p)
+      COLOR_HEX=$(echo $PALETTE | sed -n 1p)
+      # COLOR_HEX="white"
 
       # add border
       # border=50
@@ -155,11 +160,22 @@ squared() {
       # [ $h -gt $longest ] && longest=$h
 
 
+      # longest=$(expr $longest + 400)
       # Increase by 20%
       longest=$(echo "scale=0;$longest*1.1/1" | bc)
+
+      # increase for more border if not enough added
+      padding=0
+      (( padding = $diff < 700 ? 100 : $padding ))
+      (( padding = $diff < 400 ? 300 : $padding ))
+      (( padding = $diff < 300 ? 700 : $padding ))
+
+
+      longest=$(expr $longest + $padding) 
+
       echo $longest
 
-      convert $i -trim -background white -gravity center -extent ${longest}x${longest} "square/$name"
+      convert $i -background $COLOR_HEX -gravity center -extent ${longest}x${longest} "square/$name"
   done  
 }
 
