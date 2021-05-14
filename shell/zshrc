@@ -145,13 +145,14 @@ squared() {
         -compose multiply -composite \) \
         -alpha off -compose copy_opacity -composite sparse-color:- |\
         convert -size 50x50 xc: -sparse-color voronoi '@-' \
-        +dither -colors $COLORS -depth 8 -format "%c" histogram:info: | awk '{print $3}')
-      
-      # PALETTE="${PALLETE} 
-      #         white"
-      # this is which colour in the pallete to choose
-      COLOR_HEX=$(echo $PALETTE | sed -n 1p)
-      # COLOR_HEX="white"
+        +dither -colors $COLORS -depth 8 -format "%c" histogram:info: | awk '{print $3}') 
+    
+      SUB='error'
+
+      if grep -q "$SUB" <<< "$PALETTE"; then
+        echo "It's there"
+        PALETTE="grey"
+      fi
 
       # add border
       # border=50
@@ -164,7 +165,6 @@ squared() {
       # [ $h -gt $longest ] && longest=$h
 
 
-      # longest=$(expr $longest + 400)
       # Increase by 20%
       longest=$(echo "scale=0;$longest*1.1/1" | bc)
 
@@ -186,22 +186,18 @@ squared() {
       (( padding = $diff < 200 ? 700 : $padding ))
       (( padding = $diff < 150 ? 750 : $padding ))
       (( padding = $diff < 100 ? 800 : $padding ))
-      # (( padding = $diff < 300 ? 700 : $padding ))
 
       longest=$(expr $longest + $padding) 
       echo $longest
 
+      found_colors=$(echo "$PALETTE" | wc -l)
 
-    for (( y=1; y<COLORS; ++y)); do
+    for (( y=1; y<found_colors; ++y)); do
     
-        # [ -e filename ] && break
-        # sleep 10
       # this is which colour in the pallete to choose
       line=${y}p
 
-      echo "line..... $line"
       COLOR_HEX=$(echo $PALETTE | sed -n $line)
-      # COLOR_HEX="white"
       echo "hex used is:   $COLOR_HEX"
       convert $i -background $COLOR_HEX -gravity center -extent ${longest}x${longest} "square/${name}_${y}.jpg"
     done
