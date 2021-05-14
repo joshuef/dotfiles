@@ -166,9 +166,23 @@ squared() {
 
       # increase for more border if not enough added
       padding=0
-      (( padding = $diff < 700 ? 100 : $padding ))
-      (( padding = $diff < 400 ? 300 : $padding ))
-      (( padding = $diff < 300 ? 700 : $padding ))
+      (( padding = $diff < 850 ? 50 : $padding ))
+      (( padding = $diff < 800 ? 100 : $padding ))
+      (( padding = $diff < 750 ? 150 : $padding ))
+      (( padding = $diff < 700 ? 200 : $padding ))
+      (( padding = $diff < 650 ? 250 : $padding ))
+      (( padding = $diff < 600 ? 300 : $padding ))
+      (( padding = $diff < 550 ? 350 : $padding ))
+      (( padding = $diff < 500 ? 400 : $padding ))
+      (( padding = $diff < 450 ? 450 : $padding ))
+      (( padding = $diff < 400 ? 500 : $padding ))
+      (( padding = $diff < 350 ? 550 : $padding ))
+      (( padding = $diff < 300 ? 600 : $padding ))
+      (( padding = $diff < 250 ? 650 : $padding ))
+      (( padding = $diff < 200 ? 700 : $padding ))
+      (( padding = $diff < 150 ? 750 : $padding ))
+      (( padding = $diff < 100 ? 800 : $padding ))
+      # (( padding = $diff < 300 ? 700 : $padding ))
 
 
       longest=$(expr $longest + $padding) 
