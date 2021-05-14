@@ -114,8 +114,9 @@ borderize() {
 
 # Add border to pics
 squared() {
+  rm -rf square
   trap "exit;" INT SIGINT SIGTERM
-  for i in `ls`
+  for i in `ls -p | grep -v '/$'` #no dirs
   do
       # trap "exit;" INT SIGINT SIGTERM
       mkdir -p square
@@ -131,23 +132,32 @@ squared() {
           # common colours to extract
       COLORS=6
 
-      fuzz_similar_colors=40
+      fuzz_similar_colors=30
       
       PALETTE=$(convert $i -scale 50x50! -depth 8 \
         \( -clone 0 -colorspace HSB -channel gb -separate +channel -threshold $fuzz_similar_colors% \
         -compose multiply -composite \) \
         -alpha off -compose copy_opacity -composite sparse-color:- |\
         convert -size 50x50 xc: -sparse-color voronoi '@-' \
-        +dither -colors 6 -depth 8 -format "%c" histogram:info: | awk '{print $3}') # this is which colour in the pallete to choose
-
+        +dither -colors 6 -depth 8 -format "%c" histogram:info: | awk '{print $3}')
+        
+      # this is which colour in the pallete to choose
       COLOR_HEX=$(echo $PALETTE | sed -n 1p)
 
       # Increase by 20%
+      # longest=$(echo "scale=0;$longest*1.1/1" | bc)
+      # echo $longest
+      border=50
+      convert $i -bordercolor white -border $border "$TMPDIR/border_pic_$i"
+
       longest=$(echo "scale=0;$longest*1.1/1" | bc)
+
+      # longest=$(expr $longest + $border + $border)
+      # longest=$(expr $longest x 2 )
       echo $longest
 
-      convert -fuzz 10% $i -trim -background $COLOR_HEX -gravity center -extent ${longest}x${longest} "square/$name"
-      # convert -fuzz 10% $i -trim -background white -gravity center -extent ${longest}x${longest} "square/$name"
+      convert -fuzz 40% "$TMPDIR/border_pic_$i" -background $COLOR_HEX -gravity center -extent ${longest}x${longest} "square/$name"
+      # convert -fuzz 2% "$TMPDIR/border_pic_$i" -trim -background $COLOR_HEX -gravity center -extent ${longest}x${longest} "square/$name"
   done  
   # cleanup
   # rm hext.txt
