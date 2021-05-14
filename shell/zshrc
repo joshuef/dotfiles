@@ -144,11 +144,22 @@ squared() {
       # this is which colour in the pallete to choose
       COLOR_HEX=$(echo $PALETTE | sed -n 3p)
 
-      longest=$(echo "scale=0;$longest*1.1/1" | bc)
+      # add border
+      # border=50
+      # convert $i -bordercolor black -border $border "$TMPDIR/border_pic_$i"
 
+      # reset longest measurement
+      # IFS=" x+" read w h x y < <(convert $TMPDIR/border_pic_$i -format "%@" info:)
+      # longest=$(echo "scale=0;$longest*1.1/1" | bc)
+      # longest=$w
+      # [ $h -gt $longest ] && longest=$h
+
+
+      # Increase by 20%
+      longest=$(echo "scale=0;$longest*1.1/1" | bc)
       echo $longest
 
-      convert -fuzz 10% $i -background $COLOR_HEX -gravity center -trim -extent ${longest}x${longest} "square/$name"
+      convert $i -trim -background white -gravity center -extent ${longest}x${longest} "square/$name"
   done  
 }
 

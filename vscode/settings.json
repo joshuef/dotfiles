@@ -36,5 +36,6 @@
 	"terminal.explorerKind": "external",
 	"terminal.integrated.fontSize": 14,
 	"window.autoDetectColorScheme": true,
-	"git.ignoreMissingGitWarning": true
+	"git.ignoreMissingGitWarning": true,
+	"workbench.colorTheme": "Atom One Light"
 }
