@@ -134,7 +134,7 @@ squared() {
       echo "diff is $diff"
       
       # common colours to extract
-      COLORS=4
+      COLORS=6
 
       fuzz_similar_colors=05
       
@@ -144,7 +144,9 @@ squared() {
         -alpha off -compose copy_opacity -composite sparse-color:- |\
         convert -size 50x50 xc: -sparse-color voronoi '@-' \
         +dither -colors $COLORS -depth 8 -format "%c" histogram:info: | awk '{print $3}')
-        
+      
+      # PALETTE="${PALLETE} 
+      #         white"
       # this is which colour in the pallete to choose
       COLOR_HEX=$(echo $PALETTE | sed -n 1p)
       # COLOR_HEX="white"
@@ -184,12 +186,26 @@ squared() {
       (( padding = $diff < 100 ? 800 : $padding ))
       # (( padding = $diff < 300 ? 700 : $padding ))
 
-
       longest=$(expr $longest + $padding) 
-
       echo $longest
 
-      convert $i -background $COLOR_HEX -gravity center -extent ${longest}x${longest} "square/$name"
+
+    for (( y=1; y<COLORS; ++y)); do
+    
+        # [ -e filename ] && break
+        # sleep 10
+      # this is which colour in the pallete to choose
+      line=${y}p
+
+      echo "line..... $line"
+      COLOR_HEX=$(echo $PALETTE | sed -n $line)
+      # COLOR_HEX="white"
+      echo "hex used is:   $COLOR_HEX"
+      convert $i -background $COLOR_HEX -gravity center -extent ${longest}x${longest} "square/${name}_${y}.jpg"
+    done
+
+    convert $i -background white -gravity center -extent ${longest}x${longest} "square/${name}_white.jpg"
+
   done  
 }
 
