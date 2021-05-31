@@ -59,6 +59,7 @@ apps=(
     spotify
     skype
     slack
+    fnm
     # tower
     transmit
     # elmedia-player

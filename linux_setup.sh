@@ -323,5 +323,6 @@ echo "==> Done!"
 echo "Now:"
 
 echo "nvim -c 'CocInst coc-json coc-html|q coc-eslint coc-rsl coc-tsserver coc-css'"
-echo "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash"
-echo " then zsh and then \"nvm i stable\""
+# Set Node version managment
+
+curl -fsSL https://fnm.vercel.app/install | bash
