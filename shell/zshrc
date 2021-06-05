@@ -102,7 +102,7 @@ borderize() {
       name="wb_$i"
       echo "working on $name ..."
       convert $i -bordercolor white -border 7% "bordered/$name"
-  done 
+  done
 }
 
 # Add border to pics
@@ -127,19 +127,19 @@ squared() {
       # convert to positive if neg
       (( diff = $diff < 0 ? $diff * -1 : $diff ))
       echo "diff is $diff"
-      
+
       # common colours to extract
       COLORS=6
 
       fuzz_similar_colors=25
-      
+
       PALETTE=$(convert $i -scale 50x50! -depth 8 \
         \( -clone 0 -colorspace HSB -channel gb -separate +channel -threshold $fuzz_similar_colors% \
         -compose multiply -composite \) \
         -alpha off -compose copy_opacity -composite sparse-color:- |\
         convert -size 50x50 xc: -sparse-color voronoi '@-' \
-        +dither -colors $COLORS -depth 8 -format "%c" histogram:info: | awk '{print $3}') 
-    
+        +dither -colors $COLORS -depth 8 -format "%c" histogram:info: | awk '{print $3}')
+
       SUB='error'
 
       if grep -q "$SUB" <<< "$PALETTE"; then
@@ -180,13 +180,13 @@ squared() {
       (( padding = $diff < 150 ? 750 : $padding ))
       (( padding = $diff < 100 ? 800 : $padding ))
 
-      longest=$(expr $longest + $padding) 
+      longest=$(expr $longest + $padding)
       echo $longest
 
       found_colors=$(echo "$PALETTE" | wc -l)
 
     for (( y=1; y<found_colors; ++y)); do
-    
+
       # this is which colour in the pallete to choose
       line=${y}p
 
@@ -197,7 +197,7 @@ squared() {
 
     convert $i -background white -gravity center -extent ${longest}x${longest} "square/${name}_white.jpg"
 
-  done  
+  done
 }
 
 
@@ -217,12 +217,12 @@ square() {
       longest=$(echo "scale=0;$longest*1.1/1" | bc)
       echo $longest
 
-         
+
       # common colours to extract
       COLORS=6
 
       fuzz_similar_colors=40
-      
+
       PALETTE=$(convert DSCF0418.jpg -scale 50x50! -depth 8 \
         \( -clone 0 -colorspace HSB -channel gb -separate +channel -threshold 40% \
         -compose multiply -composite \) \

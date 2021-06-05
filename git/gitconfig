@@ -110,6 +110,8 @@
         git = !exec git
 
         # Clean tags
+        # clean all non master
+        cab = "!f() { git branch | grep -v '^*' | xargs git branch -D; }; f"
         clean-branch = "!f() { git branch -D $(git branch --color=never | grep $1); }; f"
         clean-local = "!f() { git tag -d $(git tag -l | grep $1); }; f"
         clean-origin = "!f() { git fetch origin --tags; git push origin --delete $(git tag -l | grep $1) --no-verify; }; f"

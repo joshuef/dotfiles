@@ -23,7 +23,7 @@
 		"terminal.ansiBrightCyan": "#93a1a1",
 		"terminal.ansiBrightWhite": "#fdf6e3"
 	},
-	"window.zoomLevel": 2,
+	"window.zoomLevel": 1,
 	"rust.mode": "legacy",
 	"rust.rustup": {
 		"nightlyToolchain": "nightly-x86_64-unknown-linux-gnu"
@@ -36,7 +36,9 @@
 	"explorer.confirmDragAndDrop": false,
 	"terminal.explorerKind": "external",
 	"terminal.integrated.fontSize": 14,
-	"window.autoDetectColorScheme": true,
 	"git.ignoreMissingGitWarning": true,
+	"window.autoDetectColorScheme": true,
+	"redhat.telemetry.enabled": false,
+	"loginterleaver.addFileName": "start",
 	"workbench.colorTheme": "Atom One Light"
 }
