@@ -132,7 +132,6 @@ echo " then zsh""
 
 
 echo "==> Setting up VScode settings"
-sudo ln -snf $(pwd)/vscode/settings.json "$HOME/Library/Application Support/Code/User/settings.json"
 sudo ln -snf $(pwd)/vscode/keybindings.json "$HOME/Library/Application Support/Code/User/keybindings.json"
 
 

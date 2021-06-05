@@ -29,7 +29,6 @@ cd ~/migration
 # cp ~/.z ~/migration # z history file.
 
 # ln -snf "$(pwd)/vscode/keybindings.json" ~/Library/Application\ Support/Code/User/keybindings.json
-# ln -snf "$(pwd)/vscode/settings.json" ~/Library/Application\ Support/Code/User/settings.json
 
 # # sublime text settings
 # cp "~/Library/Application Support/Sublime Text 3/Packages" ~/migration

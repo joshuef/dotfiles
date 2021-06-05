@@ -89,7 +89,6 @@ fi
 if ! [ -x "$(command -v code)" ]; then
   sudo snap install --classic code
   ln -snf "$(pwd)/vscode/keybindings.json" ~/.config/Code/User/keybindings.json
-  ln -snf "$(pwd)/vscode/settings.json" ~/.config/Code/User/settings.json
 
 fi
 
