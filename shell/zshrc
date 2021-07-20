@@ -286,6 +286,34 @@ function workit { mosh --no-init --ssh="ssh -o StrictHostKeyChecking=no -i ~/.ss
 # # last local logs (aka last 1k lines)
 # alias lllogs = rm sn-node* || true && ls -1 ~/.safe/node/local-test-network | xargs -n 1 sh -c 'echo "tail  ~/.safe/node/local-test-network/$1/sn_node.log $1.log"' sh | sh $1
 
+# add heaptrack to all local nodes
+hep_nodes() {
+  nodes_dir=~/.safe/node/local-test-network
+  for i in $(ls $nodes_dir); do
+    # echo "$nodes_dir/$i/sn_node.log";
+    heaptrack --pid  $(cat $nodes_dir/$i/sn_node_rCURRENT.log | rg PID | awk '{print $7}' |sed 's/.$//') &;
+  done;
+
+}
+
+# analyze all heaptracks in current dir
+alyz() {
+  nodes_dir=~/.safe/node/local-test-network
+  for i in ./heaptrack*; do
+    heaptrack --analyze $i &;
+  done;
+
+}
+
+# get peak mem from all heaptracked nodes
+peak() {
+  nodes_dir=~/.safe/node/local-test-network
+  for i in ./heaptrack*; do
+    heaptrack_print $i | rg "peak heap";
+  done;
+
+}
+
 
 # fnm
 export PATH=/home/josh/.fnm:$PATH
