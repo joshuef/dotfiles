@@ -291,7 +291,7 @@ hep_nodes() {
   nodes_dir=~/.safe/node/local-test-network
   for i in $(ls $nodes_dir); do
     # echo "$nodes_dir/$i/sn_node.log";
-    heaptrack --pid  $(cat $nodes_dir/$i/sn_node.log.* | rg PID | awk '{print $7}' |sed 's/.$//') &;
+    heaptrack --pid  $(cat $nodes_dir/$i/sn_node.log.* | rg PID | awk '{print $8}' |sed 's/.$//') &;
   done;
 
 }
