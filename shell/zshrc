@@ -258,9 +258,16 @@ setopt nocorrectall; setopt correct
 function rgl() {
     rg "$1" ./logs/$(terraform workspace show)/**/* -u -c
 }
+# rip grep genesis workspace logs
+function rgg() {
+    genesis_ip=$(cat $(terraform workspace show)-genesis-ip)
+    rg "$1" ./logs/$(terraform workspace show)/${genesis_ip}/* -u -c
+}
 
 # ssh into terraform genesis node
-alias sshgen="ssh root@$(cat $(terraform workspace show)-genesis-ip)"
+function sshgen() {
+  ssh root@$(cat $(terraform workspace show)-genesis-ip)
+}
 
 # process on port...
 function pop { lsof -n -i4TCP:"$1" | grep LISTEN | awk '{print $2}' }
