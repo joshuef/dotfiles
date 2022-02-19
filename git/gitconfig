@@ -5,10 +5,15 @@
         aa = add --all
 
         # Branch
-        br = branch
         branch-name = rev-parse --abbrev-ref HEAD
-        branch-diff = diff master...HEAD
-        branch-files = "!git diff master...HEAD --name-status | sed '/^D/d ; s/^.\\s\\+//'"
+        branch-diff = diff main...HEAD
+        branch-files = "!git diff main...HEAD --name-status | sed '/^D/d ; s/^.\\s\\+//'"
+
+        # br = branch
+        # ATTENTION: All aliases prefixed with ! run in /bin/sh make sure you use sh syntax, not bash/zsh or whatever
+        # Sorts by recent branches
+        br = "!r() { refbranch=$1 count=$2; git for-each-ref --sort=-committerdate refs/heads --format='%(refname:short)|%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)%(color:reset)' --color=always --count=${count:-20} | while read line; do branch=$(echo \"$line\" | awk 'BEGIN { FS = \"|\" }; { print $1 }' | tr -d '*'); ahead=$(git rev-list --count \"${refbranch:-origin/main}..${branch}\"); behind=$(git rev-list --count \"${branch}..${refbranch:-origin/main}\"); colorline=$(echo \"$line\" | sed 's/^[^|]*|//'); echo \"$ahead|$behind|$colorline\" | awk -F'|' -vOFS='|' '{$5=substr($5,1,70)}1' ; done | ( echo \"ahead|behind||branch|lastcommit|message\\n\" && cat) | column -ts'|';}; r"
+        brold = "!r() { count=$1; git for-each-ref --sort=committerdate refs/heads --format='%(refname:short)|%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)%(color:reset)' --color=always --count=${count:-20} | while read line; do branch=$(echo \"$line\" | awk 'BEGIN { FS = \"|\" }; { print $1 }' | tr -d '*'); ahead=$(git rev-list --count \"${origin/main}..${branch}\"); behind=$(git rev-list --count \"${branch}..${origin/main}\"); colorline=$(echo \"$line\" | sed 's/^[^|]*|//'); echo \"$ahead|$behind|$colorline\" | awk -F'|' -vOFS='|' '{$5=substr($5,1,70)}1' ; done | ( echo \"ahead|behind||branch|lastcommit|message\\n\" && cat) | column -ts'|';}; r"
 
         # Commit
         c = commit
@@ -51,12 +56,12 @@
 
         # Push
         p = push
-        pom = push origin master
+        pom = push origin main
         poh = push origin head
 
         # Pulls
         pum = "!f() { git co main; git pull upstream main; }; f"
-        pud = "!f() { echo \"We're not using dev branch anywhere just now...\" }; f"
+        pud = "!f() { echo \"Were not using dev branch anywhere just now...\" }; f"
         # pud = "!f() { git co dev; git pull upstream dev; }; f"
 
         # PRs
@@ -112,9 +117,13 @@
         # Allow accidental git git
         git = !exec git
 
-        # Clean tags
+        # Cleanup
         # clean all non main
         cab = "!f() { git branch | grep -v '^*' | xargs git branch -D; }; f"
+        # clean old branches
+        cob = "!r() { count=$2; git for-each-ref --sort=committerdate refs/heads ;}; r"
+        cold = "!r() { count=$1; git for-each-ref --sort=committerdate refs/heads --count=${count:-3} --format='%(refname:short)' --color=always | xargs git branch -D ; }; r"
+
         clean-branch = "!f() { git branch -D $(git branch --color=never | grep $1); }; f"
         clean-local = "!f() { git tag -d $(git tag -l | grep $1); }; f"
         clean-origin = "!f() { git fetch origin --tags; git push origin --delete $(git tag -l | grep $1) --no-verify; }; f"
@@ -307,3 +316,5 @@
 	autosetuprebase = always
 [diff "nodiff"]
 	command = echo
+[commit]
+	template = /Users/josh/.gitmessage
