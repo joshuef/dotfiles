@@ -36,7 +36,7 @@ apps=(
     adguard
     gyazo
     dropbox
-    nvm
+    dotenv
     # google-drive
     spectacle
     # flux

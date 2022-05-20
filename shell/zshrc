@@ -335,10 +335,6 @@ peak() {
 }
 
 
-# fnm
-# export PATH=/home/josh/.fnm:$PATH
-# eval "`fnm env`"
-
 
 
 # augment the `time` command to give mem too
@@ -356,3 +352,9 @@ TIMEFMT='%J   %U  user %S system %P cpu %*E total'$'\n'\
 'other page faults:         %R'
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# fnm
+export PATH=/home/josh/.fnm:$PATH
+eval "`fnm env`"
+
+eval "$(direnv hook zsh)"
