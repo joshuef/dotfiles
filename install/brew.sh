@@ -33,8 +33,10 @@ brew install qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch quick
 # Install packages
 apps=(
     1password
+    adguard
     gyazo
     dropbox
+    nvm
     # google-drive
     spectacle
     # flux
@@ -42,7 +44,7 @@ apps=(
     imagealpha
     imageoptim
     # evernote
-    # iterm2
+    iterm2
     # atom
     # webstorm
     firefox
@@ -53,7 +55,7 @@ apps=(
     # glimmerblocker
     # hammerspoon
     # kaleidoscope
-    # macdown
+    macdown
     # opera
     # screenflow
     spotify

@@ -7,8 +7,8 @@ echo "Macos machine setup"
 echo "==> Running homebrew installers"
 ./install/brew.sh
 
-echo "==> Installing nvm"
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
+# echo "==> Installing nvm"
+# curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
 
 
 # install rust
@@ -26,7 +26,7 @@ if [ ! -d "$HOURLY_CRON/ip-check" ]; then
     sudo chmod +x "$HOURLY_CRON/ip-check"
 fi
 
-NVIM_DIR="${HOME}/.config/nvim"
+NVIM_DIR="${HOME}/.nvim"
 
 if [ ! -d "${NVIM_DIR}" ]; then
   echo " ==> Setting up nvim"
@@ -99,14 +99,14 @@ if [ ! -d "$HOME/.zshrc" ]; then
 #
 #   ln -sfn $(pwd)/vimrc "${HOME}/.vimrc"
   ln -sfn $(pwd)/shell/zshrc "${HOME}/.zshrc"
-  ln -sfn $(pwd)/shell/zshenv "${HOME}/.zshenv"
+  ln -sfn $(pwd)/shell/zshrc "${HOME}/.zshrc"
   # ln -sfn $(pwd)/zprofile "${HOME}/.zprofile"
 #   ln -sfn $(pwd)/tmuxconf "${HOME}/.tmux.conf"
 #   ln -sfn $(pwd)/tigrc "${HOME}/.tigrc"
 #   ln -sfn $(pwd)/git-prompt.sh "${HOME}/.git-prompt.sh"
   ln -sfn $(pwd)/git/gitconfig "${HOME}/.gitconfig"
 #   ln -sfn $(pwd)/agignore "${HOME}/.agignore"
-  ln -sfn $(pwd)/ssh_config "${HOME}/.ssh/config"
+  # ln -sfn $(pwd)/ssh_config "${HOME}/.ssh/config"
 fi
 
 zsh
@@ -116,7 +116,7 @@ echo "==> Running NPM installers"
 ./install/npm.sh
 
 
-echo "==!!> TODO: set shell to zsh..."
+echo "==!!> TODO: set shell to zsh.w.."
 echo "run: \"chsh -s /usr/bin/zsh\" to set zsh as shell"
 
 # Set correct timezone
@@ -129,10 +129,6 @@ echo "Now:"
 
 echo "nvim -c 'CocInst coc-json coc-html|q coc-eslint coc-rsl coc-tsserver coc-css'"
 echo " then zsh""
-
-
-echo "==> Setting up VScode settings"
-sudo ln -snf $(pwd)/vscode/keybindings.json "$HOME/Library/Application Support/Code/User/keybindings.json"
 
 
 # setup dominat colour for photog border / squared

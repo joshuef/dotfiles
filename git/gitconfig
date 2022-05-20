@@ -19,6 +19,7 @@
         c = commit
         ca = commit -a
         cm = commit -m
+        cn = commit --no-verify -m
         cal = !git add -A && git commit              # Commit all changes
         cam = commit -am
         cne = commit --no-edit

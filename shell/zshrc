@@ -336,8 +336,8 @@ peak() {
 
 
 # fnm
-export PATH=/home/josh/.fnm:$PATH
-eval "`fnm env`"
+# export PATH=/home/josh/.fnm:$PATH
+# eval "`fnm env`"
 
 
 
@@ -354,3 +354,5 @@ TIMEFMT='%J   %U  user %S system %P cpu %*E total'$'\n'\
 'max memory:                %M '$MAX_MEMORY_UNITS''$'\n'\
 'page faults from disk:     %F'$'\n'\
 'other page faults:         %R'
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
