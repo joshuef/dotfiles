@@ -250,18 +250,28 @@ alias preview="fzf --preview 'bat --color \"always\" {}'"
 # add support for ctrl+o to open selected file in VS Code
 FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
 
+
 # no correct for command args
 setopt nocorrectall; setopt correct
 # alias npm=yarn
 
 # rip grep terraform/testnetworkspace logs
 function rgt() {
-    rg "$1" ./logs/$(terraform workspace show)/**/* -u -c
+    rg "$1" ./logs/$(terraform workspace show) -u $2
+}
+
+# ripgrep testnet but only latest log files
+function rgtl() {
+    rg "$1" ./logs/$(terraform workspace show)/**/sn_node.log -u $2
 }
 
 # rip grep local network workspace logs
 function rgl() {
-    rg "$1" ~/.safe/node/local-test-network -c
+    rg "$1" ~/.safe/node/local-test-network $2
+}
+# rip grep local latest only... network workspace logs
+function rgll() {
+    rg "$1" ~/.safe/node/local-test-network/**/sn_node.log $2
 }
 
 # rip grep genesis workspace logs
