@@ -37,6 +37,8 @@ apps=(
     gyazo
     dropbox
     dotenv
+    awscli
+    terraform
     # google-drive
     spectacle
     # flux
