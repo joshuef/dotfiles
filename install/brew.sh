@@ -37,8 +37,10 @@ apps=(
     gyazo
     dropbox
     dotenv
+    doctl # Digitlocean
     awscli
     terraform
+    jq
     # google-drive
     spectacle
     # flux
