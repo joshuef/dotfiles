@@ -1,28 +1,4 @@
-IdentityFile ~/.ssh/sharing_rsa
+IdentityFile ~/.ssh/github_rsa
 
-Include local_config
-
-
-Host github github.com
-    IdentityFile ~/.ssh/github_rsa
- 
- 
- # Host otherbox
- #     Port 11022
- #     User ec2_user
- #   HostName real-hostname-is-long-and-dumb.clients.hostingprovider.su
- 
- 
- Host *
-   AddressFamily inet
-   Protocol 2
-   Compression yes
-   ControlPath ~/.ssh/%C.sock
-     ControlMaster auto
-     ControlPersist 10m
-   PreferredAuthentications=publickey
-     Cipher aes128-ctr
- 
- Host NUC
-   HostName 192.168.50.17
-#    Port 60088
+Host *
+	IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"

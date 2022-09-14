@@ -273,6 +273,15 @@ function rgl() {
 function rgll() {
     rg "$1" ~/.safe/node/local-test-network/**/sn_node.log $2
 }
+# ripgrep last lines matching
+function srg-last
+{
+    for log in  ~/.safe/node/local-test-network/sn-node-*/*.log
+    do
+        echo -e "\n\033[0;33m${log}\033[0m"
+        rg --color=always "$1" "$log" | tail -n1
+    done
+}
 
 # rip grep genesis workspace logs
 function rgg() {
@@ -368,3 +377,8 @@ export PATH=/home/josh/.fnm:$PATH
 eval "`fnm env`"
 
 eval "$(direnv hook zsh)"
+
+
+untilfail() {
+  while "$@"; do :; done
+}
