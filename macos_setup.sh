@@ -81,7 +81,7 @@ if [ ! -d "${HOME}/.oh-my-zsh" ]; then
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${HOME}/.oh-my-zsh/plugins/zsh-syntax-highlighting"
   git clone https://github.com/zsh-users/zsh-autosuggestions "${HOME}/.oh-my-zsh/plugins/zsh-autosuggestions"
   git clone https://github.com/agkozak/zsh-z "${HOME}/.oh-my-zsh/plugins/zsh-z"
-  git clone https://github.com/bhilburn/powerlevel9k.git "${HOME}/.oh-my-zsh/themes/powerlevel9k"
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
 fi
 
 
@@ -99,7 +99,8 @@ if [ ! -d "$HOME/.zshrc" ]; then
 #
 #   ln -sfn $(pwd)/vimrc "${HOME}/.vimrc"
   ln -sfn $(pwd)/shell/zshrc "${HOME}/.zshrc"
-  ln -sfn $(pwd)/shell/zshrc "${HOME}/.zshrc"
+  ln -sfn $(pwd)/shell/p10k.zsh "${HOME}/.p10k.zsh"
+
   # ln -sfn $(pwd)/zprofile "${HOME}/.zprofile"
 #   ln -sfn $(pwd)/tmuxconf "${HOME}/.tmux.conf"
 #   ln -sfn $(pwd)/tigrc "${HOME}/.tigrc"

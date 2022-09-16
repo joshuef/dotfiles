@@ -296,6 +296,7 @@ if [ ! -d "$HOME/.zshrc" ]; then
 #
 #   ln -sfn $(pwd)/vimrc "${HOME}/.vimrc"
   ln -sfn $(pwd)/shell/zshrc "${HOME}/.zshrc"
+  ln -sfn $(pwd)/shell/p10k.zsh "${HOME}/.p10k.zsh"
   ln -sfn $(pwd)/shell/zshenv "${HOME}/.zshenv"
   # ln -sfn $(pwd)/zprofile "${HOME}/.zprofile"
 #   ln -sfn $(pwd)/tmuxconf "${HOME}/.tmux.conf"
