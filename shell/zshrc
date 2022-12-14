@@ -131,10 +131,12 @@ squared() {
       longest=$w
       [ $h -gt $longest ] && longest=$h
 
+
       diff=$(echo "$w-$h" | bc)
       # convert to positive if neg
       (( diff = $diff < 0 ? $diff * -1 : $diff ))
       echo "diff is $diff"
+
 
       # common colours to extract
       COLORS=6
@@ -174,19 +176,19 @@ squared() {
       (( padding = $diff < 850 ? 50 : $padding ))
       (( padding = $diff < 800 ? 100 : $padding ))
       (( padding = $diff < 750 ? 150 : $padding ))
-      (( padding = $diff < 700 ? 200 : $padding ))
-      (( padding = $diff < 650 ? 250 : $padding ))
-      (( padding = $diff < 600 ? 300 : $padding ))
-      (( padding = $diff < 550 ? 350 : $padding ))
-      (( padding = $diff < 500 ? 400 : $padding ))
-      (( padding = $diff < 450 ? 450 : $padding ))
-      (( padding = $diff < 400 ? 500 : $padding ))
-      (( padding = $diff < 350 ? 550 : $padding ))
-      (( padding = $diff < 300 ? 600 : $padding ))
-      (( padding = $diff < 250 ? 650 : $padding ))
-      (( padding = $diff < 200 ? 700 : $padding ))
-      (( padding = $diff < 150 ? 750 : $padding ))
-      (( padding = $diff < 100 ? 800 : $padding ))
+      # (( padding = $diff < 700 ? 200 : $padding ))
+      # (( padding = $diff < 650 ? 250 : $padding ))ki
+      # (( padding = $diff < 600 ? 300 : $padding ))
+      # (( padding = $diff < 550 ? 350 : $padding ))
+      # (( padding = $diff < 500 ? 400 : $padding ))
+      # (( padding = $diff < 450 ? 450 : $padding ))
+      # (( padding = $diff < 400 ? 500 : $padding ))
+      # (( padding = $diff < 350 ? 550 : $padding ))
+      # (( padding = $diff < 300 ? 600 : $padding ))
+      # (( padding = $diff < 250 ? 650 : $padding ))
+      # (( padding = $diff < 200 ? 700 : $padding ))
+      # (( padding = $diff < 150 ? 750 : $padding ))
+      # (( padding = $diff < 100 ? 800 : $padding ))
 
       longest=$(expr $longest + $padding)
       echo $longest
@@ -200,7 +202,10 @@ squared() {
 
       COLOR_HEX=$(echo $PALETTE | sed -n $line)
       echo "hex used is:   $COLOR_HEX"
-      convert $i -background $COLOR_HEX -gravity center -extent ${longest}x${longest} "square/${name}_${y}.jpg"
+
+
+      # convert -fuzz 10% $1 -trim -background $COLOR_HEX -gravity center -extent ${longest}x${longest} "$name"
+      convert -fuzz 10% $i -trim -background $COLOR_HEX -gravity center -extent ${longest}x${longest} "square/${name}_${y}.jpg"
     done
 
     convert $i -background white -gravity center -extent ${longest}x${longest} "square/${name}_white.jpg"
@@ -258,6 +263,10 @@ alias preview="fzf --preview 'bat --color \"always\" {}'"
 # add support for ctrl+o to open selected file in VS Code
 FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
 
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
 
 # no correct for command args
 setopt nocorrectall; setopt correct
@@ -265,12 +274,12 @@ setopt nocorrectall; setopt correct
 
 # rip grep terraform/testnetworkspace logs
 function rgt() {
-    rg "$1" ./logs/$(terraform workspace show) -u $2
+    rg "$1" ./workspace/$(terraform workspace show)/logs -u $2
 }
 
 # ripgrep testnet but only latest log files
 function rgtl() {
-    rg "$1" ./logs/$(terraform workspace show)/**/sn_node.log -u $2
+    rg "$1" ./workspace/$(terraform workspace show)/logs**/sn_node.log -u $2
 }
 
 # rip grep local network workspace logs
