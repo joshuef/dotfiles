@@ -75,7 +75,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(fabric history zsh-z git-flow zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(fabric zsh-z git-flow zsh-syntax-highlighting zsh-autosuggestions)
  # zsh-dircolors-solarized
 # User configuration
 
@@ -274,21 +274,21 @@ setopt nocorrectall; setopt correct
 
 # rip grep terraform/testnetworkspace logs
 function rgt() {
-    rg "$1" ./workspace/$(terraform workspace show)/logs -u $2
+    rg "$1" ./workspace/$(terraform workspace show)/droplets -u $2 $3
 }
 
 # ripgrep testnet but only latest log files
 function rgtl() {
-    rg "$1" ./workspace/$(terraform workspace show)/logs**/sn_node.log -u $2
+    rg "$1" ./workspace/$(terraform workspace show)/droplets**/safenode.log -u $2 $3
 }
 
 # rip grep local network workspace logs
 function rgl() {
-    rg "$1" ~/.safe/node/local-test-network $2
+    rg "$1" ~/.safe/node/local-test-network $2 $3
 }
 # rip grep local latest only... network workspace logs
 function rgll() {
-    rg "$1" ~/.safe/node/local-test-network/**/sn_node.log $2
+    rg "$1" ~/.safe/node/local-test-network/**/safenode.log $2 $3
 }
 # ripgrep last lines matching
 function rglst
@@ -338,16 +338,16 @@ function workit { mosh --no-init --ssh="ssh -o StrictHostKeyChecking=no -i ~/.ss
 # SAFE
 
 #local logs
-# alias llogs = rm sn-node* || true && ls -1 ~/.safe/node/local-test-network | xargs -n 1 sh -c 'echo "cp ~/.safe/node/local-test-network/$1/sn_node.log $1.log"' sh | sh $1
+# alias llogs = rm sn-node* || true && ls -1 ~/.safe/node/local-test-network | xargs -n 1 sh -c 'echo "cp ~/.safe/node/local-test-network/$1/safenode.log $1.log"' sh | sh $1
 # # last local logs (aka last 1k lines)
-# alias lllogs = rm sn-node* || true && ls -1 ~/.safe/node/local-test-network | xargs -n 1 sh -c 'echo "tail  ~/.safe/node/local-test-network/$1/sn_node.log $1.log"' sh | sh $1
+# alias lllogs = rm sn-node* || true && ls -1 ~/.safe/node/local-test-network | xargs -n 1 sh -c 'echo "tail  ~/.safe/node/local-test-network/$1/safenode.log $1.log"' sh | sh $1
 
 # add heaptrack to all local nodes
 hep_nodes() {
   nodes_dir=~/.safe/node/local-test-network
   for i in $(ls $nodes_dir); do
-    # echo "$nodes_dir/$i/sn_node.log";
-    heaptrack --pid  $(cat $nodes_dir/$i/sn_node.log.* | rg "Node PID" | awk '{print $8}' |sed 's/.$//') &;
+    # echo "$nodes_dir/$i/safenode.log";
+    heaptrack --pid  $(cat $nodes_dir/$i/safenode.log.* | rg "Node PID" | awk '{print $8}' |sed 's/.$//') &;
   done;
 
 }
@@ -402,3 +402,29 @@ untilfail() {
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+### End of Zinit's installer chunk
+
+# nice history search
+zinit load zdharma-continuum/history-search-multi-word
