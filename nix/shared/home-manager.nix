@@ -4,16 +4,67 @@ let name = "Josh Wilson";
     user = "josh";
     email = "joshuef@gmail.com"; in
 {
+
+  fzf = {    enable = true;  };
+  zoxide = {    enable = true;  };
   # Shared shell configuration
   zsh.enable = true;
+  zsh.enableAutosuggestions = true;
+  zsh.syntaxHighlighting.enable = true;
   zsh.autocd = false;
+  # zsh.oh-my-zsh = {
+  #      enable = true;
+  #     #  theme = "robbyrussel";
+  #       # plugins=["git" "tmux" "docker" "systemd" "z" "syntax-highlighting" "autosuggestions"];
+  #   };
   zsh.cdpath = [ "~/.local/share/src" ];
+  zsh.zplug = {
+    enable = true;
+
+    plugins = [
+      { name = "plugins/colored-man-pages"; tags = [from:oh-my-zsh]; }
+      { name = "plugins/colorize";          tags = [from:oh-my-zsh]; }
+      { name = "plugins/command-not-found"; tags = [from:oh-my-zsh]; }
+      { name = "plugins/fd";                tags = [from:oh-my-zsh]; }
+      { name = "plugins/fzf";               tags = [from:oh-my-zsh]; }
+      { name = "plugins/git";               tags = [from:oh-my-zsh]; }
+      { name = "plugins/ripgrep";           tags = [from:oh-my-zsh]; }
+      { name = "plugins/tmux";              tags = [from:oh-my-zsh]; }
+      { name = "plugins/vi-mode";           tags = [from:oh-my-zsh]; }
+      { name = "plugins/cargo";             tags = [from:oh-my-zsh]; }
+      { name = "plugins/zsh-syntax-highlighting";  tags = [from:oh-my-zsh]; }
+      { name = "plugins/zsh-autosuggestions";      tags = [from:oh-my-zsh]; }
+      { name = "plugins/zdharma-continuum/history-search-multi-word";      tags = [from:oh-my-zsh]; }
+      # { name = "plugins/direnv";            tags = [from:oh-my-zsh]; }
+      # { name = "plugins/pass";              tags = [from:oh-my-zsh]; }
+      { name = "plugins/rsync";             tags = [from:oh-my-zsh]; }
+      # { name = "plugins/"; tags = [from:oh-my-zsh]; }
+      { name = "kutsan/zsh-system-clipboard"; }  # IMPORTANT
+      # { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; }
+    ];
+  };
   zsh.plugins = [
     {
         name = "powerlevel10k";
         src = pkgs.zsh-powerlevel10k;
         file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
     }
+    # {
+    #     name = "z";
+    #     src = pkgs.zsh-z;
+    # }
+    # {
+    #     name = "zsh-syntax-highlighting";
+    #     src = pkgs.zsh-syntax-highlighting;
+    # }
+    # {
+    #     name = "zsh-history-search-multi-word";
+    #     src = pkgs.zsh-history-search-multi-word;
+    # }
+    # {
+    #     name = "zsh-autosuggestions";
+    #     src = pkgs.zsh-autosuggestions;
+    # }
     {
         name = "powerlevel10k-config";
         src = lib.cleanSource ./config;
@@ -43,12 +94,14 @@ let name = "Josh Wilson";
     alias ls="ls -G"
     alias cat="bat"
 
+    FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
 
     HISTFILE=~/.zsh_history
     HISTSIZE=10000
     SAVEHIST=10000
     setopt appendhistory
 
+    # no correct for command args
     setopt nocorrectall; setopt correct
 
     # looping cmds until fail

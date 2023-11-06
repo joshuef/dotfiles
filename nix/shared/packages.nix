@@ -90,7 +90,11 @@ with pkgs; [
   tmux
   unrar
   unzip
+  zsh-z
   zsh-powerlevel10k
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  zsh-history-search-multi-word
   slack
 
   # Python packages
