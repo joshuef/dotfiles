@@ -3,7 +3,7 @@
 with pkgs; [
   # General packages for development and system management
   act
-  alacritty
+  # awscli
   aspell
   aspellDicts.en
   bash-completion
@@ -11,6 +11,8 @@ with pkgs; [
   btop
   coreutils
   difftastic
+  doctl
+  direnv
   du-dust
   git-filter-repo
   diff-so-fancy
@@ -25,6 +27,7 @@ with pkgs; [
   sqlite
   tig
   wget
+  yarn
   zip
   zsh
 

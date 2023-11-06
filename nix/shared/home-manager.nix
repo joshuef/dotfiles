@@ -26,6 +26,7 @@ let name = "Josh Wilson";
       . /nix/var/nix/profiles/default/etc/profile.d/nix.sh
     fi
 
+
     # Define variables for directories
     export PATH=$HOME/.pnpm-packages/bin:$HOME/.pnpm-packages:$PATH
     export PATH=$HOME/.npm-packages/bin:$HOME/bin:$PATH
@@ -38,6 +39,22 @@ let name = "Josh Wilson";
     # Ripgrep alias
     # alias search=rg -p --glob '!node_modules/*'  $@
 
+    # Usability aliases
+    alias ls="ls -G"
+    alias cat="bat"
+
+
+    HISTFILE=~/.zsh_history
+    HISTSIZE=10000
+    SAVEHIST=10000
+    setopt appendhistory
+
+    setopt nocorrectall; setopt correct
+
+    # looping cmds until fail
+    untilfail() {
+      while "$@"; do :; done
+    }
 
     # nix shortcuts
     shell() {
