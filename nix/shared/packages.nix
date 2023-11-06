@@ -13,16 +13,23 @@ with pkgs; [
   difftastic
   du-dust
   git-filter-repo
+  diff-so-fancy
+  just
   killall
+  mosh
   neofetch
   openssh
   pandoc
+  protobuf
+  rustc
   sqlite
+  tig
   wget
   zip
+  zsh
 
   # Encryption and security tools
-  _1password
+  # _1password
   age
   age-plugin-yubikey
   gnupg
@@ -44,6 +51,7 @@ with pkgs; [
   terraform
   terraform-ls
   tflint
+  ansible
 
   # Media-related packages
   emacs-all-the-icons-fonts
@@ -80,6 +88,7 @@ with pkgs; [
   unrar
   unzip
   zsh-powerlevel10k
+  slack
 
   # Python packages
   python39

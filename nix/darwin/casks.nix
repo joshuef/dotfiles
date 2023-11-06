@@ -9,27 +9,12 @@
   "ansible"
   "visual-studio-code"
   "cursor"
-  "coreutils"
-  "ripgrep"
-  "jq"
-  "just"
-  "rustc"
-  "protobuf"
-  "mosh"
-  "openssh"
-  "terraform"
-  "tig"
-  "git"
-  "wget"
-  "zsh"
-  "1password"
-  "warp"
-  # "adguard"
+  "adguard"
 
 
   # Communication Tools
   "loom"
-  "slack"
+  # "slack"
   "zoom"
 
   # Utility Tools
