@@ -3,7 +3,7 @@
 [
   # Development Tools
   "homebrew/cask/docker"
-  # "homebrew/cask-fonts"
+  "homebrew/cask-fonts"
   # "homebrew/ack"
 
   "ansible"
