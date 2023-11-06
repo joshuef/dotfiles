@@ -3,10 +3,10 @@
 let
   user = "josh";
   # Define the content of your file as a derivation
-  myEmacsLauncher = pkgs.writeScript "emacs-launcher.command" ''
-    #!/bin/sh
-    emacsclient -c -n &
-  '';
+  # myEmacsLauncher = pkgs.writeScript "emacs-launcher.command" ''
+  #   #!/bin/sh
+  #   emacsclient -c -n &
+  # '';
   sharedFiles = import ../shared/files.nix { inherit config pkgs; };
   additionalFiles = import ./files.nix { inherit config pkgs; };
 in
@@ -47,7 +47,7 @@ in
       home.file = lib.mkMerge [
         sharedFiles
         additionalFiles
-        { "emacs-launcher.command".source = myEmacsLauncher; }
+        # { "emacs-launcher.command".source = myEmacsLauncher; }
       ];
       home.stateVersion = "21.11";
       programs = {} // import ../shared/home-manager.nix { inherit config pkgs lib; };

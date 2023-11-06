@@ -36,16 +36,16 @@ let name = "Josh Wilson";
     export HISTIGNORE="pwd:ls:cd"
 
     # Ripgrep alias
-    alias search=rg -p --glob '!node_modules/*'  $@
+    # alias search=rg -p --glob '!node_modules/*'  $@
 
     # Emacs is my editor
-    export ALTERNATE_EDITOR=""
-    export EDITOR="emacsclient -t"
-    export VISUAL="emacsclient -c -a emacs"
+    # export ALTERNATE_EDITOR=""
+    # export EDITOR="emacsclient -t"
+    # export VISUAL="emacsclient -c -a emacs"
 
-    e() {
-        emacsclient -t "$@"
-    }
+    # e() {
+    #     emacsclient -t "$@"
+    # }
 
     # nix shortcuts
     shell() {
@@ -66,14 +66,14 @@ let name = "Josh Wilson";
   git = {
     enable = true;
     ignores = [ "*.swp" ];
-    userName = name;
-    userEmail = email;
+    userName = Josh Wilson;
+    userEmail = joshuef@gmail.com;
     lfs = {
       enable = true;
     };
     extraConfig = {
       init.defaultBranch = "main";
-      core = { 
+      core = {
 	    editor = "vim";
         autocrlf = "input";
       };
