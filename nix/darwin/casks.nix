@@ -2,13 +2,13 @@
 
 [
   # Development Tools
-  "homebrew/cask/docker"
-  "homebrew/cask-fonts"
+  # "homebrew/cask/docker"
+  # "homebrew/cask-fonts"
   # "homebrew/ack"
 
-  "ansible"
+  # "ansible"
   "visual-studio-code"
-  "cursor"
+  # "cursor"
   "adguard"
 
 
@@ -22,7 +22,7 @@
   "syncthing"
 
   # Entertainment Tools
-  "steam"
+  # "steam"
   "vlc"
 
   # Productivity Tools
@@ -30,5 +30,5 @@
 
   # Browsers
   "google-chrome"
-  "firefox"
+  # "firefox"
 ]
