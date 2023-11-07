@@ -114,12 +114,8 @@ let name = "Josh Wilson";
     # Remove history data we don't want to see
     export HISTIGNORE="pwd:ls:cd"
 
-    # Ripgrep alias
-    # alias search=rg -p --glob '!node_modules/*'  $@
-
     # Usability aliases
-    alias ll="ls -la"
-    alias ls="ls -G"
+    alias rm="trash"
     alias cat="bat"
 
     FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
@@ -161,6 +157,82 @@ let name = "Josh Wilson";
     #   2.  MAKE TERMINAL BETTER
     #   -----------------------------
 
+
+    # Make Tab autocomplete regardless of filename case (cd ~/dow<Tab> => cd ~/Downloads/)
+    set completion-ignore-case on
+
+    # Immediately add a trailing slash when autocompleting symlinks to directories
+    set mark-symlinked-directories on
+
+    # Do not expand "~" to the home directory when completing. (The actual value passed on to the command still is expanded,
+    # though. Which is good.) "Off" is the default value, but some servers override this
+    set expand-tilde off
+
+    # Flip through autocompletion matches with Shift-Tab
+    bindkey '\e[Z' menu-complete
+
+    # Do not autocomplete hidden files ("dot files") unless the pattern explicitly begins with a dot
+    set match-hidden-files off
+
+    # Show all autocomplete results at once
+    set page-completions off
+
+    # If there are more than 200 possible completions for a word, ask to show them all
+    set completion-query-items 200
+
+    # Auto list all TAB possible completions (use instead of TAB-cycling)
+    set show-all-if-ambiguous on
+
+    # Show extra file information when completing, like `ls -F` does
+    set visible-stats on
+
+    # Be more intelligent when autocompleting by also looking at the text after
+    # the cursor. For example, when the current line is "cd ~/src/mozil", and
+    # the cursor is on the "z", pressing Tab will not autocomplete it to "cd
+    # ~/src/mozillail", but to "cd ~/src/mozilla". (This is supported by the
+    # Readline used by Bash 4.)
+    set skip-completed-text on
+
+    # Use the text that has already been typed as the prefix for searching through
+    # commands (basically more intelligent Up/Down behavior)
+    bindkey '\e[B' history-search-forward
+    bindkey '\e[A' history-search-backward
+
+    # ctrl left, ctrl right for moving on the readline by word
+    bindkey '\e[1;5C' forward-word
+    bindkey '\e[1;5D' backward-word
+
+    # Try to stay at the same position when moving through the history
+    set history-preserve-point on
+
+
+    #
+    # Line editing
+    #
+
+    # Allow UTF-8 input and output, instead of showing stuff like $'\0123\0456'
+    set input-meta on
+    set output-meta on
+    set convert-meta off
+
+    # Delete for wonky terminals
+    bindkey '\e[3~' delete-char
+
+    # Home/End
+    bindkey '\e[1~' beginning-of-line
+    bindkey '\e[4~' end-of-line
+
+    # Use Alt/Meta + Delete to delete the preceding word
+    bindkey '\e[3;3~' kill-word
+
+
+    #
+    # Misc
+    #
+
+    # Disable beeping and window flashing
+    set bell-style none
+
     alias subl='/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl'
     alias ls='ls -GFhl'
     alias cp='cp -iv'                           # Preferred 'cp' implementation
@@ -180,8 +252,7 @@ let name = "Josh Wilson";
     alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
     alias ~="cd ~"                              # ~:            Go Home
     alias c='clear'                             # c:            Clear terminal display
-    alias which='type -all'                     # which:        Find executables
-    alias path='echo -e ${PATH//:/\\n}'         # path:         Echo all executable Paths
+    # alias which='type -all'                     # which:        Find executables
     alias show_options='shopt'                  # Show_options: display bash options settings
     alias fix_stty='stty sane'                  # fix_stty:     Restore terminal settings when screwed up
     alias cic='set completion-ignore-case On'   # cic:          Make tab-completion case-insensitive

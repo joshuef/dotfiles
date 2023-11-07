@@ -30,7 +30,7 @@ with pkgs; [
   pandoc
   parallel
   protobuf
-  rustc
+  rustup
   sqlite
   tig
   wget
@@ -92,6 +92,7 @@ with pkgs; [
   iftop
   jq
   ripgrep
+  trash-cli
   tree
   tmux
   unrar
