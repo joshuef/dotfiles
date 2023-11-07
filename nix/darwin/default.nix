@@ -77,11 +77,11 @@ let user = "josh"; in
       };
 
       dock = {
-        autohide = false;
+        autohide = true;
         show-recents = false;
         launchanim = true;
         orientation = "left";
-        tilesize = 48;
+        tilesize = 32;
       };
 
       finder = {

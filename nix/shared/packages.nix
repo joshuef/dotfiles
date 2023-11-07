@@ -54,7 +54,7 @@ with pkgs; [
   terraform
   terraform-ls
   tflint
-  ansible
+  # ansible
 
   # Media-related packages
   emacs-all-the-icons-fonts
