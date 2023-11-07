@@ -99,10 +99,10 @@ with pkgs; [
   zsh-powerlevel10k
   zsh-z
   # zi
-  zinit
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-  zsh-history-search-multi-word
+  # zinit
+  # zsh-autosuggestions
+  # zsh-syntax-highlighting
+  # zsh-history-search-multi-word
   slack
 
   # Python packages

@@ -24,14 +24,15 @@ let name = "Josh Wilson";
     plugins = [
       { name = "plugins/colored-man-pages"; tags = [from:oh-my-zsh]; }
       { name = "plugins/colorize";          tags = [from:oh-my-zsh]; }
-      { name = "plugins/command-not-found"; tags = [from:oh-my-zsh]; }
-      { name = "plugins/fd";                tags = [from:oh-my-zsh]; }
+      # { name = "plugins/command-not-found"; tags = [from:oh-my-zsh]; }
+      # { name = "plugins/fd";                tags = [from:oh-my-zsh]; }
       # { name = "plugins/fzf";               tags = [from:oh-my-zsh]; }
       { name = "plugins/git";               tags = [from:oh-my-zsh]; }
       { name = "plugins/ripgrep";           tags = [from:oh-my-zsh]; }
-      { name = "plugins/tmux";              tags = [from:oh-my-zsh]; }
-      { name = "plugins/vi-mode";           tags = [from:oh-my-zsh]; }
+      # { name = "plugins/tmux";              tags = [from:oh-my-zsh]; }
+      # { name = "plugins/vi-mode";           tags = [from:oh-my-zsh]; }
       { name = "plugins/cargo";             tags = [from:oh-my-zsh]; }
+      { name = "plugins/H-S-MW";             tags = [from:oh-my-zsh]; }
       # { name = "plugins/zsh-syntax-highlighting";  tags = [from:oh-my-zsh]; }
       # { name = "plugins/zsh-autosuggestions";      tags = [from:oh-my-zsh]; }
       # { name = "plugins/zsh-history-search-multi-word";  tags = [from:oh-my-zsh];  }
@@ -95,16 +96,16 @@ let name = "Josh Wilson";
     alias ls="ls -G"
     alias cat="bat"
 
-    FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
-    FZF_DEFAULT_COMMAND='rg --files --hidden'
+    # FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
+    # FZF_DEFAULT_COMMAND='rg --files --hidden'
 
     HISTFILE=~/.zsh_history
     HISTSIZE=10000
     SAVEHIST=10000
     setopt appendhistory
 
-    # no correct for command args
-    setopt nocorrectall; setopt correct
+    # # no correct for command args
+    # setopt nocorrectall; setopt correct
 
     # looping cmds until fail
     untilfail() {
@@ -270,70 +271,70 @@ let name = "Josh Wilson";
       '';
      };
 
-  alacritty = {
-    enable = true;
-    settings = {
-      cursor = {
-        style = "Block";
-      };
+  # alacritty = {
+  #   enable = true;
+  #   settings = {
+  #     cursor = {
+  #       style = "Block";
+  #     };
 
-      window = {
-        opacity = 1.0;
-        padding = {
-          x = 24;
-          y = 24;
-        };
-      };
+  #     window = {
+  #       opacity = 1.0;
+  #       padding = {
+  #         x = 24;
+  #         y = 24;
+  #       };
+  #     };
 
-      font = {
-        normal = {
-          family = "MesloLGS NF";
-          style = "Regular";
-        };
-        size = lib.mkMerge [
-          (lib.mkIf pkgs.stdenv.hostPlatform.isLinux 10)
-          (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin 14)
-        ];
-      };
+  #     font = {
+  #       normal = {
+  #         family = "MesloLGS NF";
+  #         style = "Regular";
+  #       };
+  #       size = lib.mkMerge [
+  #         (lib.mkIf pkgs.stdenv.hostPlatform.isLinux 10)
+  #         (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin 14)
+  #       ];
+  #     };
 
-      dynamic_padding = true;
-      decorations = "full";
-      title = "Terminal";
-      class = {
-        instance = "Alacritty";
-        general = "Alacritty";
-      };
+  #     dynamic_padding = true;
+  #     decorations = "full";
+  #     title = "Terminal";
+  #     class = {
+  #       instance = "Alacritty";
+  #       general = "Alacritty";
+  #     };
 
-      colors = {
-        primary = {
-          background = "0x1f2528";
-          foreground = "0xc0c5ce";
-        };
+  #     colors = {
+  #       primary = {
+  #         background = "0x1f2528";
+  #         foreground = "0xc0c5ce";
+  #       };
 
-        normal = {
-          black = "0x1f2528";
-          red = "0xec5f67";
-          green = "0x99c794";
-          yellow = "0xfac863";
-          blue = "0x6699cc";
-          magenta = "0xc594c5";
-          cyan = "0x5fb3b3";
-          white = "0xc0c5ce";
-        };
+  #       normal = {
+  #         black = "0x1f2528";
+  #         red = "0xec5f67";
+  #         green = "0x99c794";
+  #         yellow = "0xfac863";
+  #         blue = "0x6699cc";
+  #         magenta = "0xc594c5";
+  #         cyan = "0x5fb3b3";
+  #         white = "0xc0c5ce";
+  #       };
 
-        bright = {
-          black = "0x65737e";
-          red = "0xec5f67";
-          green = "0x99c794";
-          yellow = "0xfac863";
-          blue = "0x6699cc";
-          magenta = "0xc594c5";
-          cyan = "0x5fb3b3";
-          white = "0xd8dee9";
-        };
-      };
-    };
-  };
+  #       bright = {
+  #         black = "0x65737e";
+  #         red = "0xec5f67";
+  #         green = "0x99c794";
+  #         yellow = "0xfac863";
+  #         blue = "0x6699cc";
+  #         magenta = "0xc594c5";
+  #         cyan = "0x5fb3b3";
+  #         white = "0xd8dee9";
+  #       };
+  #     };
+  #   };
+  # };
 
   ssh = {
     enable = true;
