@@ -26,15 +26,15 @@ let name = "Josh Wilson";
       { name = "plugins/colorize";          tags = [from:oh-my-zsh]; }
       { name = "plugins/command-not-found"; tags = [from:oh-my-zsh]; }
       { name = "plugins/fd";                tags = [from:oh-my-zsh]; }
-      { name = "plugins/fzf";               tags = [from:oh-my-zsh]; }
+      # { name = "plugins/fzf";               tags = [from:oh-my-zsh]; }
       { name = "plugins/git";               tags = [from:oh-my-zsh]; }
       { name = "plugins/ripgrep";           tags = [from:oh-my-zsh]; }
       { name = "plugins/tmux";              tags = [from:oh-my-zsh]; }
       { name = "plugins/vi-mode";           tags = [from:oh-my-zsh]; }
       { name = "plugins/cargo";             tags = [from:oh-my-zsh]; }
-      { name = "plugins/zsh-syntax-highlighting";  tags = [from:oh-my-zsh]; }
-      { name = "plugins/zsh-autosuggestions";      tags = [from:oh-my-zsh]; }
-      { name = "plugins/zdharma-continuum/history-search-multi-word";      tags = [from:oh-my-zsh]; }
+      # { name = "plugins/zsh-syntax-highlighting";  tags = [from:oh-my-zsh]; }
+      # { name = "plugins/zsh-autosuggestions";      tags = [from:oh-my-zsh]; }
+      # { name = "plugins/zsh-history-search-multi-word";  tags = [from:oh-my-zsh];  }
       # { name = "plugins/direnv";            tags = [from:oh-my-zsh]; }
       # { name = "plugins/pass";              tags = [from:oh-my-zsh]; }
       { name = "plugins/rsync";             tags = [from:oh-my-zsh]; }
@@ -50,8 +50,8 @@ let name = "Josh Wilson";
         file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
     }
     # {
-    #     name = "z";
-    #     src = pkgs.zsh-z;
+    #     name = "zinit";
+    #     src = pkgs.zinit;
     # }
     # {
     #     name = "zsh-syntax-highlighting";
@@ -96,6 +96,7 @@ let name = "Josh Wilson";
     alias cat="bat"
 
     FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
+    FZF_DEFAULT_COMMAND='rg --files --hidden'
 
     HISTFILE=~/.zsh_history
     HISTSIZE=10000
@@ -119,11 +120,25 @@ let name = "Josh Wilson";
     alias pn=pnpm
     alias px=pnpx
 
+    # Cursor/code setup
+    alias code=cursor
+
     # Use difftastic, syntax-aware diffing
     alias diff=difft
 
     # Always color ls and group directories
     alias ls='ls --color=auto'
+
+    # Nice history
+    # zinit load zdharma-continuum/history-search-multi-word
+
+    # zinit light-mode for \
+    #   zdharma-continuum/zinit-annex-as-monitor \
+    #   zdharma-continuum/zinit-annex-bin-gem-node \
+    #   zdharma-continuum/zinit-annex-patch-dl \
+    #   zdharma-continuum/zinit-annex-rust
+
+    # zinit load zdharma-continuum/history-search-multi-word
   '';
 
   git = {
