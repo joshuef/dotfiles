@@ -12,6 +12,7 @@ in
       example = false;
     };
 
+
     local.dock.entries = mkOption
       {
         description = "Entries on the Dock";

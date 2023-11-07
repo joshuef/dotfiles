@@ -91,6 +91,7 @@ let name = "Josh Wilson";
     # alias search=rg -p --glob '!node_modules/*'  $@
 
     # Usability aliases
+    alias ll="ls -la"
     alias ls="ls -G"
     alias cat="bat"
 
@@ -327,14 +328,25 @@ let name = "Josh Wilson";
         Host github.com
           Hostname github.com
           IdentitiesOnly yes
+
+        IdentityFile ~/.ssh/github_rsa
+        IdentityFile ~/.ssh/sharing_rsa
+
+        Host *
+            ControlMaster auto
+            ControlPath ~/.ssh/control:%h:%p:%r
+
+        Include ~/.orbstack/ssh/config
+
+
       ''
       (lib.mkIf pkgs.stdenv.hostPlatform.isLinux
         ''
-          IdentityFile /home/${user}/.ssh/id_github
+          IdentityFile /home/${user}/.ssh/github_rsa
         '')
       (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin
         ''
-          IdentityFile /Users/${user}/.ssh/id_github
+          IdentityFile /Users/${user}/.ssh/github_rsa
         '')
     ];
   };
