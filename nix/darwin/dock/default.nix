@@ -62,8 +62,6 @@ in
             else
               echo >&2 "Dock setup complete."
             fi
-
-            pix install ansible==8.2.0
           '';
         }
       );

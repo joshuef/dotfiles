@@ -1,8 +1,14 @@
 { pkgs }:
-
 with pkgs; [
   # General packages for development and system management
   act
+    (import (builtins.fetchTree {
+      type = "github";
+      owner = "NixOS";
+      repo = "nixpkgs";
+      rev = "13606dcd4639a04891eef831a022b0ab8e815b38";
+    }) { system = pkgs.system; }).ansible
+  # ansible
   # awscli
   aspell
   aspellDicts.en
@@ -22,6 +28,7 @@ with pkgs; [
   neofetch
   openssh
   pandoc
+  parallel
   protobuf
   rustc
   sqlite
