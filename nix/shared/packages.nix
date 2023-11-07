@@ -76,7 +76,7 @@ with pkgs; [
   meslo-lgs-nf
 
   # Node.js development tools
-  fzf
+  # fzf
   nodePackages.live-server
   nodePackages.nodemon
   nodePackages.prettier

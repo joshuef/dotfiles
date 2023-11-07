@@ -24,17 +24,17 @@ let name = "Josh Wilson";
     plugins = [
       { name = "plugins/colored-man-pages"; tags = [from:oh-my-zsh]; }
       { name = "plugins/colorize";          tags = [from:oh-my-zsh]; }
-      # { name = "plugins/command-not-found"; tags = [from:oh-my-zsh]; }
-      # { name = "plugins/fd";                tags = [from:oh-my-zsh]; }
-      # { name = "plugins/fzf";               tags = [from:oh-my-zsh]; }
+      { name = "plugins/command-not-found"; tags = [from:oh-my-zsh]; }
+      { name = "plugins/fd";                tags = [from:oh-my-zsh]; }
+      { name = "plugins/fzf";               tags = [from:oh-my-zsh]; }
       { name = "plugins/git";               tags = [from:oh-my-zsh]; }
       { name = "plugins/ripgrep";           tags = [from:oh-my-zsh]; }
-      # { name = "plugins/tmux";              tags = [from:oh-my-zsh]; }
+      { name = "plugins/tmux";              tags = [from:oh-my-zsh]; }
       # { name = "plugins/vi-mode";           tags = [from:oh-my-zsh]; }
       { name = "plugins/cargo";             tags = [from:oh-my-zsh]; }
       { name = "plugins/H-S-MW";             tags = [from:oh-my-zsh]; }
-      # { name = "plugins/zsh-syntax-highlighting";  tags = [from:oh-my-zsh]; }
-      # { name = "plugins/zsh-autosuggestions";      tags = [from:oh-my-zsh]; }
+      { name = "plugins/zsh-syntax-highlighting";  tags = [from:oh-my-zsh]; }
+      { name = "plugins/zsh-autosuggestions";      tags = [from:oh-my-zsh]; }
       # { name = "plugins/zsh-history-search-multi-word";  tags = [from:oh-my-zsh];  }
       # { name = "plugins/direnv";            tags = [from:oh-my-zsh]; }
       # { name = "plugins/pass";              tags = [from:oh-my-zsh]; }
@@ -79,6 +79,32 @@ let name = "Josh Wilson";
     fi
 
 
+    # Basic shell configs
+    setopt inc_append_history # Append history as commands are executed
+    setopt hist_ignore_all_dups # Don't save duplicates
+    unsetopt share_history # Disable sharing history between terminals (sessions)
+
+    # Defaults
+    export SHELL=/bin/zsh
+
+    # Preferred editor for local and remote sessions
+    if [[ -n $SSH_CONNECTION ]]; then
+      export EDITOR='nano'
+    else
+      export EDITOR='nano'
+    fi
+
+    # Prefer US English and use UTF-8
+    export LC_ALL="en_US.UTF-8"
+    export LANG="en_US"
+
+
+
+    # Expansion and Globbing
+    setopt extended_glob # treat #, ~, and ^ as part of patterns for filename generation
+
+
+
     # Define variables for directories
     export PATH=$HOME/.pnpm-packages/bin:$HOME/.pnpm-packages:$PATH
     export PATH=$HOME/.npm-packages/bin:$HOME/bin:$PATH
@@ -96,7 +122,7 @@ let name = "Josh Wilson";
     alias ls="ls -G"
     alias cat="bat"
 
-    # FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
+    FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
     # FZF_DEFAULT_COMMAND='rg --files --hidden'
 
     HISTFILE=~/.zsh_history
@@ -105,7 +131,7 @@ let name = "Josh Wilson";
     setopt appendhistory
 
     # # no correct for command args
-    # setopt nocorrectall; setopt correct
+    setopt nocorrectall; setopt correct
 
     # looping cmds until fail
     untilfail() {
@@ -130,16 +156,40 @@ let name = "Josh Wilson";
     # Always color ls and group directories
     alias ls='ls --color=auto'
 
-    # Nice history
-    # zinit load zdharma-continuum/history-search-multi-word
 
-    # zinit light-mode for \
-    #   zdharma-continuum/zinit-annex-as-monitor \
-    #   zdharma-continuum/zinit-annex-bin-gem-node \
-    #   zdharma-continuum/zinit-annex-patch-dl \
-    #   zdharma-continuum/zinit-annex-rust
+    #   -----------------------------
+    #   2.  MAKE TERMINAL BETTER
+    #   -----------------------------
 
-    # zinit load zdharma-continuum/history-search-multi-word
+    alias subl='/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl'
+    alias ls='ls -GFhl'
+    alias cp='cp -iv'                           # Preferred 'cp' implementation
+    alias mv='mv -iv'                           # Preferred 'mv' implementation
+    alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
+    alias ll='ls -FGlAhp'                       # Preferred 'ls' implementation
+    alias less='less -FSRXc'                    # Preferred 'less' implementation
+    cd() { builtin cd "$@"; ll; }               # Always list directory contents upon 'cd'
+    alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
+    alias ..='cd ../'                           # Go back 1 directory level
+    alias ...='cd ../../'                       # Go back 2 directory levels
+    alias .3='cd ../../../'                     # Go back 3 directory levels
+    alias .4='cd ../../../../'                  # Go back 4 directory levels
+    alias .5='cd ../../../../../'               # Go back 5 directory levels
+    alias .6='cd ../../../../../../'            # Go back 6 directory levels
+    alias edit='subl'                           # edit:         Opens any file in sublime editor
+    alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
+    alias ~="cd ~"                              # ~:            Go Home
+    alias c='clear'                             # c:            Clear terminal display
+    alias which='type -all'                     # which:        Find executables
+    alias path='echo -e ${PATH//:/\\n}'         # path:         Echo all executable Paths
+    alias show_options='shopt'                  # Show_options: display bash options settings
+    alias fix_stty='stty sane'                  # fix_stty:     Restore terminal settings when screwed up
+    alias cic='set completion-ignore-case On'   # cic:          Make tab-completion case-insensitive
+    mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
+    trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the MacOS trash
+    ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
+    alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
+
   '';
 
   git = {
