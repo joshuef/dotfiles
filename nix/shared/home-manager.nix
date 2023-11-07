@@ -95,6 +95,8 @@ let name = "Josh Wilson";
     alias ls="ls -G"
     alias cat="bat"
 
+    alias ansible=ansible-community
+
     FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
 
     HISTFILE=~/.zsh_history

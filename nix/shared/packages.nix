@@ -83,7 +83,6 @@ with pkgs; [
   htop
   hunspell
   iftop
-  jetbrains-mono
   jq
   ripgrep
   tree
@@ -98,6 +97,8 @@ with pkgs; [
   slack
 
   # Python packages
-  python39
-  python39Packages.virtualenv
+  python311
+  python311Packages.virtualenv
+  python311Packages.pipx
+
 ]

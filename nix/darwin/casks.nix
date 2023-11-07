@@ -2,11 +2,6 @@
 
 [
   # Development Tools
-  # "homebrew/cask/docker"
-  # "homebrew/cask-fonts"
-  # "homebrew/ack"
-
-  # "ansible"
   "visual-studio-code"
   # "cursor"
   "adguard"

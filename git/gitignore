@@ -29,3 +29,5 @@ npm-debug.log
 
 # nvim.appimage
 nvim.appimage
+
+nix/result
