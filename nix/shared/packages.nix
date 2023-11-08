@@ -26,6 +26,7 @@ with pkgs; [
   killall
   mosh
   neofetch
+  ncdu
   openssh
   pandoc
   parallel
@@ -33,6 +34,7 @@ with pkgs; [
   rustup
   sqlite
   tig
+  # trashy
   wget
   yarn
   zip
@@ -61,11 +63,11 @@ with pkgs; [
   terraform
   terraform-ls
   tflint
-  # ansible
+  # heaptrack
 
   # Media-related packages
-  emacs-all-the-icons-fonts
-  dejavu_fonts
+  # emacs-all-the-icons-fonts
+  # dejavu_fonts
   ffmpeg
   fd
   font-awesome
@@ -76,7 +78,7 @@ with pkgs; [
   meslo-lgs-nf
 
   # Node.js development tools
-  # fzf
+  fzf
   nodePackages.live-server
   nodePackages.nodemon
   nodePackages.prettier
@@ -91,19 +93,14 @@ with pkgs; [
   hunspell
   iftop
   jq
+  neovim
   ripgrep
-  trash-cli
   tree
   tmux
   unrar
   unzip
   zsh-powerlevel10k
   zsh-z
-  # zi
-  # zinit
-  # zsh-autosuggestions
-  # zsh-syntax-highlighting
-  # zsh-history-search-multi-word
   slack
 
   # Python packages

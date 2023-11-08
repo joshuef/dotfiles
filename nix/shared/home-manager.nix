@@ -115,7 +115,7 @@ let name = "Josh Wilson";
     export HISTIGNORE="pwd:ls:cd"
 
     # Usability aliases
-    alias rm="trash"
+    # alias rm="trashy"
     alias cat="bat"
 
     FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
@@ -156,6 +156,8 @@ let name = "Josh Wilson";
     #   -----------------------------
     #   2.  MAKE TERMINAL BETTER
     #   -----------------------------
+
+    alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
 
 
     # Make Tab autocomplete regardless of filename case (cd ~/dow<Tab> => cd ~/Downloads/)
