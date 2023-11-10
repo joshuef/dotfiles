@@ -5,8 +5,7 @@
   "visual-studio-code"
   # "cursor"
   "adguard"
-
-
+  "orbstack"
   # Communication Tools
   "loom"
   # "slack"

@@ -108,4 +108,6 @@ with pkgs; [
   python311Packages.virtualenv
   python311Packages.pipx
 
+  # lld linker for rust
+  lld
 ]
