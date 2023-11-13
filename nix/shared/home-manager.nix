@@ -36,7 +36,7 @@ let name = "Josh Wilson";
       { name = "plugins/zsh-syntax-highlighting";  tags = [from:oh-my-zsh]; }
       { name = "plugins/zsh-autosuggestions";      tags = [from:oh-my-zsh]; }
       # { name = "plugins/zsh-history-search-multi-word";  tags = [from:oh-my-zsh];  }
-      # { name = "plugins/direnv";            tags = [from:oh-my-zsh]; }
+      { name = "plugins/direnv";            tags = [from:oh-my-zsh]; }
       # { name = "plugins/pass";              tags = [from:oh-my-zsh]; }
       { name = "plugins/rsync";             tags = [from:oh-my-zsh]; }
       # { name = "plugins/"; tags = [from:oh-my-zsh]; }

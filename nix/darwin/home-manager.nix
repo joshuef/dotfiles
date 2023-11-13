@@ -36,6 +36,9 @@ in
   homebrew.masApps = {
     "1password" = 1333542190;
     "wireguard" = 1451685025;
+    "Darkroom" = 953286746;
+    "SomaFM" = 449155338;
+    "Ulysses" = 1225570693;
   };
 
   # Enable home-manager
