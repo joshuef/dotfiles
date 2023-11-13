@@ -203,6 +203,9 @@ let name = "Josh Wilson";
     # ctrl left, ctrl right for moving on the readline by word
     bindkey '\e[1;5C' forward-word
     bindkey '\e[1;5D' backward-word
+    #pg up/down
+    bindkey "\e[5~" beginning-of-line
+    bindkey "\e[6~" end-of-line
 
     # Try to stay at the same position when moving through the history
     set history-preserve-point on

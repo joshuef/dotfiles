@@ -63,6 +63,7 @@ with pkgs; [
   terraform
   terraform-ls
   tflint
+  transmission
   # heaptrack
 
   # Media-related packages
@@ -109,5 +110,5 @@ with pkgs; [
   python311Packages.pipx
 
   # lld linker for rust
-  lld
+  lld_16
 ]
