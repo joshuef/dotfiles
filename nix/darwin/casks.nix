@@ -1,8 +1,6 @@
 {}:
 
 [
-  # for heaptrack
-  "qt@5"
   # Development Tools
   "visual-studio-code"
   # "cursor"

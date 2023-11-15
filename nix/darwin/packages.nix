@@ -7,8 +7,9 @@ shared-packages ++ [
   warp
   findutils
   coreutils
+  utm
   # transmit
   fnm
   rectangle
-  # dropbox
+  qt5.full
 ]

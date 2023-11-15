@@ -480,7 +480,6 @@ let name = "Josh Wilson";
 
         Include ~/.orbstack/ssh/config
 
-
       ''
       (lib.mkIf pkgs.stdenv.hostPlatform.isLinux
         ''
