@@ -9,3 +9,8 @@ echo "nix basic installed"
 
 nix/bin/build
 
+mkdir -p ~/Projects
+cd ~/Projects
+
+# clone all these into the projects folders
+# safe
