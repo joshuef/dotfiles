@@ -7,6 +7,7 @@ shared-packages ++ [
   warp
   findutils
   coreutils
+  iterm2
   # utm
   # transmit
   fnm

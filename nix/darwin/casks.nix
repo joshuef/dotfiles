@@ -17,7 +17,7 @@
   "syncthing"
 
   # Entertainment Tools
-  # "steam"
+  "steam"
   "vlc"
 
   # Productivity Tools
@@ -25,5 +25,5 @@
 
   # Browsers
   "google-chrome"
-  # "firefox"
+  "firefox"
 ]
