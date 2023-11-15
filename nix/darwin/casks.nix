@@ -2,10 +2,12 @@
 
 [
   # Development Tools
-  "visual-studio-code"
-  # "cursor"
+  # "visual-studio-code"
+  "cursor"
   "adguard"
   "orbstack"
+  "iterm2"
+  "warp"
   # Communication Tools
   "loom"
   "utm"

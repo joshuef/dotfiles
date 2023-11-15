@@ -64,6 +64,7 @@ with pkgs; [
   terraform-ls
   tflint
   transmission
+  slack
   # heaptrack
 
   # Media-related packages
