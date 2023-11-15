@@ -2,15 +2,19 @@
 
 
 # deterministic nix: https://github.com/DeterminateSystems/nix-installer
-
-curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+# only install if not already installed
+if [ ! -d "/nix" ]; then
+  curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+fi
 
 echo "nix basic installed"
 
-nix/bin/build
+# reloading the shell now
+zsh
 
-mkdir -p ~/Projects
-cd ~/Projects
+mv /etc/nix/nix.conf /etc/nix/nix.conf.before.build.bkp
+# and building with nix
+nix/bin/build
 
 # clone all these into the projects folders
 # safe
