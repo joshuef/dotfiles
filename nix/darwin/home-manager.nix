@@ -34,7 +34,6 @@ in
   # $ mas search <app name>
   #
   homebrew.masApps = {
-    "1password" = 1333542190;
     "wireguard" = 1451685025;
     "Darkroom" = 953286746;
     "SomaFM" = 449155338;

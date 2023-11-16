@@ -2,17 +2,19 @@
 
 [
   # Development Tools
-  # "visual-studio-code"
+  "visual-studio-code"
   "cursor"
   "adguard"
   "orbstack"
   "iterm2"
+  "dropbox"
   "warp"
   # Communication Tools
   "loom"
   "utm"
-  # "slack"
+  "slack"
   "zoom"
+  "rectangle-pro"
 
   # Utility Tools
   "appcleaner"

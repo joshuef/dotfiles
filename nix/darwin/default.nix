@@ -65,8 +65,15 @@ let user = "josh"; in
         AppleShowAllExtensions = true;
         ApplePressAndHoldEnabled = false;
 
+        # Set sidebar icon size to medium
+        NSTableViewDefaultSizeMode = 2;
+
+        AppleShowScrollBars = "Always";
+        # Disable the over-the-top focus ring animation
+        NSUseAnimatedFocusRing = false;
         # 120, 90, 60, 30, 12, 6, 2
         KeyRepeat = 2;
+
 
         # 120, 94, 68, 35, 25, 15
         InitialKeyRepeat = 15;
@@ -74,6 +81,23 @@ let user = "josh"; in
         "com.apple.mouse.tapBehavior" = 1;
         "com.apple.sound.beep.volume" = 0.0;
         "com.apple.sound.beep.feedback" = 0;
+
+        # Automatically quit printer app once the print jobs complete
+        # "com.apple.print.PrintingPrefs Quit When Finished" = true;
+
+        # Display ASCII control characters using caret notation in standard text views
+        # Try e.g. `cd /tmp; unidecode "\x{0000}" > cc.txt; open -e cc.txt`
+        "NSTextShowsControlCharacters" =  true;
+
+
+        # Expand save panel by default
+        NSNavPanelExpandedStateForSaveMode= true;
+        NSNavPanelExpandedStateForSaveMode2= true;
+
+      #   # Top right screen corner → Desktop
+      # "com.apple.dock".wvous-tr-corner = 4;
+      # "com.apple.dock".wvous-tr-modifier = 0;
+
       };
 
       dock = {
@@ -81,7 +105,7 @@ let user = "josh"; in
         show-recents = false;
         launchanim = true;
         orientation = "left";
-        tilesize = 32;
+        tilesize = 36;
       };
 
       finder = {
@@ -92,6 +116,8 @@ let user = "josh"; in
         Clicking = true;
         TrackpadThreeFingerDrag = true;
       };
+
+
     };
 
     keyboard = {
