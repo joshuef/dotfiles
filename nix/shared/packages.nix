@@ -22,6 +22,7 @@ with pkgs; [
   du-dust
   git-filter-repo
   diff-so-fancy
+  huniq
   just
   killall
   mosh

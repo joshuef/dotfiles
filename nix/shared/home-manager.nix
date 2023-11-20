@@ -474,8 +474,14 @@ let name = "Josh Wilson";
           Hostname github.com
           IdentitiesOnly yes
 
-        IdentityFile ~/.ssh/github_rsa
-        IdentityFile ~/.ssh/sharing_rsa
+        # IdentityFile ~/.ssh/github_rsa
+
+        ## Download these to ~/.ssh before we can use them
+        Host github.com
+          IdentityFile ~/.ssh/github_rsa.pub
+          IdentitiesOnly yes
+
+        # IdentityFile ~/.ssh/sharing_rsa
 
         Host *
             ControlMaster auto
@@ -484,14 +490,14 @@ let name = "Josh Wilson";
         Include ~/.orbstack/ssh/config
 
       ''
-      (lib.mkIf pkgs.stdenv.hostPlatform.isLinux
-        ''
-          IdentityFile /home/${user}/.ssh/github_rsa
-        '')
-      (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin
-        ''
-          IdentityFile /Users/${user}/.ssh/github_rsa
-        '')
+      # (lib.mkIf pkgs.stdenv.hostPlatform.isLinux
+      #   ''
+      #     IdentityFile /home/${user}/.ssh/github_rsa
+      #   '')
+      # (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin
+      #   ''
+      #     IdentityFile /Users/${user}/.ssh/github_rsa
+      #   '')
     ];
   };
 

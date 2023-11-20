@@ -26,7 +26,8 @@
 
   # Productivity Tools
   "raycast"
-
+  "mullvadvpn"
+  "transmission"
   # Browsers
   "google-chrome"
   "firefox"
