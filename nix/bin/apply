@@ -105,3 +105,5 @@ find . -type f -exec bash -c 'replace_tokens "$0"' {} \;
 
 echo $USERNAME > /tmp/username.txt
 _print "${GREEN}User, name, and email tokens have been replaced in all files.${NC}"
+
+

@@ -481,7 +481,7 @@ let name = "Josh Wilson";
           IdentityFile ~/.ssh/github_rsa.pub
           IdentitiesOnly yes
 
-        # IdentityFile ~/.ssh/sharing_rsa
+        IdentityFile ~/.ssh/sharing_rsa.pub
 
         Host *
             ControlMaster auto

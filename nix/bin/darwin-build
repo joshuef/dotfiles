@@ -33,4 +33,10 @@ echo "${GREEN}Switching to new generation...${CLEAR}"
 echo "${GREEN}Cleaning up...${CLEAR}"
 unlink ./result
 
+
+echo "${GREEN}Adding lld for rust to cargo config${CLEAR}"
+
+echo "[target.aarch64-apple-darwin]\nrustflags = [ \"-C\", \"link-arg=-fuse-ld=/Users/josh/.nix-profile/bin/ld64.lld\", ]" > ~/.cargo/config.toml
+
+
 echo "${GREEN}Done${CLEAR}"
