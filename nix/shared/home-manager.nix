@@ -35,7 +35,6 @@ let name = "Josh Wilson";
       { name = "plugins/H-S-MW";             tags = [from:oh-my-zsh]; }
       { name = "plugins/zsh-syntax-highlighting";  tags = [from:oh-my-zsh]; }
       { name = "plugins/zsh-autosuggestions";      tags = [from:oh-my-zsh]; }
-      # { name = "plugins/zsh-history-search-multi-word";  tags = [from:oh-my-zsh];  }
       { name = "plugins/direnv";            tags = [from:oh-my-zsh]; }
       # { name = "plugins/pass";              tags = [from:oh-my-zsh]; }
       { name = "plugins/rsync";             tags = [from:oh-my-zsh]; }
@@ -197,8 +196,8 @@ let name = "Josh Wilson";
 
     # Use the text that has already been typed as the prefix for searching through
     # commands (basically more intelligent Up/Down behavior)
-    bindkey '\e[B' history-search-forward
-    bindkey '\e[A' history-search-backward
+    bindkey '\e[B' history-beginning-search-forward
+    bindkey '\e[A' history-beginning-search-backward
 
     # ctrl left, ctrl right for moving on the readline by word
     bindkey '\e[1;5C' forward-word
