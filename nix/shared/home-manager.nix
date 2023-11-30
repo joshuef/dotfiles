@@ -265,6 +265,21 @@ let name = "Josh Wilson";
     ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
     alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
 
+
+    # ripgrap all and fzf for search across many file types for strings
+    rgfz() {
+      RG_PREFIX="rga --files-with-matches"
+      local file
+      file="$(
+        FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
+          fzf --sort --preview="[[ ! -z {} ]] && rga --pretty --context 5 {q} {}" \
+            --phony -q "$1" \
+            --bind "change:reload:$RG_PREFIX {q}" \
+            --preview-window="70%:wrap"
+      )" &&
+      echo "opening $file" &&
+      xdg-open "$file"
+    }
   '';
 
   git = {
