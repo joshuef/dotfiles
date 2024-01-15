@@ -113,4 +113,5 @@ with pkgs; [
 
   # lld linker for rust
   lld_16
+  wasm-pack
 ]

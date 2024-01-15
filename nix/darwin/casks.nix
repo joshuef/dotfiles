@@ -31,4 +31,5 @@
   # Browsers
   "google-chrome"
   "firefox"
+
 ]

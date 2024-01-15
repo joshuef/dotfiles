@@ -12,4 +12,6 @@ shared-packages ++ [
   # transmit
   fnm
   rectangle
+  unar
+
 ]
