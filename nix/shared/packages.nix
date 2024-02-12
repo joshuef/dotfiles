@@ -99,12 +99,13 @@ with pkgs; [
   neovim
   ripgrep
   tree
-  tmux
+  # tmux
   unrar
   unzip
   zsh-powerlevel10k
   zsh-z
   slack
+  rm-improved
 
   # Python packages
   python311

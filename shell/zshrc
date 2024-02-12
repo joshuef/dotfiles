@@ -331,7 +331,7 @@ pkg_verify() {
 
 
 
-function workit { mosh --no-init --ssh="ssh -o StrictHostKeyChecking=no -i ~/.ssh/workstation_rsa -p 22" root@$WORKSTATION_IP -- tmux new-session -ADs main }
+# function workit { mosh --no-init --ssh="ssh -o StrictHostKeyChecking=no -i ~/.ssh/workstation_rsa -p 22" root@$WORKSTATION_IP -- tmux new-session -ADs main }
 
 
 
