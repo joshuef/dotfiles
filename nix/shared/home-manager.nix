@@ -109,6 +109,7 @@ let name = "Josh Wilson";
     export PATH=$HOME/.npm-packages/bin:$HOME/bin:$PATH
     export PATH=$HOME/.local/share/bin:$PATH
     export PATH=$HOME/.local/bin:$PATH
+    export PATH=$HOME/.cargo/bin:$PATH
     export PNPM_HOME=~/.pnpm-packages
 
     # Remove history data we don't want to see

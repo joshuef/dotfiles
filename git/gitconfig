@@ -102,6 +102,10 @@
         # Submodules
         subpl = submodule update --init --recursive
 
+        # Repository Setup
+        # Add a new remote of the github user to the current repository
+        addr = "!f() { git remote add -f $1 git@github.com:$1/$(basename -s .git `git config --get remote.origin.url`).git; }; f"
+
         # Git flow
         new = !git pull origin develop && git flow feature start
         done = !git pull origin develop && git flow feature finish "$(git symbolic-ref --short HEAD | sed -n 's/^feature\\///p')"
