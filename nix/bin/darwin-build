@@ -36,7 +36,8 @@ unlink ./result
 
 echo "${GREEN}Adding lld for rust to cargo config${CLEAR}"
 
-echo "[target.aarch64-apple-darwin]\nrustflags = [ \"-C\", \"link-arg=-fuse-ld=/Users/josh/.nix-profile/bin/ld64.lld\", ]" > ~/.cargo/config.toml
+# echo "[target.aarch64-apple-darwin]\nrustflags = [ \"-C\", \"link-arg=-fuse-ld=mold\", \"-C\", \"strip=debuginfo\",\"-C\", \"debuginfo=0\" ]" > ~/.cargo/config.toml
+echo "[target.aarch64-apple-darwin]\nrustflags = [ \"-C\", \"link-arg=-fuse-ld=/Users/josh/.nix-profile/bin/ld64.lld\", \"-C\", \"strip=debuginfo\",\"-C\", \"debuginfo=0\" ]" > ~/.cargo/config.toml
 
 
 echo "${GREEN}Done${CLEAR}"

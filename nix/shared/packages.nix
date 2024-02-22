@@ -115,4 +115,7 @@ with pkgs; [
   # lld linker for rust
   lld_16
   wasm-pack
+  cmake
+  # # mold linker potentially for rust...
+  # mold-wrapped
 ]
