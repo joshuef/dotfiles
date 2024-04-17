@@ -4,6 +4,7 @@
   # Development Tools
   "visual-studio-code"
   "cursor"
+  # "zed"
   "adguard"
   "orbstack"
   "iterm2"

@@ -66,7 +66,7 @@ in
     { path = "/Applications/Slack.app/"; }
     { path = "/Applications/Firefox.app/"; }
     # { path = "/Applications/Safari.app/"; }
-    { path = "/Applications/Cursor.app/"; }
+    { path = "/Applications/Zed.app/"; }
     # { path = "/System/Applications/Messages.app/"; }
     { path = "/System/Cryptexes/App/System/Applications/Safari.app"; }
     # { path = "/System/Applications/Facetime.app/"; }
