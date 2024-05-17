@@ -21,6 +21,7 @@ with pkgs; [
   direnv
   du-dust
   git-filter-repo
+  github-copilot-cli
   diff-so-fancy
   huniq
   just
@@ -40,6 +41,7 @@ with pkgs; [
   yarn
   zip
   zsh
+  yq
 
   # Encryption and security tools
   # _1password
