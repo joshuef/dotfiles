@@ -153,6 +153,13 @@ let name = "Josh Wilson";
     # Always color ls and group directories
     alias ls='ls --color=auto'
 
+    # Ssh via jumpbox on DO
+    ssj() {
+        local jumpbox_ip=$JUMPBOX_IP
+        local target_ip="$1"
+        ssh -A -J root@$jumpbox_ip root@$target_ip
+    }
+
 
     #   -----------------------------
     #   2.  MAKE TERMINAL BETTER

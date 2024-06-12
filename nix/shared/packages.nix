@@ -21,7 +21,6 @@ with pkgs; [
   direnv
   du-dust
   git-filter-repo
-  github-copilot-cli
   diff-so-fancy
   huniq
   just
