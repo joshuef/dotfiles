@@ -160,6 +160,16 @@ let name = "Josh Wilson";
         ssh -A -J root@$jumpbox_ip root@$target_ip
     }
 
+    # Rsync via jumpbox on DO
+    rj() {
+        local jumpbox_ip=$JUMPBOX_IP
+        local target_ip="$1"
+        local remote_path="$2"
+        local local_path="$3"
+
+        rsync -avz -e "ssh -A -J root@$jumpbox_ip" root@$target_ip:$remote_path $local_path
+    }
+
 
     #   -----------------------------
     #   2.  MAKE TERMINAL BETTER
