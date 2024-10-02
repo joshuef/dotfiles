@@ -25,12 +25,14 @@ with pkgs; [
   huniq
   just
   killall
+  cloc
   mosh
   neofetch
   ncdu
   openssh
   pandoc
   parallel
+  powershell
   protobuf
   rustup
   sqlite

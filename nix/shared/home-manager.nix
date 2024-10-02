@@ -167,7 +167,8 @@ let name = "Josh Wilson";
         local remote_path="$2"
         local local_path="$3"
 
-        rsync -avz -e "ssh -A -J root@$jumpbox_ip" root@$target_ip:$remote_path $local_path
+        rsync -avz --include="$include_glob" --exclude="*.gz" -e "ssh -A -J root@$jumpbox_ip" root@$target_ip:$remote_path $local_path
+
     }
 
 
