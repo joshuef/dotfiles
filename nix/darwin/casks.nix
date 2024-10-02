@@ -15,7 +15,7 @@
   "utm"
   "slack"
   "zoom"
-  "rectangle-pro"
+  # "rectangle-pro"
 
   # Utility Tools
   "appcleaner"

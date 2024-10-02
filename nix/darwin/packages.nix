@@ -13,5 +13,6 @@ shared-packages ++ [
   fnm
   rectangle
   unar
+  libusb
 
 ]
