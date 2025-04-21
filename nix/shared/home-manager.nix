@@ -9,7 +9,7 @@ let name = "Josh Wilson";
   zoxide = {    enable = true;  };
   # Shared shell configuration
   zsh.enable = true;
-  zsh.enableAutosuggestions = true;
+  zsh.autosuggestion.enable = true;
   zsh.syntaxHighlighting.enable = true;
   zsh.autocd = false;
   # zsh.oh-my-zsh = {
