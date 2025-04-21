@@ -10,15 +10,13 @@ let user = "josh"; in
   ];
 
   # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
 
   # Setup user, packages, programs
   nix = {
-    package = pkgs.nixUnstable;
+    package = pkgs.nixVersions.latest;
     settings.trusted-users = [ "@admin" "${user}" ];
 
     gc = {
-      user = "root";
       automatic = true;
       interval = { Weekday = 0; Hour = 2; Minute = 0; };
       options = "--delete-older-than 30d";
@@ -37,9 +35,6 @@ let user = "josh"; in
   environment.systemPackages = with pkgs; [
     # emacs-unstable
   ] ++ (import ../shared/packages.nix { inherit pkgs; });
-
-  # Enable fonts dir
-  fonts.fontDir.enable = true;
 
   # launchd.user.agents.emacs.path = [ config.environment.systemPath ];
   # launchd.user.agents.emacs.serviceConfig = {

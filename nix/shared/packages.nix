@@ -49,24 +49,25 @@ with pkgs; [
   age
   age-plugin-yubikey
   gnupg
-  libfido2
-  pinentry
+  # libfido2
+  # pinentry-all
+  # pinentry
   yubikey-manager
 
   # Cloud-related tools and SDKs
   docker
   docker-compose
-  awscli2
-  cloudflared
-  flyctl
-  google-cloud-sdk
-  go
-  gopls
-  ngrok
-  ssm-session-manager-plugin
+  # awscli2
+  # cloudflared
+  # flyctl
+  # google-cloud-sdk
+  # go
+  # gopls
+  # ngrok
+  # ssm-session-manager-plugin
   terraform
   terraform-ls
-  tflint
+  # tflint
   transmission
   slack
   # heaptrack
@@ -96,7 +97,7 @@ with pkgs; [
 
   # Text and terminal utilities
   htop
-  hunspell
+  # hunspell
   iftop
   jq
   neovim
@@ -107,7 +108,7 @@ with pkgs; [
   unzip
   zsh-powerlevel10k
   zsh-z
-  slack
+  # slack
   rm-improved
 
   imagemagick
@@ -123,4 +124,8 @@ with pkgs; [
   cmake
   # # mold linker potentially for rust...
   # mold-wrapped
+  # libdrm
+  # qtwayland
+  # valgrind
+  # pinentry-all
 ]

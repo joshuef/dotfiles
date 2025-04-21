@@ -21,6 +21,13 @@ in
                       pathExists (path + ("/" + n + "/default.nix")))
                   (attrNames (readDir path)))
 
-      ;
+      ++ [
+        (self: super: {
+          valgrind = null;
+          libdrm = null;
+          qtwayland = null;
+          pinentry_all = null;
+        })
+      ];
   };
 }

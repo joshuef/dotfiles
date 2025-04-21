@@ -40,6 +40,8 @@ in
     "Ulysses" = 1225570693;
   };
 
+  #comment
+
   # Enable home-manager
   home-manager = {
     useGlobalPkgs = true;
