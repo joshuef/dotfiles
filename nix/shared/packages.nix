@@ -110,6 +110,8 @@ with pkgs; [
   slack
   rm-improved
 
+  imagemagick
+
   # Python packages
   python311
   python311Packages.virtualenv
