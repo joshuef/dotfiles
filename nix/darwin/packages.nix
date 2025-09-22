@@ -14,5 +14,5 @@ shared-packages ++ [
   rectangle
   unar
   libusb1
-
+  cocoapods
 ]
