@@ -85,6 +85,7 @@ with pkgs; [
   meslo-lgs-nf
 
   # Node.js development tools
+  bun
   fzf
   nodePackages.live-server
   nodePackages.nodemon
