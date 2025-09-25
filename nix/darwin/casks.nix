@@ -13,7 +13,7 @@
   # Communication Tools
   "loom"
   "utm"
-  "slack"
+  # "slack"
   "zoom"
   # "rectangle-pro"
 
