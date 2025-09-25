@@ -31,6 +31,9 @@ let user = "josh"; in
   # Turn off NIX_PATH warnings now that we're using flakes
   system.checks.verifyNixPath = false;
 
+  # Fix nixbld group GID mismatch
+  ids.gids.nixbld = 350;
+
   # Load configuration that is shared across systems
   environment.systemPackages = with pkgs; [
     # emacs-unstable
