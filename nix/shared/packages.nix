@@ -95,6 +95,7 @@ with pkgs; [
 
   # Source code management, Git, GitHub tools
   gh
+  git-secrets
 
   # Text and terminal utilities
   htop
