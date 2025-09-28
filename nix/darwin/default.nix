@@ -9,6 +9,32 @@ let user = "josh"; in
     ../shared/cachix
   ];
 
+  nixpkgs.overlays = [
+    (final: prev: {
+      applesimutils = prev.stdenv.mkDerivation rec {
+        pname = "applesimutils";
+        version = "0.9.6";
+
+        src = prev.fetchurl {
+          url = "https://github.com/wix/AppleSimulatorUtils/releases/download/${version}/applesimutils-${version}.tar.gz";
+          sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+        };
+
+        installPhase = ''
+          mkdir -p $out/bin
+          cp -r bin/* $out/bin/
+        '';
+
+        meta = with prev.lib; {
+          description = "A collection of command-line utils for Apple simulators";
+          homepage = "https://github.com/wix/AppleSimulatorUtils";
+          license = licenses.mit;
+          platforms = platforms.darwin;
+        };
+      };
+    })
+  ];
+
   # Auto upgrade nix package and the daemon service.
 
   # Setup user, packages, programs
@@ -53,6 +79,7 @@ let user = "josh"; in
 
   system = {
     stateVersion = 4;
+    primaryUser = user;
 
     defaults = {
       LaunchServices = {

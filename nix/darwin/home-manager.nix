@@ -24,8 +24,10 @@ in
   };
 
   homebrew.enable = true;
-  homebrew.taps = [ "wix/brew" ];
-  homebrew.brews = [ "wix/brew/applesimutils" ];
+  homebrew.brews = [
+    "node"
+    "npm"
+  ];
   homebrew.casks = pkgs.callPackage ./casks.nix {};
 
   # These app IDs are from using the mas CLI app

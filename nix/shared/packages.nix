@@ -87,11 +87,11 @@ with pkgs; [
   # Node.js development tools
   bun
   fzf
-  nodePackages.live-server
-  nodePackages.nodemon
-  nodePackages.prettier
-  nodePackages.npm
-  nodejs
+  # nodePackages.live-server
+  # nodePackages.nodemon
+  # nodePackages.prettier
+  # nodePackages.npm
+  # nodejs
 
   # Source code management, Git, GitHub tools
   gh
@@ -121,7 +121,7 @@ with pkgs; [
   python311Packages.pipx
 
   # lld linker for rust
-  lld_16
+  lld
   wasm-pack
   cmake
   # # mold linker potentially for rust...
