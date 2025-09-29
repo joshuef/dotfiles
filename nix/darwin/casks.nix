@@ -1,6 +1,7 @@
 {}:
 
 [
+  "microsoft-openjdk@17"
   # Development Tools
   "visual-studio-code"
   "cursor"
