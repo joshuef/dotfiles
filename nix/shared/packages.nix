@@ -68,7 +68,7 @@ with pkgs; [
   terraform
   terraform-ls
   # tflint
-  transmission
+  transmission_3
   # slack
   # heaptrack
 

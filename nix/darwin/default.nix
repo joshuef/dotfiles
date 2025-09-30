@@ -32,6 +32,36 @@ let user = "josh"; in
           platforms = platforms.darwin;
         };
       };
+
+      maestro = prev.stdenv.mkDerivation rec {
+        pname = "maestro";
+        version = "2.0.3";
+
+        src = prev.fetchurl {
+          url = "https://github.com/mobile-dev-inc/maestro/releases/download/cli-${version}/maestro.zip";
+          sha256 = "1r1mvr6l0gdhslzbz5ain16wk7yzrc359ks35j7yqm2jxi55qpi7";
+        };
+
+        nativeBuildInputs = [ prev.unzip ];
+
+        unpackPhase = ''
+          unzip $src
+        '';
+
+        installPhase = ''
+          mkdir -p $out/bin $out/lib
+          cp -r maestro/bin/* $out/bin/
+          cp -r maestro/lib/* $out/lib/
+          chmod +x $out/bin/*
+        '';
+
+        meta = with prev.lib; {
+          description = "Painless Mobile UI Automation";
+          homepage = "https://maestro.mobile.dev";
+          license = licenses.asl20;
+          platforms = platforms.darwin;
+        };
+      };
     })
   ];
 

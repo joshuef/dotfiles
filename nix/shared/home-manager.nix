@@ -71,7 +71,7 @@ let name = "Josh Wilson";
         file = "p10k.zsh";
     }
   ];
-  zsh.initExtraFirst = ''
+  zsh.initExtra = lib.mkBefore ''
     if [[ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
       . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
       . /nix/var/nix/profiles/default/etc/profile.d/nix.sh
@@ -110,6 +110,7 @@ let name = "Josh Wilson";
     export PATH=$HOME/.local/share/bin:$PATH
     export PATH=$HOME/.local/bin:$PATH
     export PATH=$HOME/.cargo/bin:$PATH
+    export PATH=$HOME/.maestro/bin:$PATH
     export PNPM_HOME=~/.pnpm-packages
 
     # Remove history data we don't want to see
