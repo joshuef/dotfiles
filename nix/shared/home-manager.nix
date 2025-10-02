@@ -305,7 +305,7 @@ let name = "Josh Wilson";
 
   git = {
     enable = true;
-    ignores = [ "*.swp" ];
+    ignores = [ "*.swp" ".envrc" ];
     userName = name;
     userEmail = email;
     lfs = {
@@ -316,6 +316,7 @@ let name = "Josh Wilson";
       core = {
 	    editor = "nvim";
         autocrlf = "input";
+        excludesfile = "~/.gitignore_global";
       };
       pull.rebase = true;
       rebase.autoStash = true;
