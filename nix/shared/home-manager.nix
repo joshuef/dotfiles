@@ -113,6 +113,7 @@ let name = "Josh Wilson";
     export PATH=$HOME/.maestro/bin:$PATH
     export PNPM_HOME=~/.pnpm-packages
     export PATH=$HOME/.bun/bin:$PATH
+    export PATH="/Applications/Antigravity.app/Contents/Resources/app/bin:$PATH"
 
     # Remove history data we don't want to see
     export HISTIGNORE="pwd:ls:cd"
@@ -161,6 +162,8 @@ let name = "Josh Wilson";
         local target_ip="$1"
         ssh -A -J root@$jumpbox_ip root@$target_ip
     }
+
+    alias agy="antigravity"
 
     # Rsync via jumpbox on DO
     rj() {

@@ -428,3 +428,5 @@ zinit light-mode for \
 
 # nice history search
 zinit load zdharma-continuum/history-search-multi-word
+export PATH="/Applications/Antigravity.app/Contents/Resources/app/bin:$PATH"
+alias agy="antigravity"
