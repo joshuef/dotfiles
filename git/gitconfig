@@ -236,7 +236,7 @@
 
 [core]
 	# editor = nano
-	editor = nvim
+	editor = vi
   abbrev = 12
   attributesfile = ~/.gitattributes
 	excludesfile = /Users/josh/.gitignore_global
@@ -321,8 +321,6 @@
 	autosetuprebase = always
 [diff "nodiff"]
 	command = echo
-[commit]
-	template = /Users/josh/.gitmessage
 [secrets]
 	providers = git secrets --aws-provider
 	patterns = (A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}

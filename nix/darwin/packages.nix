@@ -9,6 +9,7 @@ shared-packages ++ [
   # warp
   findutils
   coreutils
+  git-lfs
   # iterm2
   # utm
   # transmit

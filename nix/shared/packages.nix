@@ -23,6 +23,7 @@ with pkgs; [
   git-filter-repo
   diff-so-fancy
   huniq
+  fastlane
   just
   killall
   cloc

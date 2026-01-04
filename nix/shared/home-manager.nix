@@ -112,6 +112,7 @@ let name = "Josh Wilson";
     export PATH=$HOME/.cargo/bin:$PATH
     export PATH=$HOME/.maestro/bin:$PATH
     export PNPM_HOME=~/.pnpm-packages
+    export PATH=$HOME/.bun/bin:$PATH
 
     # Remove history data we don't want to see
     export HISTIGNORE="pwd:ls:cd"
@@ -146,7 +147,7 @@ let name = "Josh Wilson";
     alias px=pnpx
 
     # Cursor/code setup
-    alias code=cursor
+    # alias code=cursor
 
     # Use difftastic, syntax-aware diffing
     alias diff=difft
