@@ -458,10 +458,13 @@ let name = "Josh Wilson";
       lrb = "!f() { remote=\"\${1:-origin}\"; git ls-remote --heads \"$remote\"; }; f";
 
       # Merge GitHub pull request
-      mpr = "!f() { declare currentBranch=\"$(git symbolic-ref --short HEAD)\"; declare branch=\"\${2:-$currentBranch}\"; if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then git fetch origin refs/pull/$1/head:pr/$1 && git checkout -B $branch && git rebase $branch pr/$1 && git checkout -B $branch && git merge pr/$1 && git branch -D pr/$1 && git commit --amend -m \"$(git log -1 --pretty=%B)\n\nClose #$1\"; fi }; f";
+      mpr = "!f() { declare currentBranch=\"$(git symbolic-ref --short HEAD)\"; declare branch=\"\${2:-$currentBranch}\"; if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then git fetch origin refs/pull/$1/head:pr/$1 && git checkout -B $branch && git rebase $branch pr/$1 && git checkout -B $branch && git merge pr/$1 && git branch -D pr/$1 && git commit --amend -m \"$(printf \"%s\\\\\\\\n\\\\\\\\nClose #%s\" \"$(git log -1 --pretty=%B)\" \"$1\")\"; fi }; f";
 
       # Retag
       retag = "!f() { git tag -d \"$1\" &> /dev/null; git tag $1; }; f";
+
+      # Purge from history
+      purge = "!f() { git filter-repo --path \"$1\" --invert-paths --force; }; f";
     };
     
     extraConfig = {

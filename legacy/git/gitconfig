@@ -186,7 +186,7 @@
           git checkout -B $branch && \
           git merge pr/$1 && \
           git branch -D pr/$1 && \
-          git commit --amend -m \"$(git log -1 --pretty=%B)\n\nClose #$1\"; \
+          git commit --amend -m \"$(printf \"%s\\\\n\\\\nClose #%s\" \"$(git log -1 --pretty=%B)\" \"$1\")\"; \
       fi \
   }; f"
 
@@ -195,10 +195,12 @@
   # Remove the tag with the specified tag name if
   # exists and tag the latest commit with that name
 
-  retag = "!f() { \
-      git tag -d "$1" &> /dev/null; \
-      git tag $1; \
-  }; f"
+      retag = "!f() { \
+          git tag -d "$1" &> /dev/null; \
+          git tag $1; \
+      }; f"
+  
+      purge = "!f() { git filter-repo --path \"$1\" --invert-paths --force; }; f"
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
