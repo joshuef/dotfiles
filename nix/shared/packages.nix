@@ -2,12 +2,7 @@
 with pkgs; [
   # General packages for development and system management
   act
-    (import (builtins.fetchTree {
-      type = "github";
-      owner = "NixOS";
-      repo = "nixpkgs";
-      rev = "13606dcd4639a04891eef831a022b0ab8e815b38";
-    }) { system = pkgs.system; }).ansible
+  ansible
   # ansible
   # awscli
   aspell
@@ -19,7 +14,7 @@ with pkgs; [
   difftastic
   doctl
   direnv
-  du-dust
+  dust
   git-filter-repo
   diff-so-fancy
   huniq
@@ -69,7 +64,7 @@ with pkgs; [
   terraform
   terraform-ls
   # tflint
-  transmission_3
+  # transmission_4
   # slack
   # heaptrack
 
@@ -82,7 +77,7 @@ with pkgs; [
   glow
   hack-font
   noto-fonts
-  noto-fonts-emoji
+  noto-fonts-color-emoji
   meslo-lgs-nf
 
   # Node.js development tools

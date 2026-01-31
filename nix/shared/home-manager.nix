@@ -310,164 +310,162 @@ let name = "Josh Wilson";
   git = {
     enable = true;
     ignores = [ "*.swp" ".envrc" ".DS_Store" ];
-    userName = name;
-    userEmail = email;
     lfs.enable = true;
+    settings = {
+      user.name = name;
+      user.email = email;
+      alias = {
+        # Staging
+        a = "add";
+        aa = "add --all";
 
-    aliases = {
-      # Staging
-      a = "add";
-      aa = "add --all";
+        # Branch
+        branch-name = "rev-parse --abbrev-ref HEAD";
+        branch-diff = "diff main...HEAD";
+        branch-files = "!git diff main...HEAD --name-status | sed '/^D/d ; s/^.\\s\\+//'";
 
-      # Branch
-      branch-name = "rev-parse --abbrev-ref HEAD";
-      branch-diff = "diff main...HEAD";
-      branch-files = "!git diff main...HEAD --name-status | sed '/^D/d ; s/^.\\s\\+//'";
+        # br = branch
+        # Sorts by recent branches
+        br = "!r() { refbranch=$1 count=$2; git for-each-ref --sort=-committerdate refs/heads --format='%(refname:short)|%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)%(color:reset)' --color=always --count=\${count:-20} | while read line; do branch=$(echo \"$line\" | awk 'BEGIN { FS = \"|\" }; { print $1 }' | tr -d '*'); ahead=$(git rev-list --count \"\${refbranch:-origin/main}..\${branch}\"); behind=$(git rev-list --count \"\${branch}..\${refbranch:-origin/main}\"); colorline=$(echo \"$line\" | sed 's/^[^|]*|//'); echo \"$ahead|$behind|$colorline\" | awk -F'|' -vOFS='|' '{$5=substr($5,1,70)}1' ; done | ( echo \"ahead|behind||branch|lastcommit|message\\n\" && cat) | column -ts'|';}; r";
+        brold = "!r() { count=$1; git for-each-ref --sort=committerdate refs/heads --format='%(refname:short)|%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)%(color:reset)' --color=always --count=\${count:-20} | while read line; do branch=$(echo \"$line\" | awk 'BEGIN { FS = \"|\" }; { print $1 }' | tr -d '*'); ahead=$(git rev-list --count \"\${origin/main}..\${branch}\"); behind=$(git rev-list --count \"\${branch}..\${origin/main}\"); colorline=$(echo \"$line\" | sed 's/^[^|]*|//'); echo \"$ahead|$behind|$colorline\" | awk -F'|' -vOFS='|' '{$5=substr($5,1,70)}1' ; done | ( echo \"ahead|behind||branch|lastcommit|message\\n\" && cat) | column -ts'|';}; r";
 
-      # br = branch
-      # Sorts by recent branches
-      br = "!r() { refbranch=$1 count=$2; git for-each-ref --sort=-committerdate refs/heads --format='%(refname:short)|%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)%(color:reset)' --color=always --count=\${count:-20} | while read line; do branch=$(echo \"$line\" | awk 'BEGIN { FS = \"|\" }; { print $1 }' | tr -d '*'); ahead=$(git rev-list --count \"\${refbranch:-origin/main}..\${branch}\"); behind=$(git rev-list --count \"\${branch}..\${refbranch:-origin/main}\"); colorline=$(echo \"$line\" | sed 's/^[^|]*|//'); echo \"$ahead|$behind|$colorline\" | awk -F'|' -vOFS='|' '{$5=substr($5,1,70)}1' ; done | ( echo \"ahead|behind||branch|lastcommit|message\\n\" && cat) | column -ts'|';}; r";
-      brold = "!r() { count=$1; git for-each-ref --sort=committerdate refs/heads --format='%(refname:short)|%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)%(color:reset)' --color=always --count=\${count:-20} | while read line; do branch=$(echo \"$line\" | awk 'BEGIN { FS = \"|\" }; { print $1 }' | tr -d '*'); ahead=$(git rev-list --count \"\${origin/main}..\${branch}\"); behind=$(git rev-list --count \"\${branch}..\${origin/main}\"); colorline=$(echo \"$line\" | sed 's/^[^|]*|//'); echo \"$ahead|$behind|$colorline\" | awk -F'|' -vOFS='|' '{$5=substr($5,1,70)}1' ; done | ( echo \"ahead|behind||branch|lastcommit|message\\n\" && cat) | column -ts'|';}; r";
+        # Commit
+        c = "commit";
+        ca = "commit -a";
+        cm = "commit -m";
+        cn = "commit --no-verify -m";
+        cal = "!git add -A && git commit";
+        cam = "commit -am";
+        cne = "commit --no-edit";
+        amend = "commit --amend";
+        amend-all = "!git add --all && git commit --amend --reuse-message=HEAD";
 
-      # Commit
-      c = "commit";
-      ca = "commit -a";
-      cm = "commit -m";
-      cn = "commit --no-verify -m";
-      cal = "!git add -A && git commit";
-      cam = "commit -am";
-      cne = "commit --no-edit";
-      amend = "commit --amend";
-      amend-all = "!git add --all && git commit --amend --reuse-message=HEAD";
+        # Clone
+        cl = "clone";
+        sclone = "clone --depth=1";
 
-      # Clone
-      cl = "clone";
-      sclone = "clone --depth=1";
+        # Checkout
+        co = "checkout";
+        cb = "checkout -b";
 
-      # Checkout
-      co = "checkout";
-      cb = "checkout -b";
+        # Cherry-pick
+        cp = "cherry-pick";
 
-      # Cherry-pick
-      cp = "cherry-pick";
+        # Diff
+        d = "diff --color-words";
+        dc = "diff --cached";
+        df = "!\"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat\"";
 
-      # Diff
-      d = "diff --color-words";
-      dc = "diff --cached";
-      df = "!\"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat\"";
+        # Fix Conflicts
+        fc = "!\"git diff --name-only | uniq | xargs nvim\"";
 
-      # Fix Conflicts
-      fc = "!\"git diff --name-only | uniq | xargs nvim\"";
+        # Merge
+        m = "merge";
 
-      # Merge
-      m = "merge";
+        # Pull
+        up = "pull";
+        plom = "pull origin main";
+        plum = "pull upstream main";
+        pluum = "pull upstream master";
+        preb = "!git fetch upstream && git rebase upstream/main";
 
-      # Pull
-      up = "pull";
-      plom = "pull origin main";
-      plum = "pull upstream main";
-      pluum = "pull upstream master";
-      preb = "!git fetch upstream && git rebase upstream/main";
+        # Push
+        p = "push";
+        pom = "push origin main";
+        poh = "push origin head";
 
-      # Push
-      p = "push";
-      pom = "push origin main";
-      poh = "push origin head";
+        # Pulls functions
+        pum = "!f() { git co main; git pull upstream main; }; f";
+        pud = "!f() { echo \"Were not using dev branch anywhere just now...\" }; f";
 
-      # Pulls functions
-      pum = "!f() { git co main; git pull upstream main; }; f";
-      pud = "!f() { echo \"Were not using dev branch anywhere just now...\" }; f";
+        # PRs
+        pro = "!f() { git co main; git clean-branch origin-$1; git fetch origin pull/$1/head:PR-origin-$1; git co PR-origin-$1; }; f";
+        pru = "!f() { git co main; git clean-branch upstream-$1; git fetch upstream pull/$1/head:PR-upstream-$1; git co PR-upstream-$1; }; f";
+        pruu = "!f() { git co master; git clean-branch upstream-$1; git fetch upstream pull/$1/head:PR-upstream-$1; git co PR-upstream-$1; }; f";
 
-      # PRs
-      pro = "!f() { git co main; git clean-branch origin-$1; git fetch origin pull/$1/head:PR-origin-$1; git co PR-origin-$1; }; f";
-      pru = "!f() { git co main; git clean-branch upstream-$1; git fetch upstream pull/$1/head:PR-upstream-$1; git co PR-upstream-$1; }; f";
-      pruu = "!f() { git co master; git clean-branch upstream-$1; git fetch upstream pull/$1/head:PR-upstream-$1; git co PR-upstream-$1; }; f";
+        # Stash
+        st = "stash";
+        stp = "stash pop";
 
-      # Stash
-      st = "stash";
-      stp = "stash pop";
+        # Status/Logging
+        s = "status";
+        ss = "status -sb";
+        hist = "log --graph --pretty=custom";
+        l = "log --pretty=custom";
+        ll = "log --stat --abbrev-commit";
+        lc = "shortlog --summary --numbered";
 
-      # Status/Logging
-      s = "status";
-      ss = "status -sb";
-      hist = "log --graph --pretty=custom";
-      l = "log --pretty=custom";
-      ll = "log --stat --abbrev-commit";
-      lc = "shortlog --summary --numbered";
+        # Reset
+        unstage = "reset HEAD --";
+        undo = "reset --soft HEAD~1";
+        reset = "reset --hard HEAD~1";
 
-      # Reset
-      unstage = "reset HEAD --";
-      undo = "reset --soft HEAD~1";
-      reset = "reset --hard HEAD~1";
+        # Tag pushing
+        put = "!f() { git push upstream --no-verify; git tag $1; git push upstream --no-verify $1; }; f";
 
-      # Tag pushing
-      put = "!f() { git push upstream --no-verify; git tag $1; git push upstream --no-verify $1; }; f";
+        # Remote
+        r = "remote -v";
 
-      # Remote
-      r = "remote -v";
+        # Rebase
+        ri = "rebase -i";
+        fix = "!f() { git commit --fixup \${1:-HEAD}; GIT_SEQUENCE_EDITOR=: git rebase -i --autosquash; }; f";
+        fixall = "!f() { git add --all; git commit --fixup \${1:-HEAD}; GIT_SEQUENCE_EDITOR=: git rebase -i --autosquash; }; f";
 
-      # Rebase
-      ri = "rebase -i";
-      fix = "!f() { git commit --fixup \${1:-HEAD}; GIT_SEQUENCE_EDITOR=: git rebase -i --autosquash; }; f";
-      fixall = "!f() { git add --all; git commit --fixup \${1:-HEAD}; GIT_SEQUENCE_EDITOR=: git rebase -i --autosquash; }; f";
+        # Submodules
+        subpl = "submodule update --init --recursive";
 
-      # Submodules
-      subpl = "submodule update --init --recursive";
+        # Repository Setup
+        addr = "!f() { git remote add -f $1 git@github.com:$1/$(basename -s .git `git config --get remote.origin.url`).git; }; f";
 
-      # Repository Setup
-      addr = "!f() { git remote add -f $1 git@github.com:$1/$(basename -s .git `git config --get remote.origin.url`).git; }; f";
+        # Git flow
+        new = "!git pull origin develop && git flow feature start";
+        done = "!git pull origin develop && git flow feature finish \"$(git symbolic-ref --short HEAD | sed -n 's/^feature\\///p')\"";
+        go = "!git checkout $1 && pull";
+        master = "!git checkout master && pull";
+        main = "!git checkout main && pull";
+        develop = "!git checkout develop && pull";
+        mmm = "!git fetch origin main && git rebase origin/main";
+        ddd = "!git fetch origin develop && git rebase origin/develop";
 
-      # Git flow
-      new = "!git pull origin develop && git flow feature start";
-      done = "!git pull origin develop && git flow feature finish \"$(git symbolic-ref --short HEAD | sed -n 's/^feature\\///p')\"";
-      go = "!git checkout $1 && pull";
-      master = "!git checkout master && pull";
-      main = "!git checkout main && pull";
-      develop = "!git checkout develop && pull";
-      mmm = "!git fetch origin main && git rebase origin/main";
-      ddd = "!git fetch origin develop && git rebase origin/develop";
+        # Misc
+        publish = "!git push --set-upstream origin $(git branch-name)";
+        
+        # Accidentally typing git git
+        git = "!exec git";
 
-      # Misc
-      publish = "!git push --set-upstream origin $(git branch-name)";
+        # Cleanup
+        cab = "!f() { git branch | grep -v '^*' | xargs git branch -D; }; f";
+        cob = "!r() { count=$2; git for-each-ref --sort=committerdate refs/heads ;}; r";
+        cold = "!r() { count=$1; git for-each-ref --sort=committerdate refs/heads --count=\${count:-3} --format='%(refname:short)' --color=always | xargs git branch -D ; }; r";
+
+        clean-branch = "!f() { git branch -D $(git branch --color=never | grep $1); }; f";
+        clean-local = "!f() { git tag -d $(git tag -l | grep $1); }; f";
+        clean-origin = "!f() { git fetch origin --tags; git push origin --delete $(git tag -l | grep $1) --no-verify; }; f";
+        clean-upstream = "!f() { git fetch upstream --tags; git push upstream --delete $(git tag -l | grep $1) --no-verify; }; f";
+        clean-tags = "!f() { git fetch; git clean-origin $1; git clean-local $1; }; f";
+        clean-tags-upstream = "!f() { git fetch; git clean-origin $1; git clean-upstream $1; git clean-local $1; }; f";
+
+        # Find commits by source code
+        cc = "!f() { git log --pretty=custom --decorate --date=short -S\"$1\"; }; f";
+
+        # Find commits by commit message
+        fcm = "!f() { git log --pretty=custom --decorate --date=short --grep=\"$1\"; }; f";
+
+        # Credit an author
+        credit = "!f() { if [ -n \"$1\" ] && [ -n \"$2\" ]; then git commit --amend --author \"$1 <$2>\" -C HEAD; fi }; f";
+
+        # List remote branches
+        lrb = "!f() { remote=\"\${1:-origin}\"; git ls-remote --heads \"$remote\"; }; f";
+
+        # Merge GitHub pull request
+        mpr = "!f() { declare currentBranch=\"$(git symbolic-ref --short HEAD)\"; declare branch=\"\${2:-$currentBranch}\"; if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then git fetch origin refs/pull/$1/head:pr/$1 && git checkout -B $branch && git rebase $branch pr/$1 && git checkout -B $branch && git merge pr/$1 && git branch -D pr/$1 && git commit --amend -m \"$(printf \"%s\\\\\\\\n\\\\\\\\nClose #%s\" \"$(git log -1 --pretty=%B)\" \"$1\")\"; fi }; f";
+
+        # Retag
+        retag = "!f() { git tag -d \"$1\" &> /dev/null; git tag $1; }; f";
+
+        purge = "!f() { git filter-repo --path \"$1\" --invert-paths --force; }; f";
+      };
       
-      # Accidentally typing git git
-      git = "!exec git";
-
-      # Cleanup
-      cab = "!f() { git branch | grep -v '^*' | xargs git branch -D; }; f";
-      cob = "!r() { count=$2; git for-each-ref --sort=committerdate refs/heads ;}; r";
-      cold = "!r() { count=$1; git for-each-ref --sort=committerdate refs/heads --count=\${count:-3} --format='%(refname:short)' --color=always | xargs git branch -D ; }; r";
-
-      clean-branch = "!f() { git branch -D $(git branch --color=never | grep $1); }; f";
-      clean-local = "!f() { git tag -d $(git tag -l | grep $1); }; f";
-      clean-origin = "!f() { git fetch origin --tags; git push origin --delete $(git tag -l | grep $1) --no-verify; }; f";
-      clean-upstream = "!f() { git fetch upstream --tags; git push upstream --delete $(git tag -l | grep $1) --no-verify; }; f";
-      clean-tags = "!f() { git fetch; git clean-origin $1; git clean-local $1; }; f";
-      clean-tags-upstream = "!f() { git fetch; git clean-origin $1; git clean-upstream $1; git clean-local $1; }; f";
-
-      # Find commits by source code
-      cc = "!f() { git log --pretty=custom --decorate --date=short -S\"$1\"; }; f";
-
-      # Find commits by commit message
-      fcm = "!f() { git log --pretty=custom --decorate --date=short --grep=\"$1\"; }; f";
-
-      # Credit an author
-      credit = "!f() { if [ -n \"$1\" ] && [ -n \"$2\" ]; then git commit --amend --author \"$1 <$2>\" -C HEAD; fi }; f";
-
-      # List remote branches
-      lrb = "!f() { remote=\"\${1:-origin}\"; git ls-remote --heads \"$remote\"; }; f";
-
-      # Merge GitHub pull request
-      mpr = "!f() { declare currentBranch=\"$(git symbolic-ref --short HEAD)\"; declare branch=\"\${2:-$currentBranch}\"; if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then git fetch origin refs/pull/$1/head:pr/$1 && git checkout -B $branch && git rebase $branch pr/$1 && git checkout -B $branch && git merge pr/$1 && git branch -D pr/$1 && git commit --amend -m \"$(printf \"%s\\\\\\\\n\\\\\\\\nClose #%s\" \"$(git log -1 --pretty=%B)\" \"$1\")\"; fi }; f";
-
-      # Retag
-      retag = "!f() { git tag -d \"$1\" &> /dev/null; git tag $1; }; f";
-
-      # Purge from history
-      purge = "!f() { git filter-repo --path \"$1\" --invert-paths --force; }; f";
-    };
-    
-    extraConfig = {
       init.defaultBranch = "main";
       core = {
         editor = "nvim";
