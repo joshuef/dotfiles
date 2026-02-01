@@ -33,6 +33,7 @@ with pkgs; [
   rustup
   sqlite
   tig
+  testdisk
   # trashy
   wget
   yarn
