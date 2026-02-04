@@ -115,6 +115,12 @@ let name = "Josh Wilson";
     export PATH=$HOME/.bun/bin:$PATH
     export PATH="/Applications/Antigravity.app/Contents/Resources/app/bin:$PATH"
 
+    # Android SDK
+    export ANDROID_HOME=$HOME/Library/Android/sdk
+    export PATH=$PATH:$ANDROID_HOME/emulator
+    export PATH=$PATH:$ANDROID_HOME/platform-tools
+    export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
+
     # Remove history data we don't want to see
     export HISTIGNORE="pwd:ls:cd"
 
