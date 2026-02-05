@@ -320,6 +320,7 @@ let name = "Josh Wilson";
     settings = {
       user.name = name;
       user.email = email;
+      credential.helper = "";
       alias = {
         # Staging
         a = "add";
