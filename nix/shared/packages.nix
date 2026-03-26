@@ -61,6 +61,7 @@ with pkgs; [
   # go
   # gopls
   # ngrok
+  railway
   # ssm-session-manager-plugin
   terraform
   terraform-ls
