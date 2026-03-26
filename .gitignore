@@ -8,5 +8,8 @@ chrome
 webstorm/settings.jar
 github_rsa
 sharing_rsa
-nix/result
+result
+result-*
 .worktrees/
+*.tmp
+*.swp
