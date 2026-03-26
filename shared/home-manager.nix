@@ -1,8 +1,8 @@
 { config, pkgs, lib, ... }:
 
-let name = "Josh Wilson";
-    user = "josh";
-    email = "joshuef@gmail.com"; in
+let name = "%NAME%";
+    user = "%USER%";
+    email = "%EMAIL%"; in
 {
 
   fzf = {    enable = true;  };
