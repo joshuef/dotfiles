@@ -25,11 +25,7 @@ fi
 
 # Custom print function
 _print() {
-  if [[ "$OS" == "Darwin" ]]; then
-    echo "$1"
-  else
-    echo -e "$1"
-  fi
+  printf '%b\n' "$1"
 }
 
 # Custom prompt function

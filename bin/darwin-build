@@ -19,7 +19,7 @@ echo "${GREEN}Requesting sudo to set homebrew tap permissions...${CLEAR}"
 
 # Check if the directory exists before running chmod
 if [ -d "/opt/homebrew/Library/Taps/homebrew/" ]; then
-  sudo /bin/chmod +a "%USER% allow list,add_file,search,delete,add_subdirectory,delete_child,readattr,writeattr,readextattr,writeextattr,readsecurity,writesecurity,chown" /opt/homebrew/Library/Taps/homebrew/
+  sudo /bin/chmod +a "josh allow list,add_file,search,delete,add_subdirectory,delete_child,readattr,writeattr,readextattr,writeextattr,readsecurity,writesecurity,chown" /opt/homebrew/Library/Taps/homebrew/
 else
   echo "${RED}The directory /opt/homebrew/Library/Taps/homebrew/ does not exist. Skipping chmod.${CLEAR}"
 fi
@@ -37,7 +37,7 @@ unlink ./result
 echo "${GREEN}Adding lld for rust to cargo config${CLEAR}"
 
 # echo "[target.aarch64-apple-darwin]\nrustflags = [ \"-C\", \"link-arg=-fuse-ld=mold\", \"-C\", \"strip=debuginfo\",\"-C\", \"debuginfo=0\" ]" > ~/.cargo/config.toml
-echo "[target.aarch64-apple-darwin]\nrustflags = [ \"-C\", \"link-arg=-fuse-ld=/Users/%USER%/.nix-profile/bin/ld64.lld\", \"-C\", \"strip=debuginfo\",\"-C\", \"debuginfo=0\" ]" > ~/.cargo/config.toml
+echo "[target.aarch64-apple-darwin]\nrustflags = [ \"-C\", \"link-arg=-fuse-ld=/Users/josh/.nix-profile/bin/ld64.lld\", \"-C\", \"strip=debuginfo\",\"-C\", \"debuginfo=0\" ]" > ~/.cargo/config.toml
 
 
 echo "${GREEN}Done${CLEAR}"

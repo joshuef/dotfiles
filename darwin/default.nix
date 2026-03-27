@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 
-let user = "%USER%"; in
+let user = "josh"; in
 {
 
   imports = [
@@ -35,11 +35,11 @@ let user = "%USER%"; in
 
       maestro = prev.stdenv.mkDerivation rec {
         pname = "maestro";
-        version = "2.0.3";
+        version = "2.3.0";
 
         src = prev.fetchurl {
           url = "https://github.com/mobile-dev-inc/maestro/releases/download/cli-${version}/maestro.zip";
-          sha256 = "1r1mvr6l0gdhslzbz5ain16wk7yzrc359ks35j7yqm2jxi55qpi7";
+          sha256 = "06b2swgslzxgka1i3i0i4lq8czhpcjrlh1nbk7d2wpmlr2as6viv";
         };
 
         nativeBuildInputs = [ prev.unzip ];
