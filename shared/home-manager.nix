@@ -125,8 +125,47 @@ let name = "%NAME%";
     export HISTIGNORE="pwd:ls:cd"
 
     # Usability aliases
+    alias sudo="sudo "
+    alias o="open"
+    alias oo="open ."
+    alias e="$EDITOR"
+    alias g="git"
+    alias v="vim"
+    alias gh="github"
     # alias rm="trashy"
+    alias x+="chmod +x"
+    alias la="ls -la"
     alias cat="bat"
+
+    alias trimcopy="tr -d '\n' | pbcopy"
+    alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+    alias flushdns="dscacheutil -flushcache"
+
+    # New directory and enter it
+    md() {
+      mkdir -p "$@" && cd "$@"
+    }
+
+    # Extract archives
+    extract() {
+      if [ -f "$1" ] ; then
+        case $1 in
+          *.tar.bz2) tar xjf "$1" ;;
+          *.tar.gz)  tar xzf "$1" ;;
+          *.bz2)     bunzip2 "$1" ;;
+          *.rar)     unrar x "$1" ;;
+          *.gz)      gunzip "$1"  ;;
+          *.tar)     tar xf "$1"  ;;
+          *.tbz2)    tar xjf "$1" ;;
+          *.tgz)     tar xzf "$1" ;;
+          *.zip)     unzip "$1"   ;;
+          *.Z)       uncompress "$1" ;;
+          *)         echo "'$1' cannot be extracted via extract()" ;;
+        esac
+      else
+        echo "'$1' is not a valid file"
+      fi
+    }
 
     FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
     # FZF_DEFAULT_COMMAND='rg --files --hidden'
