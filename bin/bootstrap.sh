@@ -11,6 +11,12 @@ NC='\033[0m' # No Color
 # Determine the operating system
 export OS=$(uname)
 
+# Check if Nix is installed
+if ! command -v nix >/dev/null 2>&1; then
+  echo -e "${RED}Nix is not installed. Please install it first: https://nixos.org/download.html${NC}"
+  exit 1
+fi
+
 # Primary network interface
 if [[ "$OS" != "Darwin" ]]; then
   export PRIMARY_IFACE=$(ip -o -4 route show to default | awk '{print $5}')
@@ -83,7 +89,7 @@ confirm_details
 # Function to replace tokens in each file
 replace_tokens() {
   local file="$1"
-  if [[ $(basename $1) != "apply" ]]; then
+  if [[ $(basename "$file") != "bootstrap.sh" ]]; then
     if [[ "$OS" == "Darwin" ]]; then
       # macOS
       LC_ALL=C LANG=C sed -i '' -e "s/%USER%/$USERNAME/g" "$file"
@@ -99,11 +105,18 @@ replace_tokens() {
   fi
 }
 
-# Traverse directories and call replace_tokens on each Nix file
+# Traverse directories and call replace_tokens on each file, excluding .git and docs
 export -f replace_tokens
-find . -type f -exec bash -c 'replace_tokens "$0"' {} \;
+find . -path ./.git -prune -o -path ./docs -prune -o -type f -exec bash -c 'replace_tokens "$0"' {} \;
 
 echo $USERNAME > /tmp/username.txt
 _print "${GREEN}User, name, and email tokens have been replaced in all files.${NC}"
 
-
+# Run initial build
+if [[ "$OS" == "Darwin" ]]; then
+  _print "${YELLOW}Starting initial macOS build...${NC}"
+  ./bin/darwin-build
+else
+  _print "${YELLOW}Starting initial NixOS build...${NC}"
+  ./bin/nixos-build
+fi
