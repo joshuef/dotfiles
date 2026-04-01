@@ -5,4 +5,7 @@
   # ".emacs.d/init.el" = {
   #   # text = builtins.readFile ../shared/config/emacs/init.el;
   # };
+
+  # Oh My Posh config
+  ".config/omp.toml".source = ./config/omp.toml;
 }

@@ -1,0 +1,38 @@
+"$schema" = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json"
+version = 3
+final_space = true
+
+[[blocks]]
+type = "prompt"
+alignment = "left"
+
+  [[blocks.segments]]
+  type = "path"
+  style = "plain"
+  template = "{{ .Path }} "
+  foreground = "blue"
+  [blocks.segments.properties]
+    style = "unique"
+
+  [[blocks.segments]]
+  type = "git"
+  style = "plain"
+  template = "{{ .HEAD }}{{ if .Working.Changed }} *{{ end }}{{ if .Staging.Changed }} +{{ end }} "
+  foreground = "green"
+
+  [[blocks.segments]]
+  type = "text"
+  style = "plain"
+  template = "{{ if eq .Env.CLAUDE_CODE \"1\" }}claude {{ end }}"
+  foreground = "magenta"
+
+[[blocks]]
+type = "prompt"
+alignment = "left"
+newline = true
+
+  [[blocks.segments]]
+  type = "text"
+  style = "plain"
+  template = "❯ "
+  foreground = "white"

@@ -49,22 +49,6 @@ let name = "Josh Wilson";
         src = pkgs.zsh-powerlevel10k;
         file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
     }
-    # {
-    #     name = "zinit";
-    #     src = pkgs.zinit;
-    # }
-    # {
-    #     name = "zsh-syntax-highlighting";
-    #     src = pkgs.zsh-syntax-highlighting;
-    # }
-    # {
-    #     name = "zsh-history-search-multi-word";
-    #     src = pkgs.zsh-history-search-multi-word;
-    # }
-    # {
-    #     name = "zsh-autosuggestions";
-    #     src = pkgs.zsh-autosuggestions;
-    # }
     {
         name = "powerlevel10k-config";
         src = lib.cleanSource ./config;
@@ -350,6 +334,149 @@ let name = "Josh Wilson";
       echo "opening $file" &&
       xdg-open "$file"
     }
+
+    # ── Claude Code status line color (per directory group) ──
+    _CLAUDE_COLORS=(117 183 150 209 174 139 108 73 167 203 179 146 110 175 218 153 216 81 168 137)
+    _claude_color_group() {
+      case "$PWD" in
+        $HOME/work/*)            echo "work" ;;
+        $HOME/[Pp]rojects/*)     echo "projects" ;;
+        $HOME/*)                 echo "home" ;;
+        *)                       echo "default" ;;
+      esac
+    }
+    claude-color() {
+      local g=$(_claude_color_group)
+      local f=~/.claude/.statuscolor-$g
+      local cur=$(cat "$f" 2>/dev/null || echo 117)
+      local idx=1
+      for i in {1..''${#_CLAUDE_COLORS[@]}}; do
+        [[ "''${_CLAUDE_COLORS[$i]}" == "$cur" ]] && { idx=$i; break; }
+      done
+      idx=$(( idx % ''${#_CLAUDE_COLORS[@]} + 1 ))
+      local next=''${_CLAUDE_COLORS[$idx]}
+      echo "$next" > "$f"
+      printf "\e[38;5;''${next}m● color $next ($g)\e[0m\n"
+    }
+    claude-color-prev() {
+      local g=$(_claude_color_group)
+      local f=~/.claude/.statuscolor-$g
+      local cur=$(cat "$f" 2>/dev/null || echo 117)
+      local idx=1
+      for i in {1..''${#_CLAUDE_COLORS[@]}}; do
+        [[ "''${_CLAUDE_COLORS[$i]}" == "$cur" ]] && { idx=$i; break; }
+      done
+      idx=$(( (idx - 2 + ''${#_CLAUDE_COLORS[@]}) % ''${#_CLAUDE_COLORS[@]} + 1 ))
+      local next=''${_CLAUDE_COLORS[$idx]}
+      echo "$next" > "$f"
+      printf "\e[38;5;''${next}m● color $next ($g)\e[0m\n"
+    }
+
+    # ── Ghostty keybind cheat sheet ──
+    ghostty-keys() {
+      echo "  Splits"
+      echo "    cmd+d          split right"
+      echo "    cmd+shift+d    split down"
+      echo "    cmd+w          close split"
+      echo "    cmd+opt+←→↑↓   navigate splits"
+      echo ""
+      echo "  Tabs"
+      echo "    cmd+t          new tab"
+      echo "    cmd+shift+[    prev tab"
+      echo "    cmd+shift+]    next tab"
+      echo "    cmd+1-9        goto tab"
+      echo ""
+      echo "  Themes"
+      echo "    theme-next     next theme"
+      echo "    theme-prev     prev theme"
+    }
+
+    # ── Ghostty theme cycling (all built-in themes) ──
+    # Cycles through every theme from `ghostty +list-themes`.
+    # To pin a specific theme, just set `theme = YourTheme` in ~/.config/ghostty/config
+    # and remove theme-next/theme-prev usage.
+    if [[ "$TERM_PROGRAM" == "ghostty" ]]; then
+      _GHOSTTY_THEMES=()
+      _GHOSTTY_IDX=0
+
+      _ghostty_load_themes() {
+        if [[ ''${#_GHOSTTY_THEMES[@]} -eq 0 ]]; then
+          _GHOSTTY_THEMES=("''${(@f)$(ghostty +list-themes 2>/dev/null | sed 's/ (resources)$//')}")
+          # Find current theme's index
+          local config="$HOME/.config/ghostty/config"
+          if [[ -f "$config" ]]; then
+            local current=$(grep '^theme *=' "$config" | head -1 | sed 's/^theme *= *//')
+            if [[ -n "$current" ]]; then
+              for i in {1..''${#_GHOSTTY_THEMES[@]}}; do
+                if [[ "''${_GHOSTTY_THEMES[$i]}" == "$current" ]]; then
+                  _GHOSTTY_IDX=$(( i - 1 ))
+                  break
+                fi
+              done
+            fi
+          fi
+        fi
+      }
+
+      _ghostty_set_theme() {
+        local theme="$1"
+        local config="$HOME/.config/ghostty/config"
+        mkdir -p "''${config:h}"
+        # Ensure config-file include exists
+        if [[ -f "$config" ]] && ! grep -q '^config-file' "$config"; then
+          sed -i "" "1i\\
+config-file = $HOME/.config/ghostty/config-base
+" "$config"
+        elif [[ ! -f "$config" ]]; then
+          echo "config-file = $HOME/.config/ghostty/config-base" > "$config"
+        fi
+        if grep -q '^theme *=' "$config"; then
+          sed -i "" "s/^theme *=.*$/theme = $theme/" "$config"
+        else
+          echo "theme = $theme" >> "$config"
+        fi
+        kill -SIGUSR2 $(pgrep -a ghostty) 2>/dev/null
+        echo "🎨 theme: $theme  (''${$(( _GHOSTTY_IDX + 1 ))}/''${#_GHOSTTY_THEMES[@]} — pin in ~/.config/ghostty/config)"
+      }
+
+      theme-next() {
+        _ghostty_load_themes
+        local size=''${#_GHOSTTY_THEMES[@]}
+        _GHOSTTY_IDX=$(( (_GHOSTTY_IDX + 1) % size ))
+        _ghostty_set_theme "''${_GHOSTTY_THEMES[$(( _GHOSTTY_IDX + 1 ))]}"
+      }
+
+      theme-prev() {
+        _ghostty_load_themes
+        local size=''${#_GHOSTTY_THEMES[@]}
+        _GHOSTTY_IDX=$(( (_GHOSTTY_IDX - 1 + size) % size ))
+        _ghostty_set_theme "''${_GHOSTTY_THEMES[$(( _GHOSTTY_IDX + 1 ))]}"
+      }
+    fi
+
+    # ── Ghostty tab title: git repo name or last 3 path segments ──
+    if [[ "$TERM_PROGRAM" == "ghostty" ]]; then
+      _set_ghostty_title() {
+        local dir="$PWD"
+        while [[ "$dir" != "/" ]]; do
+          if [[ -d "$dir/.git" ]]; then
+            printf "\e]2;''${dir:t}\a"
+            return
+          fi
+          dir="''${dir:h}"
+        done
+        # Fallback: last 3 segments
+        local parts=(''${(s:/:)PWD})
+        local len=''${#parts[@]}
+        if (( len <= 3 )); then
+          printf "\e]2;%s\a" "$PWD"
+        else
+          printf "\e]2;%s\a" "''${(j:/:)parts[$((len-2)),$len]}"
+        fi
+      }
+      chpwd_functions+=(_set_ghostty_title)
+      _set_ghostty_title
+    fi
   '';
 
   git = {

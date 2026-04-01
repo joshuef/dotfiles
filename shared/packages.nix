@@ -110,6 +110,7 @@ with pkgs; [
   zsh-z
   # slack
   rm-improved
+  oh-my-posh
 
   imagemagick
 
