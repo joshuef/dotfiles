@@ -115,7 +115,6 @@ let name = "Josh Wilson";
     alias e="$EDITOR"
     alias g="git"
     alias v="vim"
-    alias gh="github"
     # alias rm="trashy"
     alias x+="chmod +x"
     alias la="ls -la"
