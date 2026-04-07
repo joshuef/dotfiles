@@ -916,12 +916,12 @@ config-file = $HOME/.config/ghostty/config-base
           Hostname github.com
           IdentitiesOnly yes
 
-        ## Download these to ~/.ssh before we can use them
-        Host github.com
-          IdentityFile ~/.ssh/github_rsa.pub
-          IdentitiesOnly yes
+        ## Keys are managed via 1Password agent above
+        # Host github.com
+        #   IdentityFile ~/.ssh/github_rsa
+        #   IdentitiesOnly yes
 
-        IdentityFile ~/.ssh/sharing_rsa.pub
+        # IdentityFile ~/.ssh/sharing_rsa.pub
 
         Host *
             ControlMaster auto
