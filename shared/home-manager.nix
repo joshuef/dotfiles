@@ -914,7 +914,6 @@ config-file = $HOME/.config/ghostty/config-base
 
         Host github.com
           Hostname github.com
-          IdentitiesOnly yes
 
         ## Keys are managed via 1Password agent above
         # Host github.com
