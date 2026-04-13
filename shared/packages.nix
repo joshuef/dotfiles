@@ -23,7 +23,7 @@ with pkgs; [
   killall
   cloc
   mosh
-  neofetch
+  fastfetch
   ncdu
   openssh
   pandoc
