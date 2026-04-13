@@ -14,3 +14,4 @@ result-*
 .worktrees/
 *.tmp
 *.swp
+.claude/settings.local.json
