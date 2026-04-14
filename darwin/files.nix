@@ -38,6 +38,9 @@ let
     keybind = cmd+eight=goto_tab:8
     keybind = cmd+nine=goto_tab:9
 
+    # Copy: ctrl+c copies if text selected, otherwise sends SIGINT
+    keybind = ctrl+c=copy:clipboard_or_default
+
     # Focus: cmd+opt+arrows to navigate splits
     keybind = cmd+alt+left=goto_split:left
     keybind = cmd+alt+right=goto_split:right
