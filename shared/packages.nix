@@ -95,6 +95,7 @@ with pkgs; [
   gh
   git-secrets
   sentry-cli
+  stripe-cli
 
   # Text and terminal utilities
   htop
