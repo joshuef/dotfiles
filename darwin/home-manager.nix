@@ -27,6 +27,7 @@ in
   homebrew.brews = [
     "node"
     "npm"
+    "solana" # Agave CLI (https://docs.anza.xyz/cli/install)
   ];
   homebrew.casks = pkgs.callPackage ./casks.nix {};
 

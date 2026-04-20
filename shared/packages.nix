@@ -120,6 +120,7 @@ with pkgs; [
   python311
   python311Packages.virtualenv
   python311Packages.pipx
+  python311Packages.base58 # for Agave/Solana keypair encoding
 
   # lld linker for rust
   lld
