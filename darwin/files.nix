@@ -12,6 +12,10 @@ let
     # Appearance
     macos-titlebar-style = tabs
 
+    # Splits: visible divider + dim unfocused pane (Neutron palette teal)
+    split-divider-color = #3f94a8
+    unfocused-split-opacity = 0.5
+
     # Tab/split behavior
     tab-inherit-working-directory = true
     split-inherit-working-directory = true
@@ -38,8 +42,9 @@ let
     keybind = cmd+eight=goto_tab:8
     keybind = cmd+nine=goto_tab:9
 
-    # Copy: ctrl+c copies if text selected, otherwise sends SIGINT
-    keybind = ctrl+c=copy:clipboard_or_default
+    # Copy: ctrl+c copies if text selected, otherwise falls through to SIGINT
+    # (performable: consumes the key only when the action does something)
+    keybind = performable:ctrl+c=copy_to_clipboard
 
     # Focus: cmd+opt+arrows to navigate splits
     keybind = cmd+alt+left=goto_split:left
